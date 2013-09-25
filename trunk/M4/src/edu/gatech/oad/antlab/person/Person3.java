@@ -33,6 +33,7 @@ public class Person3 {
 	}
 	
 	/**
+	 * @author Irina Babkina
 	 * This method should take the string
 	 * input and return its reverse.
 	 * given "gtg123b" it should return
@@ -42,7 +43,16 @@ public class Person3 {
 	 * @return the reversed string
 	 */
 	private String calc(String input) {
-	  //Person 3 put your implementation here
-	  return null;
+		String reverse = "";
+		for(int i = input.length() -1; i >=0; i--) {
+			reverse += input.charAt(i);
+		}
+	  return reverse;
+	}
+	
+	public static void main(String[] args) {
+		Person3 Irina = new Person3("Irina");
+		String a = "123456";
+		System.out.println(Irina.calc(a));
 	}
 }
