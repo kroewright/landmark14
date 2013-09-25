@@ -48,11 +48,5 @@ public class Person3 {
 			reverse += input.charAt(i);
 		}
 	  return reverse;
-	}
-	
-	public static void main(String[] args) {
-		Person3 Irina = new Person3("Irina");
-		String a = "123456";
-		System.out.println(Irina.calc(a));
-	}
+	}	
 }
