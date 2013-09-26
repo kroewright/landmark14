@@ -29,9 +29,14 @@ public class Person5 {
 	 * @param input the string to be modified
 	 * @return the modified string
 	 */
-	private String calc(String input) {
-	  //Person 5 put your implementation here
-	  return null;
+	private static String calc(String input) {
+		int sizey= input.length();
+		String outy= input;
+		if (sizey>1){
+			String wd= (input.substring(3,sizey));
+			outy= (wd+input.substring(0,3));		
+		}
+		return outy;
 	}
 	
 	/**
