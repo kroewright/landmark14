@@ -33,8 +33,8 @@ public class Person4 {
     	int size = input.length();
     	String output = input;
     	if(size > 1) {
-    		String word = input.substring(1, size-1);
-        	output = word + input.substring(0, 0);
+    		String word = input.substring(1, size);
+        	output = word + input.substring(0, 1);
     	}
     	return output;
     }
@@ -50,6 +50,5 @@ public class Person4 {
     public String toString(String input) {
       return name + calc(input);
     }
-
 }
 
