@@ -1,0 +1,78 @@
+<project name="M.U.L.E." default="all" basedir=".">
+
+	        <target name="init" description="Sets up all the properties">
+	                <property name="src.dir" value="src" />
+	                <property name="person" location="src/edu/gatech/oad/antLab/person" />
+	                <property name="package1" location="src/edu/gatech/oad/antLab/pkg1" />
+	                <property name="package2" location="src/edu/gatech/oad/antLab/pkg2" />
+	                <property name="apidoc.dir" value="apidoc" />
+	                <property name="build.dir" value="build" />
+	                <property name="library.dir" value="lib" />
+	                <property name="AntlabRun" value="lib/AntLabRun.jar" />
+	        </target>       
+	        
+	        <target name="prepare" description="Makes all the required directories">
+	                <mkdir dir="src" />
+	                <mkdir dir="build" />
+	                <mkdir dir="apidoc" />
+	                <mkdir dir="lib" />
+	        </target>
+	        
+	        <target name="compile" depends="init,prepare" description="Complies all java classes in the src directory to the build directory">
+	                 <javac destdir="build">
+	                        <src path="${person}" />
+	                        <src path="${package1}" />
+	                        <src path="${package2}" />
+	                        <classpath>
+	                                <pathelement path="build.dir" />
+	                                <pathelement location="lib/resources.jar" />
+	                        </classpath>
+	                </javac>        
+	        </target>
+	        
+	        <target name="javadoc" description="generates javadoc for all the classes in src">
+	                <javadoc sourcepath="src" access="public" destdir="${apidoc}" packagenames="edu.gatech.oad.antlab.person">
+	                        <fileset dir="src">
+	                                <include name="src/edu/gatech/oad/antlab/person/Person3.java"/>
+	                                <include name="src/edu/gatech/oad/antlab/pkg1/AntLab11.java"/>
+	                                <include name="src/edu/gatech/oad/antlab/pkg1/AntLab12.java"/>
+	                                <include name="src/edu/gatech/oad/antlab/pkg1/AntLabMain.java"/>
+	                                <include name="src/edu/gatech/oad/antlab/pkg2/AntLab21.java"/>
+	                                <include name="src/edu/gatech/oad/antlab/pkg2/AntLab22.java"/>
+	                        </fileset>
+	                       
+	                </javadoc>
+	        </target>
+	        
+	        <target name="jar" description="package all the classes to AntLabRun.jar">
+	                <jar destfile="${AntlabRun}" basedir="${build.dir}">
+	                        <include name="edu/gatech/oad/antlab/**/*.class" />
+	                        <manifest>
+	                                <attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
+	                                <attribute name="Class-Path" value="../lib/resources.jar" />
+	                        </manifest>
+	                </jar>
+	        </target>
+	        
+	        <target name="run" description="runs the jar file created in jar">
+	                <java jar="${dist.dir}/${jar.name}.jar" fork="true">
+	                <classpath>
+	                        <pathelement location="${build}"/>
+	                        <pathelement location="${lib}/j2me.jar"/>
+	                        <pathelement location="java.class.path"/>
+	                </classpath>
+	                </java>
+	        </target>
+	        
+	        <target name="all" depends="prepare,compile,javadoc,jar,run" description="performs all of the tasks except clean">
+	                
+	        </target>
+	        
+	        <target name="clean"
+	                description="removes all the compiled classes and any ar files created by other targets">
+	                <delete dir="${build}" />
+	                <delete dir="${apidoc}" />
+	                <delete file="AntLabRun.jar" />
+	        </target>
+
+	</project>
