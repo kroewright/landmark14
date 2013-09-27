@@ -66,9 +66,11 @@
 </target>
 
 <target name="clean" depends="init" description="removes all the compiled classes and any ar files created by other targets">
-        <delete dir="${build.dir}" />
-        <delete dir="${apidoc.dir}" />
-        <delete file="AntLabRun.jar" />
+	<delete includeEmptyDirs="true">
+		<fileset dir="${build.dir}"/>
+		<fileset dir="${apidoc.dir}"/>
+		<fileset file="${library.dir}\AntLabRun.jar"/>
+	</delete>
 </target>
 
 <target name="zip" depends="init" description="This target zips up all the class files">
