@@ -1,14 +1,14 @@
 <project name="M4" default="all" basedir=".">
 
 <target name="init" description="Sets up all the properties">
-                <property name="src.dir" value="src" />
-                <property name="person" location="src/edu/gatech/oad/antlab/person" />
-                <property name="pkg1" location="src/edu/gatech/oad/antlab/pkg1" />
-                <property name="pkg2" location="src/edu/gatech/oad/antlab/pkg2" />
-                <property name="build.dir" value="build" />
-                <property name="apidoc.dir" value="apidoc" />
-                <property name="lib.dir" value="lib" />
-                <property name="AntlabRun" value="lib/AntLabRun.jar" />
+                <property name="src.dir" value="./src" />
+                <property name="person" location="./src/edu/gatech/oad/antlab/person" />
+                <property name="pkg1" location="./src/edu/gatech/oad/antlab/pkg1" />
+                <property name="pkg2" location="./src/edu/gatech/oad/antlab/pkg2" />
+                <property name="build.dir" value="./build" />
+                <property name="apidoc.dir" value="./apidoc" />
+                <property name="lib.dir" value="./lib" />
+                <property name="AntlabRun" value="${lib.dir}/AntLabRun.jar" />
         </target>
 
         <target name="prepare" description="Makes all the required directories">
@@ -19,7 +19,7 @@
         </target>
 
         <target name="compile" depends="init,prepare" description="Complies all java classes in the src directory to the build directory">
-                <javac destdir="build" includeantruntime="false">
+                <javac destdir="${build.dir}" includeantruntime="false">
                         <src path="${person}" />
                         <src path="${pkg1}" />
                         <src path="${pkg2}" />
@@ -55,7 +55,7 @@
         <java jar="${AntlabRun}" fork="true">
                 <classpath>
                         <pathelement location="${build.dir}" />
-                        <pathelement location="${lib}/j2me.jar" />
+                        <pathelement location="${lib.dir}/j2me.jar" />
                         <pathelement location="java.class.path" />
                 </classpath>
         </java>
@@ -66,18 +66,8 @@
 </target>
 
 <target name="clean" depends="init" description="removes all the compiled classes and any ar files created by other targets">
-	<delete includeEmptyDirs="true">
-		<fileset dir="${build.dir}"/>
-		<fileset dir="${apidoc.dir}"/>
-		<fileset file="${library.dir}\AntLabRun.jar"/>
-	</delete>
+		<delete dir="${build.dir}"/>
+		<delete dir="${apidoc.dir}"/>
+		<delete file="${AntlabRun}"/>
 </target>
-
-<target name="zip" depends="init" description="This target zips up all the class files">
-
-        <zip destfile="myZip" basedir="${build.dir}" />
-
-</target>
-
-
 </project>
