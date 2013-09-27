@@ -1,0 +1,81 @@
+<project name="M4" default="all" basedir=".">
+
+<target name="init" description="Sets up all the properties">
+                <property name="src.dir" value="src" />
+                <property name="person" location="src/edu/gatech/oad/antlab/person" />
+                <property name="pkg1" location="src/edu/gatech/oad/antlab/pkg1" />
+                <property name="pkg2" location="src/edu/gatech/oad/antlab/pkg2" />
+                <property name="build.dir" value="build" />
+                <property name="apidoc.dir" value="apidoc" />
+                <property name="lib.dir" value="lib" />
+                <property name="AntlabRun" value="lib/AntLabRun.jar" />
+        </target>
+
+        <target name="prepare" description="Makes all the required directories">
+                <mkdir dir="src" />
+                <mkdir dir="build" />
+                <mkdir dir="apidoc" />
+                <mkdir dir="lib" />
+        </target>
+
+        <target name="compile" depends="init,prepare" description="Complies all java classes in the src directory to the build directory">
+                <javac destdir="build" includeantruntime="false">
+                        <src path="${person}" />
+                        <src path="${pkg1}" />
+                        <src path="${pkg2}" />
+                        <classpath>
+                                <pathelement path="build.dir" />
+                                <pathelement location="lib/resources.jar" />
+                        </classpath>
+                </javac>
+        </target>
+
+        <target name="javadoc" depends="init" description="generates javadoc for all the classes in src">
+                <javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}" packagenames="edu.gatech.oad.antdemo" classpath="lib/resources.jar">
+                        <fileset dir="${src.dir}">
+                                <include name="**/*.java" />
+                        </fileset>
+                        <bottom>
+                                
+              </bottom>
+        </javadoc>
+</target>
+
+<target name="jar" depends="init" description="package all the classes to AntLabRun.jar">
+        <jar destfile="${AntlabRun}" basedir="${build.dir}">
+                <include name="edu/gatech/oad/antlab/**/*.class" />
+                <manifest>
+                        <attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
+                        <attribute name="Class-Path" value="../lib/resources.jar" />
+                </manifest>
+        </jar>
+</target>
+
+<target name="run" depends="init" description="runs the jar file created in jar">
+        <java jar="${AntlabRun}" fork="true">
+                <classpath>
+                        <pathelement location="${build.dir}" />
+                        <pathelement location="${lib}/j2me.jar" />
+                        <pathelement location="java.class.path" />
+                </classpath>
+        </java>
+</target>
+
+<target name="all" depends="prepare,compile,javadoc,jar,run" description="performs all of the tasks except clean">
+
+</target>
+
+<target name="clean" depends="init" description="removes all the compiled classes and any ar files created by other targets">
+        <delete dir="${build.dir}" />
+        <delete dir="${apidoc.dir}" />
+        <delete file="AntLabRun.jar" />
+</target>
+
+<target name="zip" depends="init" description="This target zips up all the class files">
+
+        <zip destfile="myZip" basedir="${build.dir}" />
+
+</target>
+
+
+</project>
