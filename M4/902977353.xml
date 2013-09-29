@@ -54,8 +54,8 @@
 	                </jar>
 	        </target>
 	        
-	        <target name="run" description="runs the jar file created in jar">
-	                <java jar="${dist.dir}/${jar.name}.jar" fork="true">
+	        <target name="run" depends="init" description="runs the jar file created in jar">
+	                <java jar="${AntlabRun}" fork="true">
 	                <classpath>
 	                        <pathelement location="${build}"/>
 	                        <pathelement location="${lib}/j2me.jar"/>
