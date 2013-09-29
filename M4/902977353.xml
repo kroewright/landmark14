@@ -2,9 +2,9 @@
 
 	        <target name="init" description="Sets up all the properties">
 	                <property name="src.dir" value="src" />
-	                <property name="person" location="src/edu/gatech/oad/antLab/person" />
-	                <property name="package1" location="src/edu/gatech/oad/antLab/pkg1" />
-	                <property name="package2" location="src/edu/gatech/oad/antLab/pkg2" />
+	                <property name="person" location="src/edu/gatech/oad/antlab/person" />
+	                <property name="package1" location="src/edu/gatech/oad/antlab/pkg1" />
+	                <property name="package2" location="src/edu/gatech/oad/antlab/pkg2" />
 	                <property name="apidoc.dir" value="apidoc" />
 	                <property name="build.dir" value="build" />
 	                <property name="library.dir" value="lib" />
@@ -17,9 +17,9 @@
 	                <mkdir dir="apidoc" />
 	                <mkdir dir="lib" />
 	        </target>
-	        
-	        <target name="compile" depends="init,prepare" description="Complies all java classes in the src directory to the build directory">
-	                 <javac destdir="build">
+	
+	        <target name="compile" depends="init,prepare" description="Complies all java classes in the src directory and puts them in the build directory">
+	                 <javac destdir="build" includeantruntime="false">
 	                        <src path="${person}" />
 	                        <src path="${package1}" />
 	                        <src path="${package2}" />
@@ -30,7 +30,7 @@
 	                </javac>        
 	        </target>
 	        
-	        <target name="javadoc" description="generates javadoc for all the classes in src">
+	        <target name="javadoc" description="Generates javadoc for all the classes in src">
 	                <javadoc sourcepath="src" access="public" destdir="${apidoc}" packagenames="edu.gatech.oad.antlab.person">
 	                        <fileset dir="src">
 	                                <include name="src/edu/gatech/oad/antlab/person/Person3.java"/>
@@ -44,7 +44,7 @@
 	                </javadoc>
 	        </target>
 	        
-	        <target name="jar" description="package all the classes to AntLabRun.jar">
+	        <target name="jar" depends= "init" description="package all the classes to AntLabRun.jar">
 	                <jar destfile="${AntlabRun}" basedir="${build.dir}">
 	                        <include name="edu/gatech/oad/antlab/**/*.class" />
 	                        <manifest>
@@ -69,7 +69,7 @@
 	        </target>
 	        
 	        <target name="clean"
-	                description="removes all the compiled classes and any ar files created by other targets">
+	                description="removes all the compiled classes and any jar files created by other targets">
 	                <delete dir="${build}" />
 	                <delete dir="${apidoc}" />
 	                <delete file="AntLabRun.jar" />
