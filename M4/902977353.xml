@@ -68,11 +68,11 @@
 	                
 	        </target>
 	        
-	        <target name="clean"
+	        <target name="clean" depends="init"
 	                description="removes all the compiled classes and any jar files created by other targets">
-	                <delete dir="${build}" />
-	                <delete dir="${apidoc}" />
-	                <delete file="AntLabRun.jar" />
+	                <delete dir="${build.dir}" />
+	                <delete dir="${apidoc.dir}" />
+	                <delete file="${AntlabRun}" />
 	        </target>
 
 	</project>
