@@ -1,5 +1,5 @@
 <project name="M4" default="jar" basedir=".">
-        <target name="init" description="Sets up all the properties">
+        <target name="init">
                 <property name="src.dir" value="src" />
                 <property name="src1.dir" location="src/edu/gatech/oad/antlab/person/Person2.java" />
                 <property name="src2.dir" location="src/edu/gatech/oad/antlab/pkg1/AntLab11.java" />
@@ -14,7 +14,7 @@
         </target>
         
         
-        <target name="prepare" description="Makes all the required directories">
+        <target name="prepare">
                 <mkdir dir="src" />
                 <mkdir dir="build" />
                 <mkdir dir="apidoc" />
@@ -22,8 +22,7 @@
         </target>
         
         
-        <target name="compile"
-                description="Complies all java classes in the src directory to the build directory">
+        <target name="compile">
                  <javac destdir="build">
            <src path="src/edu/gatech/oad/antlab/person"/>
            <src path="src/edu/gatech/oad/antlab/pkg1"/>
@@ -36,7 +35,7 @@
                 
         </target>
         
-        <target name="javadoc" description="generates javadoc for all the classes in src">
+        <target name="javadoc">
         <javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc}" packagenames="edu.gatech.oad.antlab.person">
                         <fileset dir="${src.dir}">
                                 <include name="src/edu/gatech/oad/antlab/person/Person2.java"/> 
@@ -52,7 +51,7 @@
         </javadoc>
         </target>
         
-        <target name="jar" description="package all the classes to AntLabRun.jar">
+        <target name="jar">
         <jar destfile="AntLabRun.jar">
                 <include name="edu/gatech/oad/antlab/Person2.class" />    
                 <include name="edu/gatech/oad/antlab/pkg1/Antlab11.class" />
@@ -72,7 +71,7 @@
         </jar>
         </target>
         
-        <target name="run" description="runs the jar file created in jar">
+        <target name="run">
                 <java jar="${dist.dir}/${jar.name}.jar" fork="true">
                 <classpath>
                         <pathelement location="${build}"/>
@@ -82,11 +81,10 @@
                 </java>
         </target>
         
-        <target name="all" description="performs all of the tasks except clean">
+        <target name="all">
 
         </target>
-        <target name="clean"
-                description="removes all the compiled classes and any ar files created by other targets">
+        <target name="clean">
                 <delete dir="${build}" />
                 <delete dir="${apidoc}" />
                 <delete file="AntLabRun.jar" />
