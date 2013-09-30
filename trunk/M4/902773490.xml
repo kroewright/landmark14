@@ -21,7 +21,7 @@
                 <mkdir dir="lib" />
         </target>
         
-        
+        <!--[compiling]-->
         <target name="compile">
                  <javac destdir="build">
            <src path="src/edu/gatech/oad/antlab/person"/>
