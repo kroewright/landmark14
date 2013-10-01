@@ -72,7 +72,7 @@ import edu.gatech.oad.antlab.pkg2.*;
           //Person4 replace P4 with your name
           //and ggg000x with your gt num
           Person4 p4 = new Person4("Ross Lucier");
-          toPrint += p4.toString("902766508");
+          toPrint += p4.toString("rlucier3");
 		  //Person5 replace P5 with your name
           //and ggg000x with your gt num
           Person5 p5 = new Person5("Luisa Botelho");
