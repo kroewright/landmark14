@@ -64,11 +64,11 @@ import edu.gatech.oad.antlab.pkg2.*;
 		  //Person2 replace P2 with your name
 		  //and ggg000x with your gt num
 		  Person2 p2 = new Person2("Mason DiMarco");
-		  toPrint += p2.toString("902911178");
+		  toPrint += p2.toString("mdimarco3");
 		  //Person3 replace P3 with your name
 		  //and ggg000x with your gt num
 		  Person3 p3 = new Person3("Irina Babkina");
-		  toPrint += p3.toString("902977353");
+		  toPrint += p3.toString("babkinai");
           //Person4 replace P4 with your name
           //and ggg000x with your gt num
           Person4 p4 = new Person4("Ross Lucier");
@@ -76,7 +76,7 @@ import edu.gatech.oad.antlab.pkg2.*;
 		  //Person5 replace P5 with your name
           //and ggg000x with your gt num
           Person5 p5 = new Person5("Luisa Botelho");
-          toPrint += p5.toString("902791501");
+          toPrint += p5.toString("mbotelho3");
         System.out.println(toPrint);
         
         
