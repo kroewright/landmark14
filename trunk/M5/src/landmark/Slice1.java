@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class Slice1 extends JFrame {
 
@@ -67,6 +69,33 @@ public class Slice1 extends JFrame {
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setBackground(Color.BLACK);
 		center.add(comboBox);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 204, 0));
+		contentPane.add(panel_1, BorderLayout.SOUTH);
+		
+		JLabel lblDifficulty = new JLabel("Difficulty:");
+		lblDifficulty.setFont(new Font("Garuda", Font.BOLD, 17));
+		lblDifficulty.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_1.add(lblDifficulty);
+		
+		JRadioButton rdbtnBeginner = new JRadioButton("Beginner");
+		rdbtnBeginner.setBackground(new Color(255, 204, 0));
+		
+		JRadioButton rdbtnAdvanced = new JRadioButton("Advanced");
+		rdbtnAdvanced.setBackground(new Color(255, 204, 0));
+		
+		JRadioButton rdbtnTournament = new JRadioButton("Tournament");
+		rdbtnTournament.setBackground(new Color(255, 204, 0));
+
+		ButtonGroup bg1 = new ButtonGroup( );
+		bg1.add(rdbtnBeginner);
+		bg1.add(rdbtnAdvanced);
+		bg1.add(rdbtnTournament);
+
+		panel_1.add(rdbtnBeginner);
+		panel_1.add(rdbtnAdvanced);
+		panel_1.add(rdbtnTournament);
 	}
 
 }
