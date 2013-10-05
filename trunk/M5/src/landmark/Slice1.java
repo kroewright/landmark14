@@ -70,14 +70,14 @@ public class Slice1 extends JFrame {
 		comboBox.setBackground(Color.BLACK);
 		center.add(comboBox);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 204, 0));
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		JPanel south = new JPanel();
+		south.setBackground(new Color(255, 204, 0));
+		contentPane.add(south, BorderLayout.SOUTH);
 		
 		JLabel lblDifficulty = new JLabel("Difficulty:");
 		lblDifficulty.setFont(new Font("Garuda", Font.BOLD, 17));
 		lblDifficulty.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_1.add(lblDifficulty);
+		south.add(lblDifficulty);
 		
 		JRadioButton rdbtnBeginner = new JRadioButton("Beginner");
 		rdbtnBeginner.setBackground(new Color(255, 204, 0));
@@ -93,9 +93,9 @@ public class Slice1 extends JFrame {
 		bg1.add(rdbtnAdvanced);
 		bg1.add(rdbtnTournament);
 
-		panel_1.add(rdbtnBeginner);
-		panel_1.add(rdbtnAdvanced);
-		panel_1.add(rdbtnTournament);
+		south.add(rdbtnBeginner);
+		south.add(rdbtnAdvanced);
+		south.add(rdbtnTournament);
 	}
 
 }
