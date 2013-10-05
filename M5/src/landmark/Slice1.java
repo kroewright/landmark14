@@ -47,14 +47,14 @@ public class Slice1 extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 204, 0));
-		contentPane.add(panel, BorderLayout.NORTH);
+		JPanel north = new JPanel();
+		north.setBackground(new Color(255, 204, 0));
+		contentPane.add(north, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("M.U.L.E.");
 		lblNewLabel.setFont(new Font("Garuda", Font.BOLD, 27));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
-		panel.add(lblNewLabel);
+		north.add(lblNewLabel);
 		
 		JPanel center = new JPanel();
 		contentPane.add(center, BorderLayout.CENTER);
