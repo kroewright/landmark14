@@ -1,33 +1,28 @@
 package landmark;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.Color;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-
-import java.io.IOException;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class Slice1 extends JFrame {
+public class OpeningScreen extends JFrame {
     static int numOfPlayers=0;
 	private JPanel contentPane;
 
@@ -38,7 +33,7 @@ public class Slice1 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Slice1 frame = new Slice1();
+					OpeningScreen frame = new OpeningScreen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +45,7 @@ public class Slice1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Slice1() {
+	public OpeningScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 617);
 		contentPane = new JPanel();
@@ -64,24 +59,25 @@ public class Slice1 extends JFrame {
 		JPanel center = new JPanel();
 		contentPane.add(center, BorderLayout.CENTER);
 		BufferedImage myPicture = null;
-		try{
-			myPicture = ImageIO.read(new File("C:\\Users\\Luisa Botelho\\Dropbox\\Workspace\\M5\\openingPage.jpg"));}
-		catch(IOException e){
-			System.out.println(" background pic not found");}
-		center.setLayout(null);
+		try {
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			InputStream input = classLoader.getResourceAsStream("Openingpage.jpg");
+			myPicture = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Picture not found");
+		}
+		
+		
+		
 		
 		JLabel lblPlayers = new JLabel("Players");
 		lblPlayers.setBounds(367, 586, 58, 23);
 		lblPlayers.setFont(new Font("Garuda", Font.BOLD, 17));
 		center.add(lblPlayers);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(430, 587, 31, 20);
-		comboBox.setMaximumRowCount(4);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4"}));
-		comboBox.setForeground(Color.WHITE);
-		comboBox.setBackground(Color.BLACK);
-		center.add(comboBox);
+		
+		
 		
 		
 		JButton btn2 = new JButton("2");
@@ -123,6 +119,25 @@ public class Slice1 extends JFrame {
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setBounds(18, 5, 792, 576);
 		center.add(picLabel);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		JPanel south = new JPanel();
 		south.setBackground(new Color(255, 204, 0));
