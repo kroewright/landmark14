@@ -52,7 +52,7 @@ public class OpeningScreen extends JFrame {
 
 	
 	
-	public JPanel generate(){
+	public JPanel generateSelectionPage(){
 		JPanel panel = new JPanel();
 		
 		
@@ -266,7 +266,7 @@ public class OpeningScreen extends JFrame {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(numOfPlayers != 0){
-					JPanel selectionPage = generate();
+					JPanel selectionPage = generateSelectionPage();
 					contentPane.setVisible(false);
 					selectionPage.setVisible(true);
 					setContentPane(selectionPage);
