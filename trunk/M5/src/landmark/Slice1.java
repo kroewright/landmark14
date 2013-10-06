@@ -157,5 +157,9 @@ public class Slice1 extends JFrame {
 				}
 		});
 		south.add(btnStart);
+		
+		
+		
+		
 	}
 }
