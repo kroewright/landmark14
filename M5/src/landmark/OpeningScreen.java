@@ -26,9 +26,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
 public class OpeningScreen extends JFrame {
-	private boolean isStandard = true;
+	private int isStandard = 0; // 1 = standard map and 2 = random map
+	
+	private int difficulty = 0; // 1 = normal 2 = advanced and 3 = tournament
 
-	static int numOfPlayers=0;
+	static int numOfPlayers = 0;
 	private JPanel contentPane;
 	private JPanel contentPane2;   
 	private JPanel panel;
@@ -138,7 +140,7 @@ public class OpeningScreen extends JFrame {
 		 JRadioButton rdbtnNewRadioButton = new JRadioButton("Standard");
 		 rdbtnNewRadioButton.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent arg0) {
-		 		isStandard = true;
+		 		isStandard = 1;
 		 	}
 		 });
          rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -146,7 +148,7 @@ public class OpeningScreen extends JFrame {
          JRadioButton rdbtnRandom = new JRadioButton("Random");
          rdbtnRandom.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
-         		isStandard = false;
+         		isStandard = 2;
          	}
          });
          rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
@@ -164,14 +166,32 @@ public class OpeningScreen extends JFrame {
 		 south.add(lblDifficulty);
 
 		 JRadioButton rdbtnBeginner = new JRadioButton("Beginner");
+		 rdbtnBeginner.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		difficulty = 1; 
+		 	}
+		 });
+		 
 		 rdbtnBeginner.setHorizontalAlignment(SwingConstants.LEFT);
 		 rdbtnBeginner.setBackground(new Color(255, 204, 0));
 
 		 JRadioButton rdbtnAdvanced = new JRadioButton("Advanced");
+		 rdbtnAdvanced.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		difficulty = 2;
+		 	}
+		 });
+		 
 		 rdbtnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		 rdbtnAdvanced.setBackground(new Color(255, 204, 0));
 
 		 JRadioButton rdbtnTournament = new JRadioButton("Tournament");
+		 rdbtnTournament.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		difficulty = 3;
+		 	}
+		 });
+		 
 		 rdbtnTournament.setHorizontalAlignment(SwingConstants.LEFT);
 		 rdbtnTournament.setBackground(new Color(255, 204, 0));
 
@@ -187,7 +207,7 @@ public class OpeningScreen extends JFrame {
 		 JButton btnStart = new JButton("NEXT");
 		 btnStart.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 if(numOfPlayers != 0){
+				 if(numOfPlayers != 0 && isStandard != 0 && difficulty != 0){
 					 contentPane.setVisible(false);
 					 
 					 
