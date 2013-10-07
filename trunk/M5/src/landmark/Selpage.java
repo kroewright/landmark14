@@ -22,9 +22,13 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
-
+/**
+ * 
+ * @author Landmark - Team 14
+ *
+ */
 public class Selpage extends JPanel {
-		
+		//Setting variable names for entire file
 		private String p1Name;
 		private String p2Name;
 		private String p3Name;
@@ -61,66 +65,74 @@ public class Selpage extends JPanel {
         
         
         public JPanel generate(int numOfPlayers){
-        	// JPanel panel = new JPanel();
-
-
     		 BufferedImage myPicture = null;
+    		 //Try-catch for image for selection screen
     		 try {
     			 ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     			 InputStream input = classLoader.getResourceAsStream("Start_Page.jpg");
     			 myPicture = ImageIO.read(input);
     		 } catch (IOException e) {
-    			 // TODO Auto-generated catch block
     			 System.out.println("Picture not found");
     		 }
     		 panel.setLayout(null);
-    		 //frame.getContentPane().add(panel, BorderLayout.CENTER);
-
+    		 
+    		 //Can't play if there are more than 4 players
     		 if (numOfPlayers > 4)
     			 return null;
     		 
     		 playerCount = 0;
-
+    		 
+    		 /**
+    		  * If 0<x<=4 players have been selected,
+    		  * create JLabel for player input textbox
+    		  */
     		 if(numOfPlayers > 0) {
     			 JLabel nameLabel = new JLabel("Name:");
     			 nameLabel.setBounds(188, 136, 86, 20);
     			 panel.add(nameLabel);
 
-    			 
+    			 //Sets bounds for the textfield
     			 txtPlayer1 = new JTextField();
     			 txtPlayer1.setBounds(183, 152, 105, 20);  
     			 panel.add(txtPlayer1);
     			 txtPlayer1.setColumns(100);
     			 
-
+    			 //First dropdown menu containing race	
     			 raceBox1 = new JComboBox();
     			 raceBox1.setModel(new DefaultComboBoxModel(new String[] {"Business", "Scientist", "Engineer", "CS"}));
     			 raceBox1.setToolTipText("");
     			 raceBox1.setBounds(183, 237, 105, 20);
     			 panel.add(raceBox1);
-
+    			 
+    			 //Second dropdown menu containing player color
     			 colorBox1 = new JComboBox();
     			 colorBox1.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"}));
     			 colorBox1.setBounds(183, 183, 105, 20);
     			 panel.add(colorBox1);
     			 playerCount += 1;
     		 }
-
+    		 /**
+    		  * If 0<x<=4 players have been selected,
+    		  * create JLabel for player input textbox
+    		  */
     		 if(numOfPlayers > 1) {
     			 JLabel nameLabel = new JLabel("Name:");
     			 nameLabel.setBounds(307, 136, 86, 20);
     			 panel.add(nameLabel);
-
+    			 
+    			 //Sets bounds for the textfield
     			 txtPlayer2 = new JTextField();
     			 txtPlayer2.setBounds(302, 152, 105, 20);
     			 panel.add(txtPlayer2);
     			 txtPlayer2.setColumns(10);
 
+    			 //First dropdown menu containing race	
     			 colorBox2 = new JComboBox();
     			 colorBox2.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"})); 
     			 colorBox2.setBounds(302, 185, 105, 20);
     			 panel.add(colorBox2);
 
+    			 //Second dropdown menu containing race		
     			 raceBox2 = new JComboBox();
     			 raceBox2.setModel(new DefaultComboBoxModel(new String[] {"Business", "Scientist", "Engineer", "CS"}));
     			 raceBox2.setToolTipText("");
@@ -128,22 +140,29 @@ public class Selpage extends JPanel {
     			 panel.add(raceBox2);
     			 playerCount += 1;
     		 }
-
+    		 
+    		 /**
+    		  * If 0<x<=4 players have been selected,
+    		  * create JLabel for player input textbox
+    		  */
     		 if(numOfPlayers > 2) {
     			 JLabel nameLabel = new JLabel("Name:");
     			 nameLabel.setBounds(422, 136, 86, 20);
     			 panel.add(nameLabel);	
 
+    			 //Sets bounds for the textfield	
     			 txtPlayer3 = new JTextField();
     			 txtPlayer3.setBounds(417, 152, 105, 20);
     			 panel.add(txtPlayer3);
     			 txtPlayer3.setColumns(10);
-
+    			 
+    			 //First dropdown menu containing race	
     			 colorBox3 = new JComboBox();
     			 colorBox3.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"}));
     			 colorBox3.setBounds(417, 185, 105, 20);
     			 panel.add(colorBox3);
 
+    			 //Second dropdown menu containing race		
     			 raceBox3 = new JComboBox();
     			 raceBox3.setModel(new DefaultComboBoxModel(new String[] {"Business", "Scientist", "Engineer", "CS"}));
     			 raceBox3.setToolTipText("");
@@ -151,22 +170,29 @@ public class Selpage extends JPanel {
     			 panel.add(raceBox3);
     			 playerCount += 1;
     		 }
-
+    		 
+    		 /**
+    		  * If 0<x<=4 players have been selected,
+    		  * create JLabel for player input textbox
+    		  */
     		 if(numOfPlayers > 3) {
     			 JLabel nameLabel = new JLabel("Name:");
     			 nameLabel.setBounds(532, 136, 86, 20);
     			 panel.add(nameLabel);
 
+    			 //Sets bounds for the textfield	
     			 txtPlayer4 = new JTextField();
     			 txtPlayer4.setBounds(527, 152, 105, 20);
     			 panel.add(txtPlayer4);
     			 txtPlayer4.setColumns(10);
 
+    			 //First dropdown menu containing race		
     			 colorBox4 = new JComboBox();
     			 colorBox4.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"}));
     			 colorBox4.setBounds(527, 185, 105, 20);
     			 panel.add(colorBox4);
 
+    			 //Second dropdown menu containing race		
     			 raceBox4 = new JComboBox();
     			 raceBox4.setModel(new DefaultComboBoxModel(new String[] {"Business", "Scientist", "Engineer", "CS"}));
     			 raceBox4.setToolTipText("");
@@ -175,6 +201,7 @@ public class Selpage extends JPanel {
     			 playerCount += 1;
     		 }
     		 
+    		 //Creates start button to get to the main game page
     		 JButton startButton = new JButton("START");
     		 startButton.setBounds(300,400,200,50);
     		 panel.add(startButton);
@@ -226,14 +253,14 @@ public class Selpage extends JPanel {
     					 p4Color = colorBox4.getSelectedIndex();
     					 p4Diff = raceBox4.getSelectedIndex();
     				 }
-    				 
+    				 //If there is no player 1, it will not continue
     				 if(p1Name != null) {
     					 panel.setVisible(false);
     				 }
     			 }
     		 });
     		 
-    		 
+    		 //JLabel for picture, creates bounds
     		 JLabel picLabel = new JLabel(new ImageIcon(myPicture));
     		 picLabel.setBounds(0, 0, 792, 576);
     		 panel.add(picLabel);
@@ -243,7 +270,6 @@ public class Selpage extends JPanel {
         /**
          * Create the application.
          */
-        
         public Selpage() {
         	panel = new JPanel();
                // initialize();
