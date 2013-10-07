@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Frame;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +14,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,14 +24,29 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 public class selpage extends JPanel {
-
+		
+		private String p1Name;
+		private String p2Name;
+		private String p3Name;
+		private String p4Name;
+		
+		private int p1Color;
+		private int p2Color;
+		private int p3Color;
+		private int p4Color;
+		
+		private int p1Diff;
+		private int p2Diff;
+		private int p3Diff;
+		private int p4Diff;
+	
+	
         private JPanel panel;
-        private JTextField txtPlayer;
-        private JTextField txtEnterYourName;
-        private JTextField txtEnterName;
-        private JTextField textField_3;
+        private JTextField txtPlayer1;
+        private JTextField txtPlayer2;
+        private JTextField txtPlayer3;
+        private JTextField txtPlayer4;
 
-        
         
         
         public JPanel generate(int numOfPlayers){
@@ -54,10 +73,12 @@ public class selpage extends JPanel {
     			 nameLabel.setBounds(188, 136, 86, 20);
     			 panel.add(nameLabel);
 
-    			 txtPlayer = new JTextField();
-    			 txtPlayer.setBounds(183, 152, 105, 20);  
-    			 panel.add(txtPlayer);
-    			 txtPlayer.setColumns(100);
+    			 
+    			 txtPlayer1 = new JTextField();
+    			 txtPlayer1.setBounds(183, 152, 105, 20);  
+    			 panel.add(txtPlayer1);
+    			 txtPlayer1.setColumns(100);
+    			 
 
     			 JComboBox comboBox = new JComboBox();
     			 comboBox.setModel(new DefaultComboBoxModel(new String[] {"Business", "Scientist", "Engineer", "CS"}));
@@ -76,10 +97,10 @@ public class selpage extends JPanel {
     			 nameLabel.setBounds(307, 136, 86, 20);
     			 panel.add(nameLabel);
 
-    			 txtEnterYourName = new JTextField();
-    			 txtEnterYourName.setBounds(302, 152, 105, 20);
-    			 panel.add(txtEnterYourName);
-    			 txtEnterYourName.setColumns(10);
+    			 txtPlayer2 = new JTextField();
+    			 txtPlayer2.setBounds(302, 152, 105, 20);
+    			 panel.add(txtPlayer2);
+    			 txtPlayer2.setColumns(10);
 
     			 JComboBox comboBox_3 = new JComboBox();
     			 comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"})); 
@@ -98,10 +119,10 @@ public class selpage extends JPanel {
     			 nameLabel.setBounds(422, 136, 86, 20);
     			 panel.add(nameLabel);	
 
-    			 txtEnterName = new JTextField();
-    			 txtEnterName.setBounds(417, 152, 105, 20);
-    			 panel.add(txtEnterName);
-    			 txtEnterName.setColumns(10);
+    			 txtPlayer3 = new JTextField();
+    			 txtPlayer3.setBounds(417, 152, 105, 20);
+    			 panel.add(txtPlayer3);
+    			 txtPlayer3.setColumns(10);
 
     			 JComboBox comboBox_5 = new JComboBox();
     			 comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"}));
@@ -120,10 +141,10 @@ public class selpage extends JPanel {
     			 nameLabel.setBounds(532, 136, 86, 20);
     			 panel.add(nameLabel);
 
-    			 textField_3 = new JTextField();
-    			 textField_3.setBounds(527, 152, 105, 20);
-    			 panel.add(textField_3);
-    			 textField_3.setColumns(10);
+    			 txtPlayer4 = new JTextField();
+    			 txtPlayer4.setBounds(527, 152, 105, 20);
+    			 panel.add(txtPlayer4);
+    			 txtPlayer4.setColumns(10);
 
     			 JComboBox comboBox_7 = new JComboBox();
     			 comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Navy", "White", "Black"}));
@@ -137,10 +158,36 @@ public class selpage extends JPanel {
     			 panel.add(comboBox_6);
     		 }
 
+    		 
+    		 
+    		 JButton startButton = new JButton("START");
+    		 startButton.setBounds(100,100,50,50);
+    		 startButton.addActionListener(new ActionListener(){
+    			 public void actionPerformed(ActionEvent e){
+    				 	p1Name = txtPlayer1.getText();
+    				 	p2Name = txtPlayer2.getText();
+    				 	p3Name = txtPlayer3.getText();
+    				 	p4Name = txtPlayer4.getText();
+    				 	
+    				 	p1Color = colorBox1.getInfo();
+    				 	p2Color = colorBox2
+    				 	p3Color = colorBox3
+    				 	p4Color = colorBox4
+    				 	
+    				 	p1Diff = diffBox1
+    				 	p2Diff = diffBox2
+    				 	p3Diff = diffBox3
+    				 	p4Diff = diffBox4
+    			 }
+    		 });
+    		 
+    		 
     		 JLabel picLabel = new JLabel(new ImageIcon(myPicture));
     		 picLabel.setBounds(0, 0, 792, 576);
     		 panel.add(picLabel);
 
+    		 
+    		 
     		 return panel;
     	 }
         
