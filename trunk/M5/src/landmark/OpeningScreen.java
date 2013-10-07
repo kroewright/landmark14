@@ -197,7 +197,7 @@ public class OpeningScreen extends JFrame {
 					 contentPane2.setLayout(new BorderLayout(0, 0));
 					 setContentPane(contentPane2);
 					 
-					 selpage selectionPage = new selpage();
+					 Selpage selectionPage = new Selpage();
 					 contentPane2.add(selectionPage.generate(numOfPlayers));
 				
 				 }
