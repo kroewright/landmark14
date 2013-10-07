@@ -51,11 +51,8 @@ public class OpeningScreen extends JFrame {
 		 });
 	 }
 
-
-
 	 public JPanel generateSelectionPage(){
 		 JPanel panel = new JPanel();
-
 
 		 BufferedImage myPicture = null;
 		 try {
@@ -272,12 +269,17 @@ public class OpeningScreen extends JFrame {
 		 south.add(lblNewLabel);
 
 		 JRadioButton rdbtnNewRadioButton = new JRadioButton("Standard");
-		 rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
-		 south.add(rdbtnNewRadioButton);
-
-		 JRadioButton rdbtnRandom = new JRadioButton("Random");
-		 rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
-		 south.add(rdbtnRandom);
+         rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+         
+         JRadioButton rdbtnRandom = new JRadioButton("Random");
+         rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
+         
+         ButtonGroup bg1 = new ButtonGroup( );
+         bg1.add(rdbtnNewRadioButton);
+         bg1.add(rdbtnRandom);
+         
+         south.add(rdbtnNewRadioButton);
+         south.add(rdbtnRandom);
 
 		 JLabel lblDifficulty = new JLabel("Difficulty:");
 		 lblDifficulty.setFont(new Font("Garuda", Font.BOLD, 17));
@@ -296,10 +298,10 @@ public class OpeningScreen extends JFrame {
 		 rdbtnTournament.setHorizontalAlignment(SwingConstants.LEFT);
 		 rdbtnTournament.setBackground(new Color(255, 204, 0));
 
-		 ButtonGroup bg1 = new ButtonGroup( );
-		 bg1.add(rdbtnBeginner);
-		 bg1.add(rdbtnAdvanced);
-		 bg1.add(rdbtnTournament);
+		 ButtonGroup bg2 = new ButtonGroup( );
+		 bg2.add(rdbtnBeginner);
+		 bg2.add(rdbtnAdvanced);
+		 bg2.add(rdbtnTournament);
 
 		 south.add(rdbtnBeginner);
 		 south.add(rdbtnAdvanced);
