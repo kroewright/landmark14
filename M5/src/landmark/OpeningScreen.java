@@ -26,6 +26,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
 public class OpeningScreen extends JFrame {
+	private boolean isStandard = true;
+
 	static int numOfPlayers=0;
 	private JPanel contentPane;
 	private JPanel contentPane2;   
@@ -79,12 +81,7 @@ public class OpeningScreen extends JFrame {
 			 // TODO Auto-generated catch block
 			 System.out.println("Picture not found");
 		 }
-
-
-		 JLabel lblPlayers = new JLabel("Players");
-		 lblPlayers.setBounds(367, 586, 58, 23);
-		 lblPlayers.setFont(new Font("Garuda", Font.BOLD, 17));
-		 center.add(lblPlayers);
+		 center.setLayout(null);
 
 		 JButton btn2 = new JButton("1");
 		 btn2.setBackground(new Color(204, 255, 204));
@@ -93,7 +90,7 @@ public class OpeningScreen extends JFrame {
 				 numOfPlayers = 1;                               
 			 }
 		 });
-		 btn2.setBounds(330, 392, 65, 69);
+		 btn2.setBounds(301, 371, 46, 23);
 		 center.add(btn2);
 
 		 JButton btn3 = new JButton("2");
@@ -102,7 +99,7 @@ public class OpeningScreen extends JFrame {
 				 numOfPlayers = 2;
 			 }
 		 });
-		 btn3.setBounds(427, 392, 58, 69);
+		 btn3.setBounds(387, 371, 46, 23);
 		 center.add(btn3);
 
 		 JButton btn1 = new JButton("3");
@@ -111,7 +108,7 @@ public class OpeningScreen extends JFrame {
 				 numOfPlayers = 3;
 			 }
 		 });
-		 btn1.setBounds(245, 392, 58, 69);
+		 btn1.setBounds(478, 371, 46, 23);
 		 center.add(btn1);
 
 		 JButton btn4 = new JButton("4");
@@ -120,10 +117,10 @@ public class OpeningScreen extends JFrame {
 				 numOfPlayers = 4;
 			 }
 		 });
-		 btn4.setBounds(516, 392, 58, 69);
+		 btn4.setBounds(568, 371, 46, 23);
 		 center.add(btn4);
 		 JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		 picLabel.setBounds(18, 5, 792, 576);
+		 picLabel.setBounds(27, 5, 869, 518);
 		 center.add(picLabel);
 
 
@@ -137,10 +134,21 @@ public class OpeningScreen extends JFrame {
 		 lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 17));
 		 south.add(lblNewLabel);
 
+		 
 		 JRadioButton rdbtnNewRadioButton = new JRadioButton("Standard");
+		 rdbtnNewRadioButton.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent arg0) {
+		 		isStandard = true;
+		 	}
+		 });
          rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
          
          JRadioButton rdbtnRandom = new JRadioButton("Random");
+         rdbtnRandom.addActionListener(new ActionListener() {
+         	public void actionPerformed(ActionEvent e) {
+         		isStandard = false;
+         	}
+         });
          rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
          
          ButtonGroup bg1 = new ButtonGroup( );
@@ -176,7 +184,7 @@ public class OpeningScreen extends JFrame {
 		 south.add(rdbtnAdvanced);
 		 south.add(rdbtnTournament);
 
-		 JButton btnStart = new JButton("START");
+		 JButton btnStart = new JButton("NEXT");
 		 btnStart.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				 if(numOfPlayers != 0){
