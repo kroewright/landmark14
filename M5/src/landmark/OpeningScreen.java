@@ -23,6 +23,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
 
 public class OpeningScreen extends JFrame {
     static int numOfPlayers=0;
@@ -247,19 +248,36 @@ public class OpeningScreen extends JFrame {
                 JPanel south = new JPanel();
                 south.setBackground(new Color(255, 204, 0));
                 contentPane.add(south, BorderLayout.SOUTH);
+                south.setLayout(new GridLayout(0, 8, 0, 0));
+                
+                JLabel lblNewLabel = new JLabel("Map Type:");
+                lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+                lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 17));
+                south.add(lblNewLabel);
+                
+                JRadioButton rdbtnNewRadioButton = new JRadioButton("Standard");
+                rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+                south.add(rdbtnNewRadioButton);
+                
+                JRadioButton rdbtnRandom = new JRadioButton("Random");
+                rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
+                south.add(rdbtnRandom);
                 
                 JLabel lblDifficulty = new JLabel("Difficulty:");
                 lblDifficulty.setFont(new Font("Garuda", Font.BOLD, 17));
-                lblDifficulty.setHorizontalAlignment(SwingConstants.LEFT);
+                lblDifficulty.setHorizontalAlignment(SwingConstants.RIGHT);
                 south.add(lblDifficulty);
                 
                 JRadioButton rdbtnBeginner = new JRadioButton("Beginner");
+                rdbtnBeginner.setHorizontalAlignment(SwingConstants.LEFT);
                 rdbtnBeginner.setBackground(new Color(255, 204, 0));
                 
                 JRadioButton rdbtnAdvanced = new JRadioButton("Advanced");
+                rdbtnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
                 rdbtnAdvanced.setBackground(new Color(255, 204, 0));
                 
                 JRadioButton rdbtnTournament = new JRadioButton("Tournament");
+                rdbtnTournament.setHorizontalAlignment(SwingConstants.LEFT);
                 rdbtnTournament.setBackground(new Color(255, 204, 0));
 
                 ButtonGroup bg1 = new ButtonGroup( );
