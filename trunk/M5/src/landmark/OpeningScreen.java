@@ -3,7 +3,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -12,15 +11,12 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
@@ -31,18 +27,12 @@ import java.awt.GridLayout;
  *
  */
 public class OpeningScreen extends JFrame {
-	private int isStandard = 0; // 1 = standard map and 2 = random map
 	
+	private int isStandard = 0; // 1 = standard map and 2 = random map
 	private int difficulty = 0; // 1 = normal 2 = advanced and 3 = tournament
-
 	static int numOfPlayers = 0;
 	private JPanel contentPane;
-	private JPanel contentPane2;   
-	private JPanel panel;
-	private JTextField txtPlayer;
-	private JTextField txtEnterYourName;
-	private JTextField txtEnterName;
-	private JTextField textField_3;
+	private JPanel contentPane2;
 
 	/**
 	 * Launch the application.

@@ -1,10 +1,5 @@
 package landmark;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Frame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -22,6 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 /**
  * 
  * @author Landmark - Team 14
@@ -63,6 +59,13 @@ public class Selpage extends JPanel {
         
         private int playerCount;
         
+        /**
+         * Create the application.
+         */
+        public Selpage() {
+        	panel = new JPanel();
+               // initialize();
+        }
         
         public JPanel generate(int numOfPlayers){
     		 BufferedImage myPicture = null;
@@ -266,13 +269,5 @@ public class Selpage extends JPanel {
     		 panel.add(picLabel);
     		 return panel;
     	 }
-        
-        /**
-         * Create the application.
-         */
-        public Selpage() {
-        	panel = new JPanel();
-               // initialize();
-        }
 }
 
