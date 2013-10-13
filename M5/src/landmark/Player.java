@@ -8,8 +8,8 @@ public class Player {
 	private int color;
 	private int difficulty;
 	
-	private HashMap tilesOwned;
-	
+	private HashMap<Integer, Tile> tilesOwned;
+		
 	private boolean inStore;
 	
 	
@@ -25,13 +25,49 @@ public class Player {
 		 * 		Change starting money based on difficulty
 		 */
 	}
+	/*
+	 * Not sure why this has to be public, but if it 
+	 * works it works I guess -Mason
+	 */
 	public int getColor(){
 		return color;
 	}
 	
+	
+	
 	private void addTileOwned(Tile tile){
-		tilesOwned.put(tile., value)
+		tilesOwned.put(tile.getLocation(), tile);
+		tile.setOwner(this);
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	/*
+	 * Here Be the getarrs and setarrs.
+	 */
+	
+	private String getName(){
+		return name;
+	}
+	
+	private int getScore(){
+		return score;
+	}
+	
+	private void setScore(int i){
+		this.score = i;
+	}
+	
+	private int getMoney(){
+		return money;
+	}
+	
+	private void setMoney(int i){
+		this.money = i;
+	}
 }
