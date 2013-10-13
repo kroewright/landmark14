@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -17,15 +19,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import landmark.Tiles.Plains;
+
 public class Overworld extends JPanel {
 	
-	//private Tiles[][] tiles;
+	private Tile[][] tiles;
 	private BufferedImage picture;
 	private JPanel panel;
 	private JButton[][] buttons;
 	private ImageIcon riverImage;
 	private ImageIcon plainImage;
 	private ImageIcon mountainImage;
+	private int index;
 	
 	/**
 	* Create the panel.
@@ -34,13 +39,13 @@ public class Overworld extends JPanel {
 		super(new GridLayout(5, 9));
 		buttons = new JButton[5][9];
 		setPreferredSize(new Dimension(800, 800));
-		
+		index = 0;
 		/*
 		riverImage = new ImageIcon(XXX);
 		plainImage = new ImageIcon(XXX);
 		mountainImage = new ImageIcon(XXX);
-		
-		Plain p = new Plain();
+		*/
+		/*
 		River r = new River();
 		Mountain m1 = new Mountain(1);
 		Mountain m2 = new Mountain(2);
@@ -56,19 +61,14 @@ public class Overworld extends JPanel {
 		
 		//Still need to go through buttons and add appro. tile type
 		
-		/**
-		 * JLabel for picture.
-		 * Sets the bounds before adding the label.
-		 */
-		JLabel picLabel = new JLabel(new ImageIcon(picture));   //ib
-		picLabel.setBounds(0, 0, 800, 800);						//ib
-		panel.add(picLabel);	
 	}
 	
 	public JButton addTile(int i, int j) {
 		JButton button = new JButton("P");
 		buttons[i][j] = button;
-		//tiles[0][0] = new Plain();
+		//Plains v = new Plains(index);
+		//tiles[i][j] = v;
+		++index;
 		button.addActionListener(new pressedButton(button, i ,j));
 		add(button);
 		return button;
@@ -105,7 +105,8 @@ public class Overworld extends JPanel {
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e) {
-			
+			button.setBackground(Color.GREEN);
+			updateUI();
 		}
 	}
 	

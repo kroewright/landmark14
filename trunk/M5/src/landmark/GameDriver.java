@@ -20,7 +20,7 @@ public class GameDriver{
 
 	public GameDriver() {
 		mainPanel.add(openingScreen.getPanel(), OPEN);
-		mainPanel.add(overworld.getMainComponent(), MAP);
+		mainPanel.add(overworld, MAP);
 
 		openingScreen.addBtnNextActionListener (new ActionListener() {
 			@Override
