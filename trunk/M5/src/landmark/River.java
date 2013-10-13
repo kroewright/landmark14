@@ -34,43 +34,43 @@ public class River extends Tile {
 		this.energyYield = 2;
 		this.oreYield = 0;
 		
-		this.image = river.jpg;
+		setImage();
 	}
 
 	
 	
-	private Player getOwner(){
+	protected Player getOwner(){
 		if (isOwned) return this.owner;
 		else return null;
 	}
 	
-	private int getLocation(){
+	protected int getLocation(){
 		return this.index;
 	}
 	
-	private BufferedImage getImage(){
+	protected BufferedImage getImage(){
 		return this.image;
 	}
 	
-	private void setOwner(Player p){
+	protected void setOwner(Player p){
 		if(!isOwned) isOwned = true;
 		this.owner = p;
 	}
 	
 	
-	private int getFYield(){
+	protected int getFYield(){
 		return this.foodYield;
 	}
 	
-	private int getEYield(){
+	protected int getEYield(){
 		return this.energyYield;
 	}
 	
-	private int getOYield(){
+	protected int getOYield(){
 		return this.oreYield;
 	}
 	
-	private void setImage(){
+	protected void setImage(){
 		String imgLink = "riverUnowned.jpg";
 		if(isOwned){
 			int color = getOwner().getColor();
@@ -97,4 +97,7 @@ public class River extends Tile {
 			System.out.println("Image Not Found!");
 	}
 	}
+
+
+
 }

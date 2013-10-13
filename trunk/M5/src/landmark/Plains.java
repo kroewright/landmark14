@@ -34,44 +34,44 @@ public class Plains extends Tile {
 		this.energyYield = 3;
 		this.oreYield = 1;
 		
-		this.image = plains.jpg
+		setImage();
 	}
 
 	
 	
-	private Player getOwner(){
+	protected Player getOwner(){
 		if (isOwned) return this.owner;
 		else return null;
 	}
 	
-	private int getLocation(){
+	protected int getLocation(){
 		return this.index;
 	}
 	
-	private BufferedImage getImage(){
+	protected BufferedImage getImage(){
 		return this.image;
 	}
 	
-	private void setOwner(Player p){
+	protected void setOwner(Player p){
 		if(!isOwned) isOwned = true;
 		this.owner = p;
 		this.setImage();
 	}
 	
 	
-	private int getFYield(){
+	protected int getFYield(){
 		return this.foodYield;
 	}
 	
-	private int getEYield(){
+	protected int getEYield(){
 		return this.energyYield;
 	}
 	
-	private int getOYield(){
+	protected int getOYield(){
 		return this.oreYield;
 	}
 	
-	private void setImage(){
+	protected void setImage(){
 		String imgLink = "plainsUnowned.jpg";
 		if(isOwned){
 			int color = getOwner().getColor();
