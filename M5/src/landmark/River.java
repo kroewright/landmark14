@@ -1,6 +1,10 @@
 package landmark;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 public class River extends Tile {
 	private BufferedImage image;
@@ -29,6 +33,8 @@ public class River extends Tile {
 		this.foodYield = 4;
 		this.energyYield = 2;
 		this.oreYield = 0;
+		
+		this.image = river.jpg;
 	}
 
 	
@@ -64,5 +70,31 @@ public class River extends Tile {
 		return this.oreYield;
 	}
 	
-	
+	private void setImage(){
+		String imgLink = "riverUnowned.jpg";
+		if(isOwned){
+			int color = getOwner().getColor();
+			switch (color){
+				case 0:
+					imgLink = "riverGold.jpg";
+				case 1:
+					imgLink = "riverNavy.jpg";
+				case 2:
+					imgLink = "riverWhite.jpg";
+				case 3:
+					imgLink = "riverBlack.jpg";
+			}
+		}
+		
+		
+		BufferedImage myPicture = null;
+		//Try-catch for image for selection screen
+		try {
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			InputStream input = classLoader.getResourceAsStream(   imgLink   );
+			myPicture = ImageIO.read(input);
+		} catch (IOException e) {
+			System.out.println("Image Not Found!");
+	}
+	}
 }
