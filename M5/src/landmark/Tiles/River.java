@@ -1,4 +1,4 @@
-package landmark;
+package landmark.Tiles;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -6,7 +6,10 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-public class Plains extends Tile {
+import landmark.Player;
+import landmark.Tile;
+
+public class River extends Tile {
 	private BufferedImage image;
 	
 	private boolean isOwned;
@@ -24,15 +27,15 @@ public class Plains extends Tile {
 	*/
 	
 	
-	public Plains(int ind){
+	public River(int ind){
 		this.isOwned = false;
 		this.index = ind;
 		this.cost = 0;
 		
 		//this.hasMule = false;
-		this.foodYield = 2;
-		this.energyYield = 3;
-		this.oreYield = 1;
+		this.foodYield = 4;
+		this.energyYield = 2;
+		this.oreYield = 0;
 		
 		setImage();
 	}
@@ -55,7 +58,6 @@ public class Plains extends Tile {
 	protected void setOwner(Player p){
 		if(!isOwned) isOwned = true;
 		this.owner = p;
-		this.setImage();
 	}
 	
 	
@@ -72,18 +74,18 @@ public class Plains extends Tile {
 	}
 	
 	protected void setImage(){
-		String imgLink = "plainsUnowned.jpg";
+		String imgLink = "riverUnowned.jpg";
 		if(isOwned){
 			int color = getOwner().getColor();
 			switch (color){
 				case 0:
-					imgLink = "plainsGold.jpg";
+					imgLink = "riverGold.jpg";
 				case 1:
-					imgLink = "plainsNavy.jpg";
+					imgLink = "riverNavy.jpg";
 				case 2:
-					imgLink = "plainsWhite.jpg";
+					imgLink = "riverWhite.jpg";
 				case 3:
-					imgLink = "plainsBlack.jpg";
+					imgLink = "riverBlack.jpg";
 			}
 		}
 		
@@ -96,10 +98,9 @@ public class Plains extends Tile {
 			myPicture = ImageIO.read(input);
 		} catch (IOException e) {
 			System.out.println("Image Not Found!");
-		}
-		
-		
 	}
-	
-	
+	}
+
+
+
 }
