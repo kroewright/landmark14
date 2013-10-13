@@ -11,25 +11,26 @@ public abstract class Tile {
 	private int index;
 	private int cost;
 	
+	private int foodYield;
+	private int energyYield;
+	private int oreYield;
+	
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
 	private boolean hasMule;
 	private Mule muleOnTile;
 	*/
 	
-	public Tile(int ind){
-		this.isOwned = false;
-		this.index = ind;
-		this.cost = 0;
-		
-		//this.hasMule = false;
-	}
-	
-	private Player getOwner(){};
-	private int getLocation(){};
-	private BufferedImage getImage(){};
 	
 	
+	protected abstract Player getOwner();
+	protected abstract int getLocation();
+	protected abstract BufferedImage getImage();
+	protected abstract void setOwner(Player p);
 	
+	protected abstract int getFYield();
+	protected abstract int getEYield();
+	protected abstract int getOYield();
 
+	protected abstract void setImage();
 }
