@@ -48,6 +48,7 @@ public class GameDriver{
 
 				if(numOfPlayers != 0 && isStandard != 0 && difficulty != 0){
 					selPage.setSelpage(numOfPlayers);
+					selPage.setDifficulty(difficulty);
 					mainPanel.add(selPage.getMainComponent(), SEL);	
 					cardlayout.show(mainPanel, SEL);
 				}

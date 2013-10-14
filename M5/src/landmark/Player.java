@@ -7,13 +7,14 @@ public class Player {
 	private int score;
 	private int color;
 	private int difficulty;
+	private int race;
 	
 	private HashMap<Integer, Tile> tilesOwned;
 		
 	private boolean inStore;
 	
 	
-	public Player(String name, int color, int difficulty){
+	public Player(String name, int color, int difficulty, int race) {
 		this.name = name;
 		this.color = color;
 		this.difficulty = difficulty;
@@ -51,7 +52,7 @@ public class Player {
 	 * Here Be the getarrs and setarrs.
 	 */
 	
-	private String getName(){
+	public String getName(){
 		return name;
 	}
 	
