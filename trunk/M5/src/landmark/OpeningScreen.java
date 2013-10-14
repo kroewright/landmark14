@@ -257,7 +257,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		btnNext.addActionListener(listener);//{
 	}
 
-	public JComponent getPanel() {
+	public JComponent getMainComponent() {
 		return contentPane;
 	}
 

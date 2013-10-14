@@ -4,24 +4,41 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * 
+ * @author Landmark - Team 14
+ *
+ */
 public class GameDriver{ 
 
 	private static final String OPEN = "openScrn";
 	private static final String SEL = "SelPg";
 	private static final String MAP = "map";
-	private CardLayout cardlayout = new CardLayout();
-	private JPanel mainPanel = new JPanel(cardlayout);
-	private OpeningScreen openingScreen = new OpeningScreen();
-	private Selpage selPage = new Selpage();
-	private Overworld overworld = new Overworld();
+	private CardLayout cardlayout; // = new CardLayout();
+	private JPanel mainPanel; // = new JPanel(cardlayout);
+	private OpeningScreen openingScreen; // = new OpeningScreen();
+	private Selpage selPage; // = new Selpage();
+	private Overworld overworld; // = new Overworld();
 	private int numOfPlayers = 0;
 	private int isStandard = 0;
 	private int difficulty = 0;
 
+	/**
+	 * The Constructor sets the main panel
+	 */
 	public GameDriver() {
-		mainPanel.add(openingScreen.getPanel(), OPEN);
+		cardlayout = new CardLayout();
+		mainPanel = new JPanel(cardlayout);
+		openingScreen = new OpeningScreen();
+		selPage = new Selpage();
+		overworld = new Overworld();
+		mainPanel.add(openingScreen.getMainComponent(), OPEN);
 		mainPanel.add(overworld, MAP);
 
+		/**
+		 * Action listener for the NEXT button of the openingScreen.
+		 * Opens the SelectionPage to set name, color and race for each player.
+		 */
 		openingScreen.addBtnNextActionListener (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -37,6 +54,10 @@ public class GameDriver{
 			}
 		});
 
+		/**
+		 * Action listener for the START button of the selPage.
+		 * Opens the main screen with the Standard Map.
+		 */
 		selPage.addStartButtonActionListener (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,11 +66,19 @@ public class GameDriver{
 			}
 		});
 	}
-
+	
+	/**
+	 * Returns the main panel.
+	 * 
+	 */
 	private JComponent getPanel() {
 		return mainPanel;
 
 	}
+	
+	/**
+	 * Creates the frame to hold game panels.
+	 */
 	private static void createAndShowUI() {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +89,10 @@ public class GameDriver{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}		
-
+	
+	/**
+	 * Starts the game.
+	 */
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
