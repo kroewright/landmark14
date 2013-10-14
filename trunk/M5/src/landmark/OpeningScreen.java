@@ -35,7 +35,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 	private JButton btnNext;     
 
 	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
 	public OpeningScreen() {
 		contentPane = new JPanel();

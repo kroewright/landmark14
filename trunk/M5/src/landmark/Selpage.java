@@ -25,21 +25,12 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class Selpage extends JPanel {
 	//Setting variable names for entire file
-	private String p1Name;
-	private String p2Name;
-	private String p3Name;
-	private String p4Name;
-
-	private int p1Color;
-	private int p2Color;
-	private int p3Color;
-	private int p4Color;
-
-	private int p1Diff;
-	private int p2Diff;
-	private int p3Diff;
-	private int p4Diff;
-
+	private Player player1;
+	private Player player2;
+	private Player player3;
+	private Player player4;
+	
+	private int difficulty;
 
 	private JPanel panel;
 	private JTextField txtPlayer1;
@@ -58,7 +49,6 @@ public class Selpage extends JPanel {
 	private JComboBox raceBox4;
 
 	private JButton startButton;
-
 	private int playerCount;
 
 	/**
@@ -229,59 +219,53 @@ public class Selpage extends JPanel {
 	//		 public void actionPerformed(ActionEvent e){
 	public void assign() {
 		if(!txtPlayer1.getText().isEmpty() && playerCount == 1) {
-			p1Name = txtPlayer1.getText();
-			p1Color = colorBox1.getSelectedIndex();
-			p1Diff = raceBox1.getSelectedIndex();
+			player1 = new Player(txtPlayer1.getText(), colorBox1.getSelectedIndex(), difficulty,
+					raceBox1.getSelectedIndex());
 		}
 		else if(!txtPlayer1.getText().isEmpty() && !txtPlayer2.getText().isEmpty() && playerCount == 2) {
-			p1Name = txtPlayer1.getText();
-			p1Color = colorBox1.getSelectedIndex();
-			p1Diff = raceBox1.getSelectedIndex();
+			player1 = new Player(txtPlayer1.getText(), colorBox1.getSelectedIndex(), difficulty,
+					raceBox1.getSelectedIndex());
 
-			p2Name = txtPlayer2.getText();
-			p2Color = colorBox2.getSelectedIndex();
-			p2Diff = raceBox2.getSelectedIndex();
+			player2 = new Player(txtPlayer2.getText(), colorBox2.getSelectedIndex(), difficulty,
+					raceBox2.getSelectedIndex());
 		}
 		else if(!txtPlayer1.getText().isEmpty() && !txtPlayer2.getText().isEmpty()
 				&& !txtPlayer3.getText().isEmpty() && playerCount == 3) {
-			p1Name = txtPlayer1.getText();
-			p1Color = colorBox1.getSelectedIndex();
-			p1Diff = raceBox1.getSelectedIndex();
+			player1 = new Player(txtPlayer1.getText(), colorBox1.getSelectedIndex(), difficulty,
+					raceBox1.getSelectedIndex());
 
-			p2Name = txtPlayer2.getText();
-			p2Color = colorBox2.getSelectedIndex();
-			p2Diff = raceBox2.getSelectedIndex();
+			player2 = new Player(txtPlayer2.getText(), colorBox2.getSelectedIndex(), difficulty,
+					raceBox2.getSelectedIndex());
 
-			p3Name = txtPlayer3.getText();
-			p3Color = colorBox3.getSelectedIndex();
-			p3Diff = raceBox3.getSelectedIndex();
+			player3 = new Player(txtPlayer3.getText(), colorBox3.getSelectedIndex(), difficulty,
+					raceBox3.getSelectedIndex());
 		}
 		else if(!txtPlayer1.getText().isEmpty() && !txtPlayer2.getText().isEmpty()
 				&& !txtPlayer3.getText().isEmpty() && !txtPlayer4.getText().isEmpty() && playerCount == 4) {
-			p1Name = txtPlayer1.getText();
-			p1Color = colorBox1.getSelectedIndex();
-			p1Diff = raceBox1.getSelectedIndex();
+			player1 = new Player(txtPlayer1.getText(), colorBox1.getSelectedIndex(), difficulty,
+					raceBox1.getSelectedIndex());
 
-			p2Name = txtPlayer2.getText();
-			p2Color = colorBox2.getSelectedIndex();
-			p2Diff = raceBox2.getSelectedIndex();
+			player2 = new Player(txtPlayer2.getText(), colorBox2.getSelectedIndex(), difficulty,
+					raceBox2.getSelectedIndex());
 
-			p3Name = txtPlayer3.getText();
-			p3Color = colorBox3.getSelectedIndex();
-			p3Diff = raceBox3.getSelectedIndex();
+			player3 = new Player(txtPlayer3.getText(), colorBox3.getSelectedIndex(), difficulty,
+					raceBox3.getSelectedIndex());
 
-			p4Name = txtPlayer4.getText();
-			p4Color = colorBox4.getSelectedIndex();
-			p4Diff = raceBox4.getSelectedIndex();
+			player4 = new Player(txtPlayer4.getText(), colorBox4.getSelectedIndex(), difficulty,
+					raceBox4.getSelectedIndex());
 		}
 		//If there is no player 1, it will not continue
-		if(p1Name != null) {
+		if(player1.getName() != null) {
 			panel.setVisible(false);
 		}
 	}
 
 	public JComponent getMainComponent() {
 		return panel;
+	}
+	
+	public void setDifficulty(int level) {
+		difficulty = level;
 	}
 
 }
