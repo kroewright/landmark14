@@ -1,4 +1,5 @@
 package landmark;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player {
@@ -9,7 +10,9 @@ public class Player {
 	private int difficulty;
 	private int race;
 	
-	private HashMap<Integer, Tile> tilesOwned;
+	private ArrayList<Tile> ownedTiles;
+	
+	//private HashMap<Integer, Tile> tilesOwned;
 		
 	private boolean inStore;
 	
@@ -18,7 +21,7 @@ public class Player {
 		this.name = name;
 		this.color = color;
 		this.difficulty = difficulty;
-		this.tilesOwned = new HashMap<Integer,Tile>();
+		//this.tilesOwned = new HashMap<Integer,Tile>();
 		
 		if(race == 0) {
 			money = 600;
@@ -43,12 +46,14 @@ public class Player {
 	
 	
 	
-	private void addTileOwned(Tile tile){
-		tilesOwned.put(tile.getLocation(), tile);
+	public void addTileOwned(Tile tile){
+		ownedTiles.add(tile);
 		tile.setOwner(this);
 	}
 	
-	
+	public Tile getTile() {
+		return ownedTiles.get(0);
+	}
 	
 	
 	

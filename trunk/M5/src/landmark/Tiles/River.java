@@ -58,6 +58,7 @@ public class River extends Tile {
 	protected void setOwner(Player p){
 		if(!isOwned) isOwned = true;
 		this.owner = p;
+		this.setImage();
 	}
 	
 	

@@ -19,7 +19,10 @@ public class GameDriver{
 	private OpeningScreen openingScreen; // = new OpeningScreen();
 	private Selpage selPage; // = new Selpage();
 	private Overworld overworld; // = new Overworld();
+	private JButton[][] buttons;
+	private Tile[][] tiles;
 	private int numOfPlayers = 0;
+	private Player[] players;
 	private int isStandard = 0;
 	private int difficulty = 0;
 	private static JFrame frame;
@@ -64,7 +67,10 @@ public class GameDriver{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				selPage.assign();
-				overworld.setPlayers(selPage.getPlayers());
+				tiles = overworld.getTiles();
+				buttons = overworld.getButtons();
+				players = selPage.getPlayers();
+				overworld.setPlayers(players);
 				overworld.setFrame(frame);
 				cardlayout.show(mainPanel, MAP);
 				overworld.selectionPhaseTurn();
@@ -74,7 +80,17 @@ public class GameDriver{
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selectionSkips = overworld.getSelectionSkips();
-				if(selectionSkips < 4) {
+				if(selectionSkips < numOfPlayers) {
+					for(int i = 0; i < 5; ++i) {
+						for(int j = 0; j < 9; ++j) {
+							if(e.getSource() == buttons[i][j]) {
+								//players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
+								//System.out.println(players[0].getTile());
+								buttons[i][j].setBackground(Color.GREEN);
+							}
+						}
+					}
+					
 					overworld.selectionPhaseTurn();
 				}
 			}
