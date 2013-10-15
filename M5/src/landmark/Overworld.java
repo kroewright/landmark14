@@ -131,6 +131,47 @@ public class Overworld extends JPanel {
 		}
 	}
 	
+	public void selectionPhaseTurn() {
+		String playerName = players[playerTurn].getName();
+			   
+		if(selectionRounds < 2) {
+			JOptionPane.showMessageDialog (frame, (playerName + " select a property."), "Land Selection Phase"
+					, JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			int dialogButton = JOptionPane.YES_NO_OPTION;
+			dialogResult = JOptionPane.showConfirmDialog (frame, (playerName + " would you like to buy a property for $300? If yes," + 
+					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
+			   
+			if(dialogResult == JOptionPane.YES_OPTION) {
+				if(players[playerTurn].getMoney() < 300) {
+					JOptionPane.showMessageDialog (frame, (playerName + " you do not have enough money!"), "Land Selection Phase"
+							, JOptionPane.ERROR_MESSAGE);
+					selectionPhaseTurn();
+				}
+			}
+			else if(dialogResult == JOptionPane.NO_OPTION) {
+				selectionSkips += 1;
+				if(playerTurn != numberOfPlayers - 1) {
+					increasePlayerTurns();
+					selectionPhaseTurn();
+				}
+				else {
+					increaseSelectionRound();
+					resetPlayerTurns();
+					if(selectionSkips != numberOfPlayers) {
+						selectionSkips = 0;
+						selectionPhaseTurn();
+					}
+				}
+			}
+		}
+	}
+	
+	public void productionPhaseTurn() {
+
+	}
+	
 	public JComponent getMainComponent() {
 		return panel;
     }
@@ -186,46 +227,5 @@ public class Overworld extends JPanel {
 	
 	public void resetSelectionSkips() {
 		selectionSkips = 0;
-	}
-	   
-	public void selectionPhaseTurn() {
-		String playerName = players[playerTurn].getName();
-			   
-		if(selectionRounds < 2) {
-			JOptionPane.showMessageDialog (frame, (playerName + " select a property."), "Land Selection Phase"
-					, JOptionPane.INFORMATION_MESSAGE);
-		}
-		else {
-			int dialogButton = JOptionPane.YES_NO_OPTION;
-			dialogResult = JOptionPane.showConfirmDialog (frame, (playerName + " would you like to buy a property for $300? If yes," + 
-					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
-			   
-			if(dialogResult == JOptionPane.YES_OPTION) {
-				if(players[playerTurn].getMoney() < 300) {
-					JOptionPane.showMessageDialog (frame, (playerName + " you do not have enough money!"), "Land Selection Phase"
-							, JOptionPane.ERROR_MESSAGE);
-					selectionPhaseTurn();
-				}
-			}
-			else if(dialogResult == JOptionPane.NO_OPTION) {
-				selectionSkips += 1;
-				if(playerTurn != numberOfPlayers - 1) {
-					increasePlayerTurns();
-					selectionPhaseTurn();
-				}
-				else {
-					increaseSelectionRound();
-					resetPlayerTurns();
-					if(selectionSkips != numberOfPlayers) {
-						selectionSkips = 0;
-						selectionPhaseTurn();
-					}
-				}
-			}
-		}
-	}
-	
-	public void productionPhaseTurn() {
-
 	}
 }
