@@ -84,14 +84,48 @@ public class GameDriver{
 					for(int i = 0; i < 5; ++i) {
 						for(int j = 0; j < 9; ++j) {
 							if(e.getSource() == buttons[i][j]) {
-								//players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
-								//System.out.println(players[0].getTile());
-								buttons[i][j].setBackground(Color.GREEN);
+								if(i == 2 && j == 4) {
+									int index = overworld.getPlayerTurns();
+									String playerName = players[index].getName();
+									JOptionPane.showMessageDialog (frame, playerName + " you cannot have the town! Please " +
+											"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
+								}
+								else if (overworld.getSelectionRounds() < 2) {
+									int index = overworld.getPlayerTurns();
+									if(index != numOfPlayers - 1) {
+										overworld.increasePlayerTurns();
+									}
+									else {
+										overworld.increaseSelectionRound();
+										overworld.resetPlayerTurns();
+									}
+									//players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
+									//System.out.println(players[0].getTile());
+									buttons[i][j].setBackground(Color.GREEN);
+								}
+								else {
+									if(overworld.getDialogResult() == JOptionPane.YES_OPTION) {
+										int index = overworld.getPlayerTurns();
+										//String playerName = players[index].getName();
+										players[index].buyLandSelectionPhase();
+										buttons[i][j].setBackground(Color.RED);
+											
+										if(index != numOfPlayers - 1) {
+											overworld.increasePlayerTurns();
+										}
+										else {
+											overworld.increaseSelectionRound();
+											overworld.resetPlayerTurns();
+										}
+									}
+								}
 							}
 						}
 					}
-					
 					overworld.selectionPhaseTurn();
+				}
+				else {
+					overworld.productionPhaseTurn();
 				}
 			}
 		});
