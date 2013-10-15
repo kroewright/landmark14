@@ -22,6 +22,7 @@ public class GameDriver{
 	private int numOfPlayers = 0;
 	private int isStandard = 0;
 	private int difficulty = 0;
+	private static JFrame frame;
 
 	/**
 	 * The Constructor sets the main panel
@@ -64,7 +65,9 @@ public class GameDriver{
 			public void actionPerformed(ActionEvent e) {
 				selPage.assign();
 				overworld.setPlayers(selPage.getPlayers());
+				overworld.setFrame(frame);
 				cardlayout.show(mainPanel, MAP);
+				overworld.selectionPhase();
 			}
 		});
 	}
@@ -82,7 +85,7 @@ public class GameDriver{
 	 * Creates the frame to hold game panels.
 	 */
 	private static void createAndShowUI() {
-		JFrame frame = new JFrame();
+		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 953, 617);
 
