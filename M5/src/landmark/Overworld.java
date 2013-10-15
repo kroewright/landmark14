@@ -141,6 +141,14 @@ public class Overworld extends JPanel {
 	public int getSelectionSkips() {
 		return selectionSkips;
 	}
+	
+	public JButton[][] getButtons() {
+		return buttons;
+	}
+	
+	public Tile[][] getTiles() {
+		return tiles;
+	}
 	   
 	public void setPlayers(Player[] people) {
 		players = people;
@@ -157,6 +165,14 @@ public class Overworld extends JPanel {
 		if(selectionRounds < 2) {
 			JOptionPane.showMessageDialog (frame, (player1Name + " select a property."), "Land Selection Phase"
 					, JOptionPane.INFORMATION_MESSAGE);
+			
+			if(playerTurn == (numberOfPlayers - 1)) {
+				playerTurn = 0;
+				selectionRounds += 1;
+			}
+			else {
+				playerTurn += 1;
+			}
 		}
 		else {
 			int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -164,19 +180,38 @@ public class Overworld extends JPanel {
 					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
 			       
 			if(dialogResult == JOptionPane.YES_OPTION) {
-
+				if(playerTurn == (numberOfPlayers - 1)) {
+					playerTurn = 0;
+					selectionRounds += 1;
+					selectionSkips = 0;
+				}
+				else {
+					playerTurn += 1;
+				}
 			}
 			else if(dialogResult == JOptionPane.NO_OPTION) {
 				selectionSkips += 1;
+				if(playerTurn == (numberOfPlayers - 1)) {
+					playerTurn = 0;
+					selectionRounds += 1;
+					if(selectionSkips == numberOfPlayers) {
+						System.out.println("works");
+						//productionPhaseTurn();
+					}
+					else {
+						selectionSkips = 0;
+						selectionPhaseTurn();
+					}
+				}
+				else {
+					playerTurn += 1;
+					selectionPhaseTurn();
+				}
 			}
 		}
+	}
+	
+	public void productionPhaseTurn() {
 		
-		if(playerTurn == (numberOfPlayers - 1)) {
-			playerTurn = 0;
-			selectionRounds += 1;
-		}
-		else {
-			playerTurn += 1;
-		}
 	}
 }
