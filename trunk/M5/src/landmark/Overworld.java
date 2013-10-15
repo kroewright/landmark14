@@ -35,8 +35,11 @@ public class Overworld extends JPanel {
 	private ImageIcon mountainImage;
 	private int index;
 	private Player[] players;
-	private int selectionRounds;
+	private int selectionRounds = 0;
 	private JFrame frame;
+	private int selectionSkips = 0;
+	private int playerTurn = 0;
+	private int numberOfPlayers;
 	
 	/**
 	* Create the panel.
@@ -114,61 +117,66 @@ public class Overworld extends JPanel {
 		//Plains v = new Plains(index);
 		//tiles[i][j] = v;
 		++index;
-		button.addActionListener(new pressedButton(button, i ,j));
+		//button.addActionListener(new pressedButton(panel, button, i ,j));
 		add(button);
 		return button;
 	}
 	
-	private class pressedButton implements ActionListener
-	{
-		private JButton button;
-		private int i;
-		private int j;
-		
-		/**
-		 * A constructor that takes in the pressed button and its
-		 * coordinates on the GridLayout so it can be picked from
-		 * the array.
-		 * 
-		 * @param button
-		 * @param i
-		 * @param j
-		 */
-		public pressedButton(JButton button, int i, int j)
-		{
-			this.button = button;
-			this.i = i;
-			this.j = j;
-		}
-		
-		/**
-		 * This method runs when the button is pushed. It checks 
-		 * to see if the pushed button is a valid move, moves 
-		 * the player to the spot if the move is valid, and then gets
-		 * the new valid moves and changes their color to yellow.
-		 * 
-		 * @param e
-		 */
-		public void actionPerformed(ActionEvent e) {
-			//button.setBackground(Color.GREEN);
-			updateUI();
+	public void addMapButtonActionListener(ActionListener listener) {
+		for(int i = 0; i < 5; ++i) {
+			for(int j = 0; j < 9; ++j) {
+				buttons[i][j].addActionListener(listener);;
+			}
 		}
 	}
 	
-	   public JComponent getMainComponent() {
-           return panel;
-       }
+	public JComponent getMainComponent() {
+		return panel;
+    }
+	
+	public int getPlayerTurns() {
+		return playerTurn;
+	}
+	
+	public int getSelectionSkips() {
+		return selectionSkips;
+	}
 	   
-	   public void setPlayers(Player[] people) {
-		   players = people;
-	   }
+	public void setPlayers(Player[] people) {
+		players = people;
+		numberOfPlayers = players.length;
+	}
+		   
+	public void setFrame(JFrame window) {
+		frame = window;
+	}
 	   
-	   public void setFrame(JFrame window) {
-		   frame = window;
-	   }
-	   
-	   public void selectionPhase() {
-		   String player1Name = players[0].getName();
-		   JOptionPane.showMessageDialog(frame, player1Name + ", select a property.");
-	   }
+	public void selectionPhaseTurn() {
+		String player1Name = players[playerTurn].getName();
+			   
+		if(selectionRounds < 2) {
+			JOptionPane.showMessageDialog (frame, (player1Name + " select a property."), "Land Selection Phase"
+					, JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			int dialogButton = JOptionPane.YES_NO_OPTION;
+			int dialogResult = JOptionPane.showConfirmDialog (frame, (player1Name + " would you like to buy a property? If yes," + 
+					" click a property."),"Land Selection Phase", dialogButton);
+			       
+			if(dialogResult == JOptionPane.YES_OPTION) {
+
+			}
+			else if(dialogResult == JOptionPane.NO_OPTION) {
+				selectionSkips += 1;
+			}
+		}
+		
+		if(playerTurn == (numberOfPlayers - 1)) {
+			playerTurn = 0;
+			selectionRounds += 1;
+		}
+		else {
+			playerTurn += 1;
+		}
+	}
 }

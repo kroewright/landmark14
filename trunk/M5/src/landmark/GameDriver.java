@@ -67,7 +67,16 @@ public class GameDriver{
 				overworld.setPlayers(selPage.getPlayers());
 				overworld.setFrame(frame);
 				cardlayout.show(mainPanel, MAP);
-				overworld.selectionPhase();
+				overworld.selectionPhaseTurn();
+			}
+		});
+		
+		overworld.addMapButtonActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectionSkips = overworld.getSelectionSkips();
+				if(selectionSkips < 4) {
+					overworld.selectionPhaseTurn();
+				}
 			}
 		});
 	}
