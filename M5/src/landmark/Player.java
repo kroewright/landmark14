@@ -55,6 +55,12 @@ public class Player {
 		return ownedTiles.get(0);
 	}
 	
+	public void buyLandSelectionPhase() {
+		if(money >= 300) {
+			money -= 300;
+		}
+	}
+	
 	
 	
 	
