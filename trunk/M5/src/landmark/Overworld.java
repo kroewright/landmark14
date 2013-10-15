@@ -180,13 +180,22 @@ public class Overworld extends JPanel {
 					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
 			       
 			if(dialogResult == JOptionPane.YES_OPTION) {
-				if(playerTurn == (numberOfPlayers - 1)) {
-					playerTurn = 0;
-					selectionRounds += 1;
-					selectionSkips = 0;
+				if(players[playerTurn].getMoney() < 300) {
+					JOptionPane.showMessageDialog (frame, (player1Name + " you do not have enough money!"), "Land Selection Phase"
+							, JOptionPane.ERROR_MESSAGE);
+					selectionPhaseTurn();
 				}
 				else {
-					playerTurn += 1;
+					players[playerTurn].buyLandSelectionPhase();
+					
+					if(playerTurn == (numberOfPlayers - 1)) {
+						playerTurn = 0;
+						selectionRounds += 1;
+						selectionSkips = 0;
+					}
+					else {
+						playerTurn += 1;
+					}
 				}
 			}
 			else if(dialogResult == JOptionPane.NO_OPTION) {
