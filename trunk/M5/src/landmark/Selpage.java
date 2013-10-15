@@ -268,4 +268,29 @@ public class Selpage extends JPanel {
 		difficulty = level;
 	}
 
+	public Player[] getPlayers() {
+		Player[] players = new Player[1];
+		if(playerCount == 1) {
+			players[0] = player1;
+		}
+		else if(playerCount ==2) {
+			players = new Player[2];
+			players[0] = player1;
+			players[1] = player2;
+		}
+		else if(playerCount ==3) {
+			players = new Player[3];
+			players[0] = player1;
+			players[1] = player2;
+			players[2] = player3;
+		}
+		else if(playerCount == 4) {
+			players = new Player[4];
+			players[0] = player1;
+			players[1] = player2;
+			players[2] = player3;
+			players[3] = player4;
+		}
+		return players;
+	}
 }

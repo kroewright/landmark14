@@ -32,6 +32,7 @@ public class Overworld extends JPanel {
 	private ImageIcon plainImage;
 	private ImageIcon mountainImage;
 	private int index;
+	private Player[] players;
 	
 	/**
 	* Create the panel.
@@ -153,5 +154,9 @@ public class Overworld extends JPanel {
 	   public JComponent getMainComponent() {
            return panel;
        }
+	   
+	   public void setPlayers(Player[] people) {
+		   players = people;
+	   }
 
 }

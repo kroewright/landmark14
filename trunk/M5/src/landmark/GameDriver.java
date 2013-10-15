@@ -63,6 +63,7 @@ public class GameDriver{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				selPage.assign();
+				overworld.setPlayers(selPage.getPlayers());
 				cardlayout.show(mainPanel, MAP);
 			}
 		});
