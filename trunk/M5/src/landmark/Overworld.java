@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
@@ -33,6 +35,8 @@ public class Overworld extends JPanel {
 	private ImageIcon mountainImage;
 	private int index;
 	private Player[] players;
+	private int selectionRounds;
+	private JFrame frame;
 	
 	/**
 	* Create the panel.
@@ -146,7 +150,7 @@ public class Overworld extends JPanel {
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e) {
-			button.setBackground(Color.GREEN);
+			//button.setBackground(Color.GREEN);
 			updateUI();
 		}
 	}
@@ -158,5 +162,13 @@ public class Overworld extends JPanel {
 	   public void setPlayers(Player[] people) {
 		   players = people;
 	   }
-
+	   
+	   public void setFrame(JFrame window) {
+		   frame = window;
+	   }
+	   
+	   public void selectionPhase() {
+		   String player1Name = players[0].getName();
+		   JOptionPane.showMessageDialog(frame, player1Name + ", select a property.");
+	   }
 }

@@ -1,13 +1,12 @@
 package landmark;
 
+import javax.swing.JButton;
+
 public class SelectorPhase {
 	
-	private Overworld map;
-	
-	public SelectorPhase() {
-		map = new Overworld();
-	}
-	
+	private Player[] players;
+	private JButton[][] buttons;
+	private Tile[][] tiles;
 	
 
 }
