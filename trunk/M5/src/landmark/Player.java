@@ -20,11 +20,18 @@ public class Player {
 		this.difficulty = difficulty;
 		this.tilesOwned = new HashMap<Integer,Tile>();
 		
-		//TODO
-		/**
-		 * IMPLEMENT AT A LATER TIME
-		 * 		Change starting money based on difficulty
-		 */
+		if(race == 0) {
+			money = 600;
+		}
+		else if(race == 1) {
+			money = 1000;
+		}
+		else if(race == 2) {
+			money = 1000;
+		}
+		else {
+			money = 1600;
+		}
 	}
 	/*
 	 * Not sure why this has to be public, but if it 
@@ -64,7 +71,7 @@ public class Player {
 		this.score = i;
 	}
 	
-	private int getMoney(){
+	public int getMoney(){
 		return money;
 	}
 	

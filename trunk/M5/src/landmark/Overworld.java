@@ -160,8 +160,8 @@ public class Overworld extends JPanel {
 		}
 		else {
 			int dialogButton = JOptionPane.YES_NO_OPTION;
-			int dialogResult = JOptionPane.showConfirmDialog (frame, (player1Name + " would you like to buy a property? If yes," + 
-					" click a property."),"Land Selection Phase", dialogButton);
+			int dialogResult = JOptionPane.showConfirmDialog (frame, (player1Name + " would you like to buy a property for $300? If yes," + 
+					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
 			       
 			if(dialogResult == JOptionPane.YES_OPTION) {
 
