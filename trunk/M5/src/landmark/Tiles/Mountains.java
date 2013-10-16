@@ -10,12 +10,10 @@ import landmark.Player;
 import landmark.Tile;
 
 public class Mountains extends Tile{
-private BufferedImage image;
+	private String image;
 	
 	private boolean isOwned;
 	private Player owner;
-	private int i;
-	private int j;
 	private int cost;
 	private int location;
 	private int foodYield;
@@ -56,7 +54,7 @@ private BufferedImage image;
 		return this.location;
 	}
 	
-	protected BufferedImage getImage(){
+	public String getImage(){
 		return this.image;
 	}
 	
@@ -102,16 +100,7 @@ private BufferedImage image;
 		}
 		
 		
-		BufferedImage myPicture = null;
-		//Try-catch for image for selection screen
-		try {
-			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-			InputStream input = classLoader.getResourceAsStream(   imgLink   );
-			myPicture = ImageIO.read(input);
-		} catch (IOException e) {
-			System.out.println("Image Not Found!");
-		}
-		
+		this.image = imgLink;
 		
 	}
 
