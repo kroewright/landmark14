@@ -6,7 +6,12 @@ import landmark.Player;
 import landmark.Tile;
 
 public class Town extends Tile{
-
+	
+	public Town(){
+		
+		
+	}
+	
 	@Override
 	protected Player getOwner() {
 		// TODO Auto-generated method stub
