@@ -52,84 +52,25 @@ public class Overworld extends JPanel {
 	*/
 	public Overworld() {
 		super(new GridLayout(5, 9));
-		buttons = new JButton[5][9];
 		setPreferredSize(new Dimension(800, 800));
 		index = 0;
-		
-		/*
-		riverImage = new ImageIcon("Openingpage.jpg");
-		plainImage = new ImageIcon(XXX);
-		mountainImage = new ImageIcon(XXX);
-		*/
-		
-		
-		
-		// NEED TO ADD PLAINS, WILL IMPLEMENT FACTORY FOR EASE OF USE,
-		// Possibly switch from getLocation to (r,c) coordinates
-		
-		Mountains m1 = new Mountains(2, 1);
-		tiles[0][2] = m1;
-		//buttons[0][2].setIcon(new ImageIcon(m1.getImage()));
-		Mountains m2 = new Mountains(6, 3);
-		tiles[0][6] = m2;
-		//buttons[0][6].setIcon(new ImageIcon(m2.getImage()));
-		Mountains m3 = new Mountains(10, 1);
-		tiles[1][1] = m3;
-		//buttons[1][1].setIcon(new ImageIcon(m3.getImage()));
-		Mountains m4 = new Mountains(17, 3);
-		tiles[1][8] = m1;
-		//buttons[1][8].setIcon(new ImageIcon(m4.getImage()));
-		Mountains m5 = new Mountains(18, 1);
-		tiles[2][0] = m5;
-		//buttons[2][0].setIcon(new ImageIcon(m5.getImage()));
-		Mountains m6 = new Mountains(26, 1);
-		tiles[2][8] = m6;
-		//buttons[2][8].setIcon(new ImageIcon(m6.getImage()));
-		Mountains m7 = new Mountains(28, 2);
-		tiles[3][1] = m7;
-		//buttons[3][1].setIcon(new ImageIcon(m7.getImage()));
-		Mountains m8 = new Mountains(33, 2);
-		tiles[3][6] = m8;
-		//buttons[3][6].setIcon(new ImageIcon(m8.getImage()));
-		Mountains m9 = new Mountains(38, 2);
-		tiles[4][2] = m9;
-		//buttons[4][2].setIcon(new ImageIcon(m9.getImage()));
-		Mountains m10 = new Mountains(44, 2);
-		tiles[4][8] = m10;
-		//buttons[4][8].setIcon(new ImageIcon(m10.getImage()));
-		
-		
-		River r1 = new River(4);
-		tiles[0][4] = r1;
-		//buttons[0][4].setIcon(new ImageIcon(r1.getImage()));
-		River r2 = new River(13);
-		tiles[1][4] = r2;
-		//buttons[1][4].setIcon(new ImageIcon(r2.getImage()));
-		River r3 = new River(31);
-		tiles[3][4] = r3;
-		//buttons[3][4].setIcon(new ImageIcon(r3.getImage()));
-		River r4 = new River(40);
-		tiles[4][4] = r4;
-		//buttons[4][4].setIcon(new ImageIcon(r4.getImage()));
 		
 		for(int i = 0; i < 5; ++i) {
 			for(int j = 0; j < 9; ++j) {
 				addTile(i, j);
 			}
 		}
-		
-		
-		
+	
 	}
 	
 	public JButton addTile(int i, int j) {
-		JButton button = new JButton(tiles[i][j].getImage()); //image variable goes inside bracket
+		Tile p = tileFactory(i, j);
+		System.out.println(i+""+j);
+		JButton button = new JButton();
+		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
 		buttons[i][j] = button;
-		buttons[i][j].setIcon(new ImageIcon(tiles[i][j].getImage()));
-		//Plains v = new Plains(index);
-		//tiles[i][j] = v;
+		tiles[i][j] = p;
 		++index;
-		//button.addActionListener(new pressedButton(panel, button, i ,j));
 		add(button);
 		return button;
 	}
@@ -241,29 +182,30 @@ public class Overworld extends JPanel {
 	}
 	
 	
-	/*
 	public static Tile tileFactory(int i, int j){
-		if (j == 4 && i != 2){
-			return new River(i,j);
+		int location = (i*j)+j;
+		
+		if (i != 2 && j == 4){
+			return new River(location);
 		}
 		else if (i == 0 && j == 2 || i == 1 && j == 1 || i == 2 && j == 8 ){
-			return new Mountains(i,j,1);
+			return new Mountains(location,1);
 		}
 		else if (i == 3 && j == 1 || i == 3 && j == 6 ||
 				i == 4 && j == 2 || i ==4 && j == 8){
-			return new Mountains(i,j,2);
+			return new Mountains(location,2);
 		}
 		else if (i == 1 && j == 8 || i == 2 && j == 0
 				|| i == 0 && j == 6){
-			return new Mountains(i,j,3);
+			return new Mountains(location,3);
 		}
-		else if (i == 4 && j == 2){
+		else if (i == 2 && j == 4){
 			return new Town();
 		}
 		else{
-			return new Plains(i,j);
+			return new Plains(location);
 		}
-	}*/
+	}
 	
 	
 }

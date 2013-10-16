@@ -10,7 +10,7 @@ import landmark.Player;
 import landmark.Tile;
 
 public class Mountains extends Tile{
-	private String image;
+	private String file;
 	
 	private boolean isOwned;
 	private Player owner;
@@ -30,6 +30,7 @@ public class Mountains extends Tile{
 		this.isOwned = false;
 		this.location = location;
 		this.cost = 0;
+		this.type = type;
 		
 		//this.hasMule = false;
 		this.foodYield = 1;
@@ -55,7 +56,7 @@ public class Mountains extends Tile{
 	}
 	
 	public String getImage(){
-		return this.image;
+		return this.file;
 	}
 	
 	protected void setOwner(Player p){
@@ -100,7 +101,7 @@ public class Mountains extends Tile{
 		}
 		
 		
-		this.image = imgLink;
+		this.file = imgLink;
 		
 	}
 
