@@ -1,6 +1,7 @@
 package landmark.Tiles;
 
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,12 @@ import javax.imageio.ImageIO;
 
 import landmark.Player;
 import landmark.Tile;
+
+/**
+ * 
+ * @author landmark - Team 14
+ *
+ */
 
 public class Plains extends Tile {
 	private String file;
@@ -21,20 +28,19 @@ public class Plains extends Tile {
 	private int foodYield;
 	private int energyYield;
 	private int oreYield;
+	
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
-	private boolean hasMule;
-	private Mule muleOnTile;
-	*/
+	 * private boolean hasMule;
+	 * private Mule muleOnTile;
+	 */
 	
-	
+	//Constructor that sets the initial values of 
+	//instance variables in Plains class
 	public Plains(int location){
 		this.isOwned = false;
 		this.location = location;
-
 		this.cost = 0;
-		
-		//this.hasMule = false;
 		this.foodYield = 2;
 		this.energyYield = 3;
 		this.oreYield = 1;
@@ -43,19 +49,34 @@ public class Plains extends Tile {
 	}
 
 	
-	
+	/**
+	 * Getter that returns the owner of a tile
+	 * @return owner - who owns the tile
+	 */
 	protected Player getOwner(){
 		if (isOwned) return this.owner;
 		else return null;
 	}
 	
+	/**
+	 * Getter that returns the location of a tile
+	 * @return location - location of the tile
+	 */
 	protected int getLocation(){
 		return this.location;
 	}
+	
+	/**
+	 * Getter that returns the image for a tile
+	 * @return file - image file
+	 */
 	public String getImage(){
 		return this.file;
 	}
 	
+	/**
+	 * Method that sets owners if a tile isn't already owned.
+	 */
 	protected void setOwner(Player p){
 		if(!isOwned) {
 			isOwned = true;
@@ -64,21 +85,34 @@ public class Plains extends Tile {
 		}
 	}
 	
-	
+	/**
+	 * Returns the amount of food available.
+	 * @return foodYield - food left
+	 */
 	protected int getFYield(){
 		return this.foodYield;
 	}
 	
+	/**
+	 * Returns the amount of energy available.
+	 * @return EYield - energy left
+	 */
 	protected int getEYield(){
 		return this.energyYield;
 	}
 	
+	/**
+	 * Returns the amount of ore available.
+	 * @return OYield - ore left
+	 */
 	protected int getOYield(){
 		return this.oreYield;
 	}
 	
+	/**
+	 * Method that sets plain based on player color.
+	 */
 	protected void setImage(){
-		
 		String imgLink = "plainsUnowned.jpg";
 		if(isOwned){
 			int color = getOwner().getColor();

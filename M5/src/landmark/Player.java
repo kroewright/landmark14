@@ -1,7 +1,13 @@
 package landmark;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * @author k_wright0510
+ *
+ */
 public class Player {
 	private String name;
 	private int money;
@@ -9,21 +15,25 @@ public class Player {
 	private int color;
 	private int difficulty;
 	private int race;
-	
-	private ArrayList<Tile> ownedTiles;
-	
-	//private HashMap<Integer, Tile> tilesOwned;
-		
+	private ArrayList<Tile> ownedTiles;	
 	private boolean inStore;
 	
-	
+	/**
+	 * Contains the player's name, color, difficulty of the current game,
+	 * and their race.
+	 * 
+	 * @param name
+	 * @param color
+	 * @param difficulty
+	 * @param race
+	 */
 	public Player(String name, int color, int difficulty, int race) {
 		this.name = name;
 		this.color = color;
 		this.difficulty = difficulty;
 		ownedTiles = new ArrayList<Tile>();
-		//this.tilesOwned = new HashMap<Integer,Tile>();
 		
+		//Sets initial money based on race.
 		if(race == 0) {
 			money = 600;
 		}
@@ -37,42 +47,51 @@ public class Player {
 			money = 1600;
 		}
 	}
+	
 	/*
-	 * Not sure why this has to be public, but if it 
-	 * works it works I guess -Mason
+	 * Getter for player color.
 	 */
 	public int getColor(){
 		return color;
 	}
 	
 	
-	
+	/**
+	 * Method that adds tiles to new owners and sets the new owner.
+	 * @param tile
+	 */
 	public void addTileOwned(Tile tile){
 		ownedTiles.add(tile);
 		tile.setOwner(this);
 	}
 	
+	/**
+	 * Getter for owner tiles.
+	 * @return tiles
+	 */
 	public Tile getTile() {
 		return ownedTiles.get(0);
 	}
 	
+	/**
+	 * Deducts money when land is purchased.
+	 * @param tile
+	 */
 	public void buyLandSelectionPhase(Tile tile) {
 		if(money >= 300) {
 			money -= 300;
 		}
-		
 		addTileOwned(tile);
 	}
 	
 	
 	
 	
-	
-	
 	/*
-	 * Here Be the getarrs and setarrs.
+	 * Getters and setters for each player parameter.
+	 * Also getters and setters for scores and money.
+	 * 
 	 */
-	
 	public String getName(){
 		return name;
 	}
