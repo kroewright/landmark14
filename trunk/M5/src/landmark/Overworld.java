@@ -111,6 +111,7 @@ public class Overworld extends JPanel {
 						resetSelectionSkips();
 						selectionPhaseTurn();
 					}
+					
 				}
 				else {
 					increasePlayerTurns();

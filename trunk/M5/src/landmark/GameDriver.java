@@ -14,11 +14,13 @@ public class GameDriver{
 	private static final String OPEN = "openScrn";
 	private static final String SEL = "SelPg";
 	private static final String MAP = "map";
+	private static final String TOWN = "town";
 	private CardLayout cardlayout; // = new CardLayout();
 	private JPanel mainPanel; // = new JPanel(cardlayout);
 	private OpeningScreen openingScreen; // = new OpeningScreen();
 	private Selpage selPage; // = new Selpage();
 	private Overworld overworld; // = new Overworld();
+	private ProductionPhase prodPhase;
 	private JButton[][] buttons;
 	private Tile[][] tiles;
 	private int numOfPlayers = 0;
@@ -141,7 +143,10 @@ public class GameDriver{
 					overworld.selectionPhaseTurn();
 				}
 				else {
-					overworld.productionPhaseTurn();
+					System.out.println("reached");
+					prodPhase = new ProductionPhase(players[overworld.getPlayerTurns()]);
+					mainPanel.add(prodPhase);
+					cardlayout.show(mainPanel, TOWN);
 				}
 			}
 		});

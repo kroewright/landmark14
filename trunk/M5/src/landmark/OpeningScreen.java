@@ -71,7 +71,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 1;                               
 			}
 		});
-		btn2.setBounds(574, 426, 46, 23);
+		btn2.setBounds(574, 420, 46, 64);
 		center.add(btn2);
 
 		/*
@@ -84,7 +84,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 2;
 			}
 		});
-		btn3.setBounds(660, 426, 46, 23);
+		btn3.setBounds(660, 420, 46, 64);
 		center.add(btn3);
 
 		/*
@@ -97,7 +97,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 3;
 			}
 		});
-		btn1.setBounds(751, 426, 46, 23);
+		btn1.setBounds(751, 420, 46, 64);
 		center.add(btn1);
 
 		/*
@@ -110,7 +110,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 4;
 			}
 		});
-		btn4.setBounds(841, 426, 46, 23);
+		btn4.setBounds(841, 420, 46, 65);
 		center.add(btn4);
 
 		/**
