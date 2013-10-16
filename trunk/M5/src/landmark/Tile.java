@@ -2,6 +2,13 @@ package landmark;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * @author landmark - Team 14
+ *
+ */
+
+//Abstract class that represents the tiles on the map. 
 public abstract class Tile {
 	
 	private String file;
@@ -17,11 +24,9 @@ public abstract class Tile {
 	
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
-	private boolean hasMule;
-	private Mule muleOnTile;
-	*/
-	
-	
+	 * private boolean hasMule;
+	 * private Mule muleOnTile;
+	 */
 	
 	protected abstract Player getOwner();
 	protected abstract int getLocation();
