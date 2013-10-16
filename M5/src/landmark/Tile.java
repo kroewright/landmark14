@@ -25,7 +25,7 @@ public abstract class Tile {
 	
 	protected abstract Player getOwner();
 	protected abstract int getLocation();
-	protected abstract BufferedImage getImage();
+	protected abstract String getImage();
 	protected abstract void setOwner(Player p);
 	
 	protected abstract int getFYield();
