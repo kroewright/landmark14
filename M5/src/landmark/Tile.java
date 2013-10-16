@@ -8,8 +8,7 @@ public abstract class Tile {
 	
 	private boolean isOwned;
 	private Player owner;
-	private int i;
-	private int j;
+	private int location;
 	private int cost;
 	
 	private int foodYield;
@@ -25,8 +24,7 @@ public abstract class Tile {
 	
 	
 	protected abstract Player getOwner();
-	protected abstract int getR();
-	protected abstract int getC();
+	protected abstract int getLocation();
 	protected abstract BufferedImage getImage();
 	protected abstract void setOwner(Player p);
 	
