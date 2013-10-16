@@ -4,11 +4,8 @@ import java.awt.image.BufferedImage;
 
 import landmark.Player;
 import landmark.Tile;
-
 public class Town extends Tile{
-	
 	public Town(){
-		
 		
 	}
 	
@@ -19,15 +16,8 @@ public class Town extends Tile{
 	}
 
 	@Override
-	protected int getR() {
-		// TODO Auto-generated method stub
-		return 2;
-	}
-
-	@Override
-	protected int getC() {
-		// TODO Auto-generated method stub
-		return 4;
+	protected int getLocation(){
+		return 14;
 	}
 
 	@Override

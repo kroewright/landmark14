@@ -14,8 +14,7 @@ public class Plains extends Tile {
 	
 	private boolean isOwned;
 	private Player owner;
-	private int i;
-	private int j;
+	private int location;
 	private int cost;
 
 	private int foodYield;
@@ -28,10 +27,10 @@ public class Plains extends Tile {
 	*/
 	
 	
-	public Plains(int i, int j){
+	public Plains(int location){
 		this.isOwned = false;
-		this.i = i;
-		this.j = j;
+		this.location = location;
+
 		this.cost = 0;
 		
 		//this.hasMule = false;
@@ -49,12 +48,8 @@ public class Plains extends Tile {
 		else return null;
 	}
 	
-	protected int getR(){
-		return this.i;
-	}
-	
-	protected int getC(){
-		return this.j;
+	protected int getLocation(){
+		return this.location;
 	}
 	protected BufferedImage getImage(){
 		return this.image;
