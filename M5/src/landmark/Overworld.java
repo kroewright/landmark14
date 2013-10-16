@@ -115,6 +115,8 @@ public class Overworld extends JPanel {
 						playerName = players[playerTurn].getName();
 						JOptionPane.showMessageDialog (frame, (playerName + " begin production phase!"), "Production Phase"
 								, JOptionPane.INFORMATION_MESSAGE);
+						
+						productionPhaseTurn(players[playerTurn]);
 					}
 				}
 				else {
@@ -125,8 +127,9 @@ public class Overworld extends JPanel {
 		}
 	}
 	
-	public void productionPhaseTurn() {
-
+	public ProductionPhase productionPhaseTurn(Player player) {
+		ProductionPhase prodPhase = new ProductionPhase(player);
+		return prodPhase;
 	}
 	
 	public JComponent getMainComponent() {
