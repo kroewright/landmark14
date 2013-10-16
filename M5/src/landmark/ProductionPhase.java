@@ -71,7 +71,7 @@ public class ProductionPhase extends JPanel {
 		//Try-catch for image for selection screen
 		try {
 			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-			InputStream input = classLoader.getResourceAsStream("storeBig.gif");
+			InputStream input = classLoader.getResourceAsStream("Tiles/storeBig.gif");
 			myPicture = ImageIO.read(input);
 		} catch (IOException e) {
 			System.out.println("Picture not found");
