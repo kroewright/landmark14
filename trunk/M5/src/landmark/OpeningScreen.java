@@ -71,7 +71,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 1;                               
 			}
 		});
-		btn2.setBounds(301, 371, 46, 23);
+		btn2.setBounds(574, 426, 46, 23);
 		center.add(btn2);
 
 		/*
@@ -84,7 +84,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 2;
 			}
 		});
-		btn3.setBounds(387, 371, 46, 23);
+		btn3.setBounds(660, 426, 46, 23);
 		center.add(btn3);
 
 		/*
@@ -97,7 +97,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 3;
 			}
 		});
-		btn1.setBounds(478, 371, 46, 23);
+		btn1.setBounds(751, 426, 46, 23);
 		center.add(btn1);
 
 		/*
@@ -110,7 +110,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 				numOfPlayers = 4;
 			}
 		});
-		btn4.setBounds(568, 371, 46, 23);
+		btn4.setBounds(841, 426, 46, 23);
 		center.add(btn4);
 
 		/**
@@ -118,7 +118,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * Sets the bounds before adding the label.
 		 */
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setBounds(27, 5, 869, 518);
+		picLabel.setBounds(300, 60, 869, 518);
 		center.add(picLabel);
 
 		/**
@@ -135,7 +135,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 */
 		JLabel lblNewLabel = new JLabel("Map Type:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 17));
+		lblNewLabel.setFont(new Font("Garuda", Font.BOLD, 17));
 		south.add(lblNewLabel);
 
 		/**
@@ -148,6 +148,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 			}
 		});
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+		rdbtnNewRadioButton.setBackground(new Color(255, 204, 0));
 
 		/**
 		 * Creates second radio button for Random map type.
@@ -159,6 +160,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 			}
 		});
 		rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
+		rdbtnRandom.setBackground(new Color(255, 204, 0));
 
 		/**
 		 * Adds the buttons to the button group.

@@ -45,7 +45,7 @@ public class Overworld extends JPanel {
 	*/
 	public Overworld() {
 		super(new GridLayout(5, 9));
-		setPreferredSize(new Dimension(800, 800));
+		setPreferredSize(new Dimension(1469, 720));
 		setMapType(mapType);
 	}
 	
@@ -103,17 +103,18 @@ public class Overworld extends JPanel {
 			}
 			else if(dialogResult == JOptionPane.NO_OPTION) {
 				selectionSkips += 1;
-				if(playerTurn != numberOfPlayers - 1) {
-					increasePlayerTurns();
-					selectionPhaseTurn();
-				}
-				else {
+				
+				if(playerTurn == numberOfPlayers - 1) {
 					increaseSelectionRound();
 					resetPlayerTurns();
 					if(selectionSkips != numberOfPlayers) {
-						selectionSkips = 0;
+						resetSelectionSkips();
 						selectionPhaseTurn();
 					}
+				}
+				else {
+					increasePlayerTurns();
+					selectionPhaseTurn();
 				}
 			}
 		}
