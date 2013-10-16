@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Tile {
 	
-	private BufferedImage image;
+	private String file;
 	
 	private boolean isOwned;
 	private Player owner;

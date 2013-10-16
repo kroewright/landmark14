@@ -10,7 +10,7 @@ import landmark.Player;
 import landmark.Tile;
 
 public class River extends Tile {
-	private String image;
+	private String file;
 	
 	private boolean isOwned;
 	private Player owner;
@@ -53,7 +53,7 @@ public class River extends Tile {
 	}
 	
 	public String getImage(){
-		return this.image;
+		return this.file;
 	}
 	
 	protected void setOwner(Player p){
@@ -92,7 +92,7 @@ public class River extends Tile {
 		}
 		
 		
-		this.image = imgLink;
+		this.file = imgLink;
 
 	}
 

@@ -1,6 +1,7 @@
 package landmark.Tiles;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -10,7 +11,7 @@ import landmark.Player;
 import landmark.Tile;
 
 public class Plains extends Tile {
-	private String image;
+	private String file;
 	
 	private boolean isOwned;
 	private Player owner;
@@ -52,7 +53,7 @@ public class Plains extends Tile {
 		return this.location;
 	}
 	public String getImage(){
-		return this.image;
+		return this.file;
 	}
 	
 	protected void setOwner(Player p){
@@ -75,6 +76,7 @@ public class Plains extends Tile {
 	}
 	
 	protected void setImage(){
+		
 		String imgLink = "plainsUnowned.jpg";
 		if(isOwned){
 			int color = getOwner().getColor();
@@ -90,9 +92,7 @@ public class Plains extends Tile {
 			}
 		}
 		
-		this.image = imgLink;
-		
-		
+		this.file = imgLink;
 	}
 	
 	

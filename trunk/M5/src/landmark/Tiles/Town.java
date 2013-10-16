@@ -5,8 +5,10 @@ import java.awt.image.BufferedImage;
 import landmark.Player;
 import landmark.Tile;
 public class Town extends Tile{
+	private String file;
+	
 	public Town(){
-		
+		setImage();
 	}
 	
 	@Override
@@ -22,8 +24,7 @@ public class Town extends Tile{
 
 	@Override
 	public String getImage() {
-		// TODO Auto-generated method stub
-		return null;
+		return file;
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class Town extends Tile{
 
 	@Override
 	protected void setImage() {
-		// TODO Auto-generated method stub
+		file = "town.jpg";
 		
 	}
 
