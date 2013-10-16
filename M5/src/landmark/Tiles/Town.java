@@ -21,7 +21,7 @@ public class Town extends Tile{
 	}
 
 	@Override
-	protected BufferedImage getImage() {
+	public String getImage() {
 		// TODO Auto-generated method stub
 		return null;
 	}

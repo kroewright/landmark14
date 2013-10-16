@@ -10,7 +10,7 @@ import landmark.Player;
 import landmark.Tile;
 
 public class Plains extends Tile {
-	private BufferedImage image;
+	private String image;
 	
 	private boolean isOwned;
 	private Player owner;
@@ -51,7 +51,7 @@ public class Plains extends Tile {
 	protected int getLocation(){
 		return this.location;
 	}
-	protected BufferedImage getImage(){
+	public String getImage(){
 		return this.image;
 	}
 	
@@ -90,16 +90,7 @@ public class Plains extends Tile {
 			}
 		}
 		
-		
-		BufferedImage myPicture = null;
-		//Try-catch for image for selection screen
-		try {
-			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-			InputStream input = classLoader.getResourceAsStream(   imgLink   );
-			myPicture = ImageIO.read(input);
-		} catch (IOException e) {
-			System.out.println("Image Not Found!");
-		}
+		this.image = imgLink;
 		
 		
 	}
