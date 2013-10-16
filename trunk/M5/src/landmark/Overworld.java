@@ -111,7 +111,11 @@ public class Overworld extends JPanel {
 						resetSelectionSkips();
 						selectionPhaseTurn();
 					}
-					
+					else {
+						playerName = players[playerTurn].getName();
+						JOptionPane.showMessageDialog (frame, (playerName + " begin production phase!"), "Production Phase"
+								, JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 				else {
 					increasePlayerTurns();
