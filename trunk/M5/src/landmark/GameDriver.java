@@ -145,7 +145,7 @@ public class GameDriver{
 				else {
 					System.out.println("reached");
 					prodPhase = new ProductionPhase(players[overworld.getPlayerTurns()]);
-					mainPanel.add(prodPhase);
+					mainPanel.add(prodPhase.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
 				}
 			}
