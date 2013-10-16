@@ -91,6 +91,10 @@ public class GameDriver{
 											"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
 								}
 								else if (overworld.getSelectionRounds() < 2) {
+									//players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
+									//buttons[i][j].setIcon(new ImageIcon(tiles[i][j].getImage()));
+									//System.out.println(players[0].getTile());
+									
 									int index = overworld.getPlayerTurns();
 									if(index != numOfPlayers - 1) {
 										overworld.increasePlayerTurns();
@@ -99,8 +103,7 @@ public class GameDriver{
 										overworld.increaseSelectionRound();
 										overworld.resetPlayerTurns();
 									}
-									//players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
-									//System.out.println(players[0].getTile());
+								
 									buttons[i][j].setBackground(Color.GREEN);
 								}
 								else {
