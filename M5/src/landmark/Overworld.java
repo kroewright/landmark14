@@ -118,7 +118,7 @@ public class Overworld extends JPanel {
 	}
 	
 	public JButton addTile(int i, int j) {
-		JButton button = new JButton(buttons[i][j].getImage()); //image variable goes inside bracket
+		JButton button = new JButton(buttons[i][j].getIcon()); //image variable goes inside bracket
 		buttons[i][j] = button;
 		//Plains v = new Plains(index);
 		//tiles[i][j] = v;
