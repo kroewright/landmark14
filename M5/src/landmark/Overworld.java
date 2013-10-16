@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
 import landmark.Tiles.Mountains;
 import landmark.Tiles.Plains;
 import landmark.Tiles.River;
+import landmark.Tiles.Town;
 
 public class Overworld extends JPanel {
 	
@@ -41,6 +42,10 @@ public class Overworld extends JPanel {
 	private int playerTurn = 0;
 	private int numberOfPlayers;
 	private int dialogResult;
+	
+	
+	
+	
 	
 	/**
 	* Create the panel.
@@ -64,7 +69,7 @@ public class Overworld extends JPanel {
 			}
 		}
 		
-		/*
+		
 		Mountains m1 = new Mountains(2, 1);
 		tiles[0][2] = m1;
 		buttons[0][2].setIcon(new ImageIcon(m1.getImage()));
@@ -109,11 +114,11 @@ public class Overworld extends JPanel {
 		River r4 = new River(40);
 		tiles[4][4] = r4;
 		buttons[4][4].setIcon(new ImageIcon(r4.getImage()));
-		*/
+		
 	}
 	
 	public JButton addTile(int i, int j) {
-		JButton button = new JButton("P"); //image variable goes inside bracket
+		JButton button = new JButton(buttons[i][j].getImage()); //image variable goes inside bracket
 		buttons[i][j] = button;
 		//Plains v = new Plains(index);
 		//tiles[i][j] = v;
@@ -228,4 +233,31 @@ public class Overworld extends JPanel {
 	public void resetSelectionSkips() {
 		selectionSkips = 0;
 	}
+	
+	
+	/*
+	public static Tile tileFactory(int i, int j){
+		if (j == 4 && i != 2){
+			return new River(i,j);
+		}
+		else if (i == 0 && j == 2 || i == 1 && j == 1 || i == 2 && j == 8 ){
+			return new Mountains(i,j,1);
+		}
+		else if (i == 3 && j == 1 || i == 3 && j == 6 ||
+				i == 4 && j == 2 || i ==4 && j == 8){
+			return new Mountains(i,j,2);
+		}
+		else if (i == 1 && j == 8 || i == 2 && j == 0
+				|| i == 0 && j == 6){
+			return new Mountains(i,j,3);
+		}
+		else if (i == 4 && j == 2){
+			return new Town();
+		}
+		else{
+			return new Plains(i,j);
+		}
+	}*/
+	
+	
 }
