@@ -14,7 +14,8 @@ public class River extends Tile {
 	
 	private boolean isOwned;
 	private Player owner;
-	private int index;
+	private int i;
+	private int j;
 	private int cost;
 
 	private int foodYield;
@@ -27,9 +28,10 @@ public class River extends Tile {
 	*/
 	
 	
-	public River(int ind){
+	public River(int i, int j){
 		this.isOwned = false;
-		this.index = ind;
+		this.i = i;
+		this.j = j;
 		this.cost = 0;
 		
 		//this.hasMule = false;
@@ -47,8 +49,12 @@ public class River extends Tile {
 		else return null;
 	}
 	
-	protected int getLocation(){
-		return this.index;
+	protected int getR(){
+		return this.i;
+	}
+	
+	protected int getC(){
+		return this.j;
 	}
 	
 	protected BufferedImage getImage(){

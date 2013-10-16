@@ -14,7 +14,8 @@ private BufferedImage image;
 	
 	private boolean isOwned;
 	private Player owner;
-	private int index;
+	private int i;
+	private int j;
 	private int cost;
 
 	private int foodYield;
@@ -27,9 +28,10 @@ private BufferedImage image;
 	private Mule muleOnTile;
 	*/
 	
-	public Mountains(int ind, int type){
+	public Mountains(int i,int j, int type){
 		this.isOwned = false;
-		this.index = ind;
+		this.i = i;
+		this.j = j;
 		this.cost = 0;
 		
 		//this.hasMule = false;
@@ -51,8 +53,12 @@ private BufferedImage image;
 		else return null;
 	}
 	
-	protected int getLocation(){
-		return this.index;
+	protected int getR(){
+		return this.i;
+	}
+	
+	protected int getC(){
+		return this.j;
 	}
 	
 	protected BufferedImage getImage(){
