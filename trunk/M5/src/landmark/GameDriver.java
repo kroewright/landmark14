@@ -144,10 +144,13 @@ public class GameDriver{
 				}
 				else {
 					System.out.println("reached");
-					prodPhase = new ProductionPhase(players[overworld.getPlayerTurns()]);
-					mainPanel.add(prodPhase.getMainComponent(),TOWN);
-					cardlayout.show(mainPanel, TOWN);
+					
+					if( e.getSource() == buttons[2][4]){
+						prodPhase = new ProductionPhase(players[overworld.getPlayerTurns()]);
+						mainPanel.add(prodPhase.getMainComponent(),TOWN);
+						cardlayout.show(mainPanel, TOWN);
 				}
+					}
 			}
 		});
 	}
