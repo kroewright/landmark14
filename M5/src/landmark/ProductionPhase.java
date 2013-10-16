@@ -30,19 +30,24 @@ import java.awt.BorderLayout;
 
 public class ProductionPhase extends JPanel {
 	private Player player;
-	
+	JPanel panel;
 	
 	
 	public ProductionPhase(Player player){
 		this.player = player;
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		add(panel);
 		panel.setLayout(null);
 		
 		JButton btnEndTurn = new JButton("End Turn");
 		btnEndTurn.setBounds(338, 254, 89, 23);
 		panel.add(btnEndTurn);
+	}
+	
+	
+	public JPanel getMainComponent(){
+		return panel;
 	}
 }
