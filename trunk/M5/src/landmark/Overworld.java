@@ -38,6 +38,7 @@ public class Overworld extends JPanel {
 	private int playerTurn = 0;
 	private int numberOfPlayers;
 	private int dialogResult;
+	private int mapType = 1; //default map is standard map = 1 and random map = 2
 	
 	/**
 	* Create the panel.
@@ -45,16 +46,25 @@ public class Overworld extends JPanel {
 	public Overworld() {
 		super(new GridLayout(5, 9));
 		setPreferredSize(new Dimension(800, 800));
+		setMapType(mapType);
+	}
+	
+	public void setMapType(int mapType) {
+		this.mapType = mapType;
 		
 		for(int i = 0; i < 5; ++i) {
 			for(int j = 0; j < 9; ++j) {
-				addTile(i, j);
+				if(mapType == 1) {
+					addTileStandardMap(i, j);
+				}
+				else if(mapType == 2) {
+					
+				}
 			}
 		}
-	
 	}
 	
-	public JButton addTile(int i, int j) {
+	public JButton addTileStandardMap(int i, int j) {
 		Tile p = tileFactory(i, j);
 		JButton button = new JButton();
 		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
