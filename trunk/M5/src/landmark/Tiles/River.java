@@ -57,9 +57,11 @@ public class River extends Tile {
 	}
 	
 	protected void setOwner(Player p){
-		if(!isOwned) isOwned = true;
-		this.owner = p;
-		this.setImage();
+		if(!isOwned) {
+			isOwned = true;
+			this.owner = p;
+			this.setImage();
+		}
 	}
 	
 	
@@ -82,12 +84,16 @@ public class River extends Tile {
 			switch (color){
 				case 0:
 					imgLink = "riverGold.jpg";
+					break;
 				case 1:
 					imgLink = "riverNavy.jpg";
+					break;
 				case 2:
 					imgLink = "riverWhite.jpg";
+					break;
 				case 3:
 					imgLink = "riverBlack.jpg";
+					break;
 			}
 		}
 		

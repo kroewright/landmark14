@@ -57,9 +57,11 @@ public class Plains extends Tile {
 	}
 	
 	protected void setOwner(Player p){
-		if(!isOwned) isOwned = true;
-		this.owner = p;
-		this.setImage();
+		if(!isOwned) {
+			isOwned = true;
+			this.owner = p;
+			this.setImage();
+		}
 	}
 	
 	
@@ -83,12 +85,16 @@ public class Plains extends Tile {
 			switch (color){
 				case 0:
 					imgLink = "plainsGold.jpg";
+					break;
 				case 1:
 					imgLink = "plainsNavy.jpg";
+					break;
 				case 2:
 					imgLink = "plainsWhite.jpg";
+					break;
 				case 3:
 					imgLink = "plainsBlack.jpg";
+					break;
 			}
 		}
 		

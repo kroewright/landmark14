@@ -91,34 +91,44 @@ public class GameDriver{
 											"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
 								}
 								else if (overworld.getSelectionRounds() < 2) {
-									//players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
-									//buttons[i][j].setIcon(new ImageIcon(tiles[i][j].getImage()));
-									//System.out.println(players[0].getTile());
-									
-									int index = overworld.getPlayerTurns();
-									if(index != numOfPlayers - 1) {
-										overworld.increasePlayerTurns();
-									}
-									else {
-										overworld.increaseSelectionRound();
-										overworld.resetPlayerTurns();
-									}
-								
-									buttons[i][j].setBackground(Color.GREEN);
-								}
-								else {
-									if(overworld.getDialogResult() == JOptionPane.YES_OPTION) {
+									if(tiles[i][j].getOwner() == null) {
+										players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
+										buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
+												getResource("Tiles/" + tiles[i][j].getImage())));
+										
 										int index = overworld.getPlayerTurns();
-										//String playerName = players[index].getName();
-										players[index].buyLandSelectionPhase();
-										buttons[i][j].setBackground(Color.RED);
-											
 										if(index != numOfPlayers - 1) {
 											overworld.increasePlayerTurns();
 										}
 										else {
 											overworld.increaseSelectionRound();
 											overworld.resetPlayerTurns();
+										}
+									}
+									else {
+										JOptionPane.showMessageDialog (frame, "This property is already owned! Please " +
+												"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
+									if(overworld.getDialogResult() == JOptionPane.YES_OPTION) {
+										if(tiles[i][j].getOwner() == null) {
+											int index = overworld.getPlayerTurns();
+											players[index].buyLandSelectionPhase(tiles[i][j]);
+											buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
+													getResource("Tiles/" + tiles[i][j].getImage())));
+												
+											if(index != numOfPlayers - 1) {
+												overworld.increasePlayerTurns();
+											}
+											else {
+												overworld.increaseSelectionRound();
+												overworld.resetPlayerTurns();
+											}
+										}
+										else {
+											JOptionPane.showMessageDialog (frame, "This property is already owned! Please " +
+													"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
 										}
 									}
 								}

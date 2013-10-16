@@ -60,9 +60,11 @@ public class Mountains extends Tile{
 	}
 	
 	protected void setOwner(Player p){
-		if(!isOwned) isOwned = true;
-		this.owner = p;
-		this.setImage();
+		if(!isOwned) {
+			isOwned = true;
+			this.owner = p;
+			this.setImage();
+		}
 	}
 	
 	
@@ -91,12 +93,16 @@ public class Mountains extends Tile{
 			switch (color){
 				case 0:
 					imgLink = "mountains"+type+"Gold.jpg";
+					break;
 				case 1:
 					imgLink = "mountains"+type+"Navy.jpg";
+					break;
 				case 2:
 					imgLink = "mountains"+type+"White.jpg";
+					break;
 				case 3:
 					imgLink = "mountains"+type+"Black.jpg";
+					break;
 			}
 		}
 		

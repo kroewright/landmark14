@@ -21,6 +21,7 @@ public class Player {
 		this.name = name;
 		this.color = color;
 		this.difficulty = difficulty;
+		ownedTiles = new ArrayList<Tile>();
 		//this.tilesOwned = new HashMap<Integer,Tile>();
 		
 		if(race == 0) {
@@ -55,10 +56,12 @@ public class Player {
 		return ownedTiles.get(0);
 	}
 	
-	public void buyLandSelectionPhase() {
+	public void buyLandSelectionPhase(Tile tile) {
 		if(money >= 300) {
 			money -= 300;
 		}
+		
+		addTileOwned(tile);
 	}
 	
 	

@@ -31,10 +31,6 @@ public class Overworld extends JPanel {
 	private Tile[][] tiles = new Tile[5][9];
 	private JPanel panel;
 	private JButton[][] buttons = new JButton[5][9];
-	private ImageIcon riverImage;
-	private ImageIcon plainImage;
-	private ImageIcon mountainImage;
-	private int index;
 	private Player[] players;
 	private int selectionRounds = 0;
 	private JFrame frame;
@@ -43,17 +39,12 @@ public class Overworld extends JPanel {
 	private int numberOfPlayers;
 	private int dialogResult;
 	
-	
-	
-	
-	
 	/**
 	* Create the panel.
 	*/
 	public Overworld() {
 		super(new GridLayout(5, 9));
 		setPreferredSize(new Dimension(800, 800));
-		index = 0;
 		
 		for(int i = 0; i < 5; ++i) {
 			for(int j = 0; j < 9; ++j) {
@@ -65,12 +56,10 @@ public class Overworld extends JPanel {
 	
 	public JButton addTile(int i, int j) {
 		Tile p = tileFactory(i, j);
-		System.out.println(i+""+j);
 		JButton button = new JButton();
 		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
 		buttons[i][j] = button;
 		tiles[i][j] = p;
-		++index;
 		add(button);
 		return button;
 	}
@@ -181,7 +170,6 @@ public class Overworld extends JPanel {
 		selectionSkips = 0;
 	}
 	
-	
 	public static Tile tileFactory(int i, int j){
 		int location = (i*j)+j;
 		
@@ -206,6 +194,4 @@ public class Overworld extends JPanel {
 			return new Plains(location);
 		}
 	}
-	
-	
 }
