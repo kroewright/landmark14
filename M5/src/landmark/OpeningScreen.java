@@ -72,6 +72,17 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		btn1.setBackground(new Color(204, 255, 204));
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg2) {
+				switch (numOfPlayers){
+					case 2:
+						btn2.setBackground(null);
+						break;
+					case 3:
+						btn3.setBackground(null);
+						break;
+					case 4:
+						btn4.setBackground(null);
+						break;	
+				}
 				numOfPlayers = 1;
 				btn1.setBackground(new Color(207,181,59));
 			}
@@ -86,6 +97,17 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		btn2 = new JButton("2");
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg3) {
+				switch (numOfPlayers){
+					case 1:
+						btn1.setBackground(null);
+						break;
+					case 3:
+						btn3.setBackground(null);
+						break;
+					case 4:
+						btn4.setBackground(null);
+						break;	
+				}
 				numOfPlayers = 2;
 				btn2.setBackground(new Color(207,181,59));
 			}
@@ -100,6 +122,17 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		btn3 = new JButton("3");
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg1) {
+				switch (numOfPlayers){
+					case 1:
+						btn1.setBackground(null);
+						break;
+					case 2:
+						btn2.setBackground(null);
+						break;
+					case 4:
+						btn4.setBackground(null);
+						break;	
+				}
 				numOfPlayers = 3;
 				btn3.setBackground(new Color(207,181,59));
 			}
@@ -114,6 +147,17 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		btn4 = new JButton("4");
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg4) {
+				switch (numOfPlayers){
+					case 1:
+						btn1.setBackground(null);
+						break;
+					case 2:
+						btn2.setBackground(null);
+						break;
+					case 3:
+						btn3.setBackground(null);
+						break;	
+				}
 				numOfPlayers = 4;
 				btn4.setBackground(new Color(207,181,59));
 			}
