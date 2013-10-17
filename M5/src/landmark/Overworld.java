@@ -26,6 +26,12 @@ import landmark.Tiles.Plains;
 import landmark.Tiles.River;
 import landmark.Tiles.Town;
 
+/**
+ * 
+ * @author landmark - team 14
+ *
+ */
+
 public class Overworld extends JPanel {
 	
 	private Tile[][] tiles = new Tile[5][9];
@@ -41,14 +47,18 @@ public class Overworld extends JPanel {
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
 	
 	/**
-	* Create the panel.
-	*/
+     * Create the panel.
+	 */
 	public Overworld() {
 		super(new GridLayout(5, 9));
 		setPreferredSize(new Dimension(1469, 720));
 		setMapType(mapType);
 	}
 	
+	/**
+	 * Method that sets the map type, standard or random
+	 * @param mapType - 1 is standard, 2 is random, default is 1
+	 */
 	public void setMapType(int mapType) {
 		this.mapType = mapType;
 		
@@ -64,6 +74,13 @@ public class Overworld extends JPanel {
 		}
 	}
 	
+	/**
+	 * Method that adds tile to the standard map.
+	 * 
+	 * @param i
+	 * @param j
+	 * @return button
+	 */
 	public JButton addTileStandardMap(int i, int j) {
 		Tile p = tileFactory(i, j);
 		JButton button = new JButton();
@@ -82,6 +99,10 @@ public class Overworld extends JPanel {
 		}
 	}
 	
+	/**
+	 * Method that shows which player's turn it is in the game.
+	 * Allows them to buy property based on how much money they have.
+	 */
 	public void selectionPhaseTurn() {
 		String playerName = players[playerTurn].getName();
 			   
@@ -127,68 +148,88 @@ public class Overworld extends JPanel {
 		}
 	}
 	
+	//Creates a new production phase
 	public ProductionPhase productionPhaseTurn(Player player) {
 		ProductionPhase prodPhase = new ProductionPhase(player);
 		return prodPhase;
 	}
 	
+	//Returns main panel
 	public JComponent getMainComponent() {
 		return panel;
     }
 	
+	//Returns number of player turns
 	public int getPlayerTurns() {
 		return playerTurn;
 	}
 	
+	//Returns the number of times a player has selcted no
 	public int getSelectionSkips() {
 		return selectionSkips;
 	}
 	
+	//Returns number of rounds played, 
+	//a round is complete when all players have gone
 	public int getSelectionRounds() {
 		return selectionRounds;
 	}
 	
+	//Returns the buttons on the panel
 	public JButton[][] getButtons() {
 		return buttons;
 	}
 	
+	//Returns the resulting dialog from a player
 	public int getDialogResult() {
 		return dialogResult;
 	}
 	
+	//Returns the tiles on the map
 	public Tile[][] getTiles() {
 		return tiles;
 	}
-	   
+	
+	//Sets the number of players in a given game
 	public void setPlayers(Player[] people) {
 		players = people;
 		numberOfPlayers = players.length;
 	}
-		   
+	
+	//Sets the JFrame window for the game
 	public void setFrame(JFrame window) {
 		frame = window;
 	}
 	
+	//Increments number of times a player has selected no by 1
 	public void increaseSelectionSkips() {
 		selectionSkips += 1;
 	}
 	
+	//Increments the number of rounds played by 1
 	public void increaseSelectionRound() {
 		selectionRounds += 1;
 	}
 	
+	//Increments numbers of player turns by 1
 	public void increasePlayerTurns() {
 		playerTurn += 1;
 	}
 	
+	//Resets the number of player turns back to 0
 	public void resetPlayerTurns() {
 		playerTurn = 0;
 	}
 	
+	//Resets the number of times a player has selected no back to 0
 	public void resetSelectionSkips() {
 		selectionSkips = 0;
 	}
 	
+	/**
+	 * Tile factory that places tiles on the map.
+	 *
+	 */
 	public static Tile tileFactory(int i, int j){
 		int location = (i*j)+j;
 		
