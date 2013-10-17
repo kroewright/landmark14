@@ -58,14 +58,21 @@ import java.awt.BorderLayout;
 import javax.swing.JSpinner;
 import java.awt.Font;
 
+/**
+ * 
+ * @author Landmark - Team 14
+ *
+ */
+
 public class ProductionPhase extends JPanel {
 	private Player player;
 	JPanel panel;
 	
-	
+	//Sets the player and the layout for Production Phase
 	public ProductionPhase(Player player){
 		this.player = player;
 		setLayout(new BorderLayout(0, 0));
+		
 		
 		BufferedImage myPicture = null;
 		//Try-catch for image for selection screen
@@ -82,34 +89,43 @@ public class ProductionPhase extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
+		
+		//Button for energy
 		JButton Energy = new JButton("Energy");
 		Energy.setBounds(781, 117, 89, 74);
 		panel.add(Energy);
 		
+		//Button for Food
 		JButton Food = new JButton("Food");
 		Food.setBounds(1040, 117, 89, 74);
 		panel.add(Food);
 		
+		//Button for Ore
 		JButton btnOre = new JButton("Ore");
 		btnOre.setBounds(521, 124, 89, 60);
 		panel.add(btnOre);
 		
+		//Buttons for Assay Office
 		JButton btnAssay = new JButton("Assay");
 		btnAssay.setBounds(266, 340, 89, 169);
 		panel.add(btnAssay);
 		
+		//Button for Land Office
 		JButton btnLand = new JButton("Land");
 		btnLand.setBounds(481, 361, 89, 118);
 		panel.add(btnLand);
 		
+		//Button for Mules
 		JButton btnMules = new JButton("Mules");
 		btnMules.setBounds(1040, 457, 89, 100);
 		panel.add(btnMules);
 		
+		//Arrow keys for time left label
 		JSpinner spinner = new JSpinner();
 		spinner.setBounds(270, 585, 29, 20);
 		panel.add(spinner);
 		
+		//Labels time left on the game screen
 		JLabel lblTimeLeft = new JLabel("Time Left");
 		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTimeLeft.setForeground(Color.YELLOW);
