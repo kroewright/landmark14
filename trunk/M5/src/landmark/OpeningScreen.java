@@ -32,7 +32,11 @@ public class OpeningScreen extends JPanel{ // JFrame {
 	private int difficulty = 0; // 1 = normal 2 = advanced and 3 = tournament
 	private int numOfPlayers = 0;
 	private JPanel contentPane;
-	private JButton btnNext;     
+	private JButton btnNext;   
+	private JButton btn1;
+	private JButton btn2;
+	private JButton btn3;
+	private JButton btn4;
 
 	/**
 	 * Create the panel.
@@ -64,50 +68,54 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * Action listener for button number 1.
 		 * Sets button location.
 		 */
-		JButton btn2 = new JButton("1");
-		btn2.setBackground(new Color(204, 255, 204));
-		btn2.addActionListener(new ActionListener() {
+		btn1 = new JButton("1");
+		btn1.setBackground(new Color(204, 255, 204));
+		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg2) {
-				numOfPlayers = 1;                               
+				numOfPlayers = 1;
+				btn1.setBackground(new Color(207,181,59));
 			}
 		});
-		btn2.setBounds(574, 420, 46, 64);
-		center.add(btn2);
+		btn1.setBounds(574, 420, 46, 64);
+		center.add(btn1);
 
 		/*
 		 * Action listener for button number 2.
 		 * Sets button location.
 		 */
-		JButton btn3 = new JButton("2");
-		btn3.addActionListener(new ActionListener() {
+		btn2 = new JButton("2");
+		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg3) {
 				numOfPlayers = 2;
+				btn2.setBackground(new Color(207,181,59));
 			}
 		});
-		btn3.setBounds(660, 420, 46, 64);
-		center.add(btn3);
+		btn2.setBounds(660, 420, 46, 64);
+		center.add(btn2);
 
 		/*
 		 * Action listener for button number 3.
 		 * Sets button location.
 		 */
-		JButton btn1 = new JButton("3");
-		btn1.addActionListener(new ActionListener() {
+		btn3 = new JButton("3");
+		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg1) {
 				numOfPlayers = 3;
+				btn3.setBackground(new Color(207,181,59));
 			}
 		});
-		btn1.setBounds(751, 420, 46, 64);
-		center.add(btn1);
+		btn3.setBounds(751, 420, 46, 64);
+		center.add(btn3);
 
 		/*
 		 * Action listener for button number 4.
 		 * Sets button location.
 		 */
-		JButton btn4 = new JButton("4");
+		btn4 = new JButton("4");
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg4) {
 				numOfPlayers = 4;
+				btn4.setBackground(new Color(207,181,59));
 			}
 		});
 		btn4.setBounds(841, 420, 46, 65);
