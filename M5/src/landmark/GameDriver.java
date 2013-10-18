@@ -15,11 +15,11 @@ public class GameDriver{
 	private static final String SEL = "SelPg";
 	private static final String MAP = "map";
 	private static final String TOWN = "town";
-	private CardLayout cardlayout; // = new CardLayout();
-	private JPanel mainPanel; // = new JPanel(cardlayout);
-	private OpeningScreen openingScreen; // = new OpeningScreen();
-	private Selpage selPage; // = new Selpage();
-	private Overworld overworld; // = new Overworld();
+	private CardLayout cardlayout; 
+	private JPanel mainPanel; 
+	private OpeningScreen openingScreen; 
+	private Selpage selPage; 
+	private Overworld overworld;
 	private ProductionPhase prodPhase;
 	private JButton[][] buttons;
 	private Tile[][] tiles;
@@ -83,7 +83,11 @@ public class GameDriver{
 				}
 			}
 		});
-
+		
+		/**
+		 * Action listener for the Property Selection buttons on the map.
+		 * Selects properties on the Map.
+		 */
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selectionSkips = overworld.getSelectionSkips();
@@ -158,7 +162,7 @@ public class GameDriver{
 	}
 
 	/**
-	 * Returns the main panel.
+	 * The getPanel method returns the main panel.
 	 * 
 	 */
 	private JComponent getPanel() {
@@ -167,7 +171,7 @@ public class GameDriver{
 	}
 
 	/**
-	 * Creates the frame to hold game panels.
+	 * The crateAndShowUI method creates the frame to hold game panels.
 	 */
 	private static void createAndShowUI() {
 		frame = new JFrame();
@@ -181,7 +185,7 @@ public class GameDriver{
 	}		
 
 	/**
-	 * Starts the game.
+	 * The man method starts the game.
 	 */
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
