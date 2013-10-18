@@ -276,9 +276,9 @@ public class Selpage extends JPanel {
 					throw new BadColorException(i+1);
 				}
 
-				if (raceBox2.getSelectedIndex() == raceBox1.getSelectedIndex()) {
+			/*	if (raceBox2.getSelectedIndex() == raceBox1.getSelectedIndex()) {
 					throw new BadRaceException(i+1);
-				}
+				}*/
 
 				else {
 
@@ -299,12 +299,12 @@ public class Selpage extends JPanel {
 						|| colorBox3.getSelectedIndex() == colorBox2.getSelectedIndex()) {
 					throw new BadColorException(i+1);
 				}
-
+/*
 				if (raceBox3.getSelectedIndex() == raceBox1.getSelectedIndex()
 						|| raceBox3.getSelectedIndex() == raceBox2.getSelectedIndex()) {
 					throw new BadRaceException(i+1);
 				}
-
+*/
 				else {
 					player3 = new Player(txtPlayer3.getText().trim(), colorBox3.getSelectedIndex(),
 							difficulty, raceBox3.getSelectedIndex());
@@ -324,12 +324,12 @@ public class Selpage extends JPanel {
 					throw new BadColorException(i+1);
 				}
 
-				if (raceBox4.getSelectedIndex() == raceBox1.getSelectedIndex()
+		/*		if (raceBox4.getSelectedIndex() == raceBox1.getSelectedIndex()
 						|| raceBox4.getSelectedIndex() == raceBox2.getSelectedIndex()
 						|| raceBox4.getSelectedIndex() == raceBox3.getSelectedIndex()){
 					throw new BadRaceException(i+1);
 				}	
-
+*/
 				else {
 					player4 = new Player(txtPlayer4.getText().trim(), colorBox4.getSelectedIndex(),
 							difficulty, raceBox4.getSelectedIndex());
@@ -348,11 +348,11 @@ public class Selpage extends JPanel {
 			return null;
 		}
 
-		catch (BadRaceException e){ 
+	/*	catch (BadRaceException e){ 
 			JOptionPane.showMessageDialog(panel, e.getMessage());
 			return null;
 		}
-
+*/
 		return players;
 	}
 
