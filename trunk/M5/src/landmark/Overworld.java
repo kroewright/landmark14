@@ -133,6 +133,7 @@ public class Overworld extends JPanel {
 											increaseSelectionRound();
 											resetPlayerTurns();
 										}
+										resetSelectionSkips();
 									}
 									else {
 										JOptionPane.showMessageDialog(frame, "This property is already owned! Please " +
@@ -175,7 +176,29 @@ public class Overworld extends JPanel {
 				if(players[playerTurn].getMoney() < 300) {
 					JOptionPane.showMessageDialog(frame, (playerName + " you do not have enough money!"), "Land Selection Phase"
 							, JOptionPane.ERROR_MESSAGE);
-					selectionPhaseTurn();
+					
+					selectionSkips += 1;
+					
+					if(playerTurn == numberOfPlayers - 1) {
+						increaseSelectionRound();
+						resetPlayerTurns();
+						System.out.println(selectionSkips);
+						if(selectionSkips != numberOfPlayers) {
+							resetSelectionSkips();
+							selectionPhaseTurn();
+						}
+						else {
+							playerName = players[playerTurn].getName();
+							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
+									, JOptionPane.INFORMATION_MESSAGE);
+							
+							productionPhaseTurn(players[playerTurn]);
+						}
+					}
+					else {
+						increasePlayerTurns();
+						selectionPhaseTurn();
+					}
 				}
 			}
 			else if(dialogResult == JOptionPane.NO_OPTION) {
