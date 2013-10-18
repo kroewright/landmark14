@@ -182,7 +182,6 @@ public class Overworld extends JPanel {
 					if(playerTurn == numberOfPlayers - 1) {
 						increaseSelectionRound();
 						resetPlayerTurns();
-						System.out.println(selectionSkips);
 						if(selectionSkips != numberOfPlayers) {
 							resetSelectionSkips();
 							selectionPhaseTurn();
