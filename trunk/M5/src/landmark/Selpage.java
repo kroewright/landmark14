@@ -1,5 +1,10 @@
 package landmark;
 
+//import BadColorException;
+//import BadNameException;
+//import BadRaceException;
+//import Player;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -14,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +31,7 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class Selpage extends JPanel {
 	//Setting variable names for entire file
+	private Player[] players;
 	private Player player1;
 	private Player player2;
 	private Player player3;
@@ -214,10 +221,121 @@ public class Selpage extends JPanel {
 	public void addStartButtonActionListener(ActionListener listener) {
 		startButton.addActionListener(listener);//{
 	}
+	
+	public Player[] createPlayers(int numOfPlayers) {  
+		players = new Player[numOfPlayers];
+		int i = players.length - numOfPlayers;
+
+		try{
+			if(numOfPlayers > 0) {
+
+				if(txtPlayer1.getText().trim().isEmpty()) {
+					throw new BadNameException(i+1);
+				}
+
+				else {
+					player1 = new Player(txtPlayer1.getText().trim(), colorBox1.getSelectedIndex(),
+							difficulty, raceBox1.getSelectedIndex());
+					players[i] = player1;
+					i++;
+				}
+			}
+
+			if(numOfPlayers > 1) {
+
+				if(txtPlayer2.getText().trim().isEmpty()) {
+					throw new BadNameException(i+1);
+				}
+
+				if (colorBox2.getSelectedIndex() == colorBox1.getSelectedIndex()) {
+					throw new BadColorException(i+1);
+				}
+
+				if (raceBox2.getSelectedIndex() == raceBox1.getSelectedIndex()) {
+					throw new BadRaceException(i+1);
+				}
+
+				else {
+
+					player2 = new Player(txtPlayer2.getText().trim(), colorBox2.getSelectedIndex(),
+							difficulty, raceBox2.getSelectedIndex());
+					players[i] = player2;
+					i++;
+				}
+			}
+
+			if(numOfPlayers > 2) {
+
+				if(txtPlayer3.getText().trim().isEmpty()) {
+					throw new BadNameException(i+1);
+				}
+
+				if (colorBox3.getSelectedIndex() == colorBox1.getSelectedIndex()
+						|| colorBox3.getSelectedIndex() == colorBox2.getSelectedIndex()) {
+					throw new BadColorException(i+1);
+				}
+
+				if (raceBox3.getSelectedIndex() == raceBox1.getSelectedIndex()
+						|| raceBox3.getSelectedIndex() == raceBox2.getSelectedIndex()) {
+					throw new BadRaceException(i+1);
+				}
+
+				else {
+					player3 = new Player(txtPlayer3.getText().trim(), colorBox3.getSelectedIndex(),
+							difficulty, raceBox3.getSelectedIndex());
+					players[i] = player3;
+					i++;
+				}
+			}
+
+			if(numOfPlayers > 3) {
+
+				if(txtPlayer4.getText().trim().isEmpty()) {
+					throw new BadNameException(i+1);
+				}
+				if (colorBox4.getSelectedIndex() == colorBox1.getSelectedIndex()
+						|| colorBox4.getSelectedIndex() == colorBox2.getSelectedIndex()
+						|| colorBox4.getSelectedIndex() == colorBox3.getSelectedIndex()) {
+					throw new BadColorException(i+1);
+				}
+
+				if (raceBox4.getSelectedIndex() == raceBox1.getSelectedIndex()
+						|| raceBox4.getSelectedIndex() == raceBox2.getSelectedIndex()
+						|| raceBox4.getSelectedIndex() == raceBox3.getSelectedIndex()){
+					throw new BadRaceException(i+1);
+				}	
+
+				else {
+					player4 = new Player(txtPlayer4.getText().trim(), colorBox4.getSelectedIndex(),
+							difficulty, raceBox4.getSelectedIndex());
+					players[i] = player4;
+					i++;
+				}
+			}
+		}
+		catch (BadNameException e){ 
+			JOptionPane.showMessageDialog(panel, e.getMessage());
+			return null;
+		}
+
+		catch (BadColorException e){ 
+			JOptionPane.showMessageDialog(panel, e.getMessage());
+			return null;
+		}
+
+		catch (BadRaceException e){ 
+			JOptionPane.showMessageDialog(panel, e.getMessage());
+			return null;
+		}
+
+		return players;
+	}
+
+
 
 	//	 startButton.addActionListener(new ActionListener(){
 	//		 public void actionPerformed(ActionEvent e){
-	public void assign() {
+	/*public void assign() {
 		if(!txtPlayer1.getText().isEmpty() && playerCount == 1) {
 			player1 = new Player(txtPlayer1.getText(), colorBox1.getSelectedIndex(), difficulty,
 					raceBox1.getSelectedIndex());
@@ -259,7 +377,7 @@ public class Selpage extends JPanel {
 			panel.setVisible(false);
 		}
 	}
-
+*/
 	public JComponent getMainComponent() {
 		return panel;
 	}
@@ -268,7 +386,7 @@ public class Selpage extends JPanel {
 		difficulty = level;
 	}
 
-	public Player[] getPlayers() {
+	/*public Player[] getPlayers() {
 		Player[] players = new Player[1];
 		if(playerCount == 1) {
 			players[0] = player1;
@@ -292,5 +410,5 @@ public class Selpage extends JPanel {
 			players[3] = player4;
 		}
 		return players;
-	}
+	}*/
 }

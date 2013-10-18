@@ -71,17 +71,19 @@ public class GameDriver{
 		selPage.addStartButtonActionListener (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selPage.assign();
-				tiles = overworld.getTiles();
-				buttons = overworld.getButtons();
-				players = selPage.getPlayers();
-				overworld.setPlayers(players);
-				overworld.setFrame(frame);
-				cardlayout.show(mainPanel, MAP);
-				overworld.selectionPhaseTurn();
+
+				players = selPage.createPlayers(numOfPlayers);
+				if(null != players) {             
+					tiles = overworld.getTiles();
+					buttons = overworld.getButtons();
+					overworld.setPlayers(players);
+					overworld.setFrame(frame);
+					cardlayout.show(mainPanel, MAP);
+					overworld.selectionPhaseTurn();
+				}
 			}
 		});
-		
+
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selectionSkips = overworld.getSelectionSkips();
@@ -100,7 +102,7 @@ public class GameDriver{
 										players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
 										buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
 												getResource("Tiles/" + tiles[i][j].getImage())));
-										
+
 										int index = overworld.getPlayerTurns();
 										if(index != numOfPlayers - 1) {
 											overworld.increasePlayerTurns();
@@ -122,7 +124,7 @@ public class GameDriver{
 											players[index].buyLandSelectionPhase(tiles[i][j]);
 											buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
 													getResource("Tiles/" + tiles[i][j].getImage())));
-												
+
 											if(index != numOfPlayers - 1) {
 												overworld.increasePlayerTurns();
 											}
@@ -144,17 +146,17 @@ public class GameDriver{
 				}
 				else {
 					System.out.println("reached");
-					
+
 					if( e.getSource() == buttons[2][4]){
 						prodPhase = new ProductionPhase(players[overworld.getPlayerTurns()]);
 						mainPanel.add(prodPhase.getMainComponent(),TOWN);
 						cardlayout.show(mainPanel, TOWN);
-				}
 					}
+				}
 			}
 		});
 	}
-	
+
 	/**
 	 * Returns the main panel.
 	 * 
@@ -163,7 +165,7 @@ public class GameDriver{
 		return mainPanel;
 
 	}
-	
+
 	/**
 	 * Creates the frame to hold game panels.
 	 */
@@ -177,7 +179,7 @@ public class GameDriver{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}		
-	
+
 	/**
 	 * Starts the game.
 	 */

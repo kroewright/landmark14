@@ -32,6 +32,7 @@ import landmark.Tiles.Town;
  *
  */
 
+@SuppressWarnings("serial")
 public class Overworld extends JPanel {
 	
 	private Tile[][] tiles = new Tile[5][9];
