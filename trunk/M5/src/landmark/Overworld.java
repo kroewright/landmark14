@@ -44,7 +44,6 @@ public class Overworld extends JPanel {
 	private int selectionSkips = 0;
 	private int playerTurn = 0;
 	private int numberOfPlayers;
-	private int dialogResult;
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
 	private ProductionPhase prodPhase;
 	
@@ -122,24 +121,22 @@ public class Overworld extends JPanel {
 									}
 								}
 								else {
-									if(dialogResult == JOptionPane.YES_OPTION) {
-										if(tiles[i][j].getOwner() == null) {
-											players[playerTurn].buyLandSelectionPhase(tiles[i][j]);
-											buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
-													getResource("Tiles/" + tiles[i][j].getImage())));
+									if(tiles[i][j].getOwner() == null) {
+										players[playerTurn].buyLandSelectionPhase(tiles[i][j]);
+										buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
+												getResource("Tiles/" + tiles[i][j].getImage())));
 
-											if(playerTurn != numberOfPlayers - 1) {
-												increasePlayerTurns();
-											}
-											else {
-												increaseSelectionRound();
-												resetPlayerTurns();
-											}
+										if(playerTurn != numberOfPlayers - 1) {
+											increasePlayerTurns();
 										}
 										else {
-											JOptionPane.showMessageDialog(frame, "This property is already owned! Please " +
-													"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
+											increaseSelectionRound();
+											resetPlayerTurns();
 										}
+									}
+									else {
+										JOptionPane.showMessageDialog(frame, "This property is already owned! Please " +
+												"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
 									}
 								}
 							}
@@ -171,7 +168,7 @@ public class Overworld extends JPanel {
 		}
 		else {
 			int dialogButton = JOptionPane.YES_NO_OPTION;
-			dialogResult = JOptionPane.showConfirmDialog(frame, (playerName + " would you like to buy a property for $300? If yes," + 
+			int dialogResult = JOptionPane.showConfirmDialog(frame, (playerName + " would you like to buy a property for $300? If yes," + 
 					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
 			   
 			if(dialogResult == JOptionPane.YES_OPTION) {
