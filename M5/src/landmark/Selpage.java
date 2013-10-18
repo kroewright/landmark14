@@ -73,7 +73,7 @@ public class Selpage extends JPanel {
 
 		//Creates start button to get to the main game page
 		startButton = new JButton("START");
-		startButton.setBounds(300,400,200,50);
+		startButton.setBounds(628,450,200,50);
 		panel.add(startButton);
 	}
 
@@ -104,28 +104,28 @@ public class Selpage extends JPanel {
 		 */
 		if(numOfPlayers > 0) {
 			JLabel nameLabel = new JLabel("Name:");
-			nameLabel.setBounds(188, 136, 86, 20);
+			nameLabel.setBounds(514, 180, 86, 20);
 			panel.add(nameLabel);
 
 			//Sets bounds for the textfield
 			txtPlayer1 = new JTextField();
-			txtPlayer1.setBounds(183, 152, 105, 20);  
+			txtPlayer1.setBounds(514, 200, 105, 20);  
 			panel.add(txtPlayer1);
-			txtPlayer1.setColumns(100);
+			txtPlayer1.setColumns(10);
 
 			//First dropdown menu containing race	
 			raceBox1 = new JComboBox();
 			raceBox1.setModel(new DefaultComboBoxModel(
 					new String[] {"Business", "Scientist", "Engineer", "CS"}));
 			raceBox1.setToolTipText("");
-			raceBox1.setBounds(183, 237, 105, 20);
+			raceBox1.setBounds(514, 280, 105, 20);
 			panel.add(raceBox1);
 
 			//Second dropdown menu containing player color
 			colorBox1 = new JComboBox();
 			colorBox1.setModel(new DefaultComboBoxModel(
 					new String[] {"Gold", "Navy", "White", "Black"}));
-			colorBox1.setBounds(183, 183, 105, 20);
+			colorBox1.setBounds(514, 240, 105, 20);
 			panel.add(colorBox1);
 			//playerCount += 1;
 		}
@@ -135,12 +135,12 @@ public class Selpage extends JPanel {
 		 */
 		if(numOfPlayers > 1) {
 			JLabel nameLabel = new JLabel("Name:");
-			nameLabel.setBounds(307, 136, 86, 20);
+			nameLabel.setBounds(632, 180, 86, 20);
 			panel.add(nameLabel);
 
 			//Sets bounds for the textfield
 			txtPlayer2 = new JTextField();
-			txtPlayer2.setBounds(302, 152, 105, 20);
+			txtPlayer2.setBounds(632, 200, 105, 20);
 			panel.add(txtPlayer2);
 			txtPlayer2.setColumns(10);
 
@@ -148,7 +148,7 @@ public class Selpage extends JPanel {
 			colorBox2 = new JComboBox();
 			colorBox2.setModel(new DefaultComboBoxModel(
 					new String[] {"Gold", "Navy", "White", "Black"})); 
-			colorBox2.setBounds(302, 185, 105, 20);
+			colorBox2.setBounds(632, 240, 105, 20);
 			panel.add(colorBox2);
 
 			//Second dropdown menu containing race		
@@ -156,7 +156,7 @@ public class Selpage extends JPanel {
 			raceBox2.setModel(new DefaultComboBoxModel(
 					new String[] {"Business", "Scientist", "Engineer", "CS"}));
 			raceBox2.setToolTipText("");
-			raceBox2.setBounds(302, 237, 105, 20);  
+			raceBox2.setBounds(632, 280, 105, 20);  
 			panel.add(raceBox2);
 			//playerCount += 1;
 		}
@@ -167,12 +167,12 @@ public class Selpage extends JPanel {
 		 */
 		if(numOfPlayers > 2) {
 			JLabel nameLabel = new JLabel("Name:");
-			nameLabel.setBounds(422, 136, 86, 20);
+			nameLabel.setBounds(750, 180, 86, 20);
 			panel.add(nameLabel);	
 
 			//Sets bounds for the textfield	
 			txtPlayer3 = new JTextField();
-			txtPlayer3.setBounds(417, 152, 105, 20);
+			txtPlayer3.setBounds(750, 200, 97, 20);
 			panel.add(txtPlayer3);
 			txtPlayer3.setColumns(10);
 
@@ -180,7 +180,7 @@ public class Selpage extends JPanel {
 			colorBox3 = new JComboBox();
 			colorBox3.setModel(new DefaultComboBoxModel(
 					new String[] {"Gold", "Navy", "White", "Black"}));
-			colorBox3.setBounds(417, 185, 105, 20);
+			colorBox3.setBounds(750, 240, 97, 20);
 			panel.add(colorBox3);
 
 			//Second dropdown menu containing race		
@@ -188,7 +188,7 @@ public class Selpage extends JPanel {
 			raceBox3.setModel(new DefaultComboBoxModel(
 					new String[] {"Business", "Scientist", "Engineer", "CS"}));
 			raceBox3.setToolTipText("");
-			raceBox3.setBounds(417, 237, 105, 20);
+			raceBox3.setBounds(750, 280, 97, 20);
 			panel.add(raceBox3);
 			//playerCount += 1;
 		}
@@ -199,12 +199,12 @@ public class Selpage extends JPanel {
 		 */
 		if(numOfPlayers > 3) {
 			JLabel nameLabel = new JLabel("Name:");
-			nameLabel.setBounds(532, 136, 86, 20);
+			nameLabel.setBounds(860, 180, 86, 20);
 			panel.add(nameLabel);
 
 			//Sets bounds for the textfield	
 			txtPlayer4 = new JTextField();
-			txtPlayer4.setBounds(527, 152, 105, 20);
+			txtPlayer4.setBounds(860, 200, 97, 20);
 			panel.add(txtPlayer4);
 			txtPlayer4.setColumns(10);
 
@@ -212,7 +212,7 @@ public class Selpage extends JPanel {
 			colorBox4 = new JComboBox();
 			colorBox4.setModel(new DefaultComboBoxModel(
 					new String[] {"Gold", "Navy", "White", "Black"}));
-			colorBox4.setBounds(527, 185, 105, 20);
+			colorBox4.setBounds(860, 240, 97, 20);
 			panel.add(colorBox4);
 
 			//Second dropdown menu containing race		
@@ -220,14 +220,14 @@ public class Selpage extends JPanel {
 			raceBox4.setModel(new DefaultComboBoxModel(
 					new String[] {"Business", "Scientist", "Engineer", "CS"}));
 			raceBox4.setToolTipText("");
-			raceBox4.setBounds(527, 237, 105, 20);
+			raceBox4.setBounds(860, 280, 97, 20);
 			panel.add(raceBox4);
 			//playerCount += 1;
 		}
 
 		//JLabel for picture, creates bounds
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		picLabel.setBounds(0, 0, 792, 576);
+		picLabel.setBounds(330, 60, 792, 576);
 		panel.add(picLabel);
 	}	
 

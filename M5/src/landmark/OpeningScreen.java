@@ -69,7 +69,6 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * Sets button location.
 		 */
 		btn1 = new JButton("1");
-		btn1.setBackground(new Color(204, 255, 204));
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg2) {
 				switch (numOfPlayers){
