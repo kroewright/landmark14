@@ -46,6 +46,7 @@ public class Overworld extends JPanel {
 	private int numberOfPlayers;
 	private int dialogResult;
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
+	private ProductionPhase prodPhase;
 	
 	/**
      * Create the panel.
@@ -58,6 +59,7 @@ public class Overworld extends JPanel {
 	
 	/**
 	 * Method that sets the map type, standard or random
+	 * 
 	 * @param mapType - 1 is standard, 2 is random, default is 1
 	 */
 	public void setMapType(int mapType) {
@@ -69,7 +71,7 @@ public class Overworld extends JPanel {
 					addTileStandardMap(i, j);
 				}
 				else if(mapType == 2) {
-					
+					//Insert code here to make random map using new tile factory
 				}
 			}
 		}
@@ -80,24 +82,80 @@ public class Overworld extends JPanel {
 	 * 
 	 * @param i
 	 * @param j
-	 * @return button
 	 */
-	public JButton addTileStandardMap(int i, int j) {
+	public void addTileStandardMap(int i, int j) {
 		Tile p = tileFactory(i, j);
 		JButton button = new JButton();
 		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
 		buttons[i][j] = button;
 		tiles[i][j] = p;
 		add(button);
-		return button;
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(selectionSkips < numberOfPlayers) {
+					for(int i = 0; i < 5; ++i) {
+						for(int j = 0; j < 9; ++j) {
+							if(e.getSource() == buttons[i][j]) {
+								if(i == 2 && j == 4) {
+					
+									String playerName = players[playerTurn].getName();
+									JOptionPane.showMessageDialog(frame, playerName + " you cannot have the town! Please " +
+											"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
+								}
+								else if (selectionRounds < 2) {
+									if(tiles[i][j].getOwner() == null) {
+										players[playerTurn].addTileOwned(tiles[i][j]);
+										buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
+												getResource("Tiles/" + tiles[i][j].getImage())));
+
+										if(playerTurn != numberOfPlayers - 1) {
+											increasePlayerTurns();
+										}
+										else {
+											increaseSelectionRound();
+											resetPlayerTurns();
+										}
+									}
+									else {
+										JOptionPane.showMessageDialog(frame, "This property is already owned! Please " +
+												"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
+									if(dialogResult == JOptionPane.YES_OPTION) {
+										if(tiles[i][j].getOwner() == null) {
+											players[playerTurn].buyLandSelectionPhase(tiles[i][j]);
+											buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
+													getResource("Tiles/" + tiles[i][j].getImage())));
+
+											if(playerTurn != numberOfPlayers - 1) {
+												increasePlayerTurns();
+											}
+											else {
+												increaseSelectionRound();
+												resetPlayerTurns();
+											}
+										}
+										else {
+											JOptionPane.showMessageDialog(frame, "This property is already owned! Please " +
+													"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
+										}
+									}
+								}
+							}
+						}
+					}
+					selectionPhaseTurn();
+				}
+			}
+		});
 	}
 	
+	/**
+	 * Action listener for when a player only clicks on the town after the selection phase is finished.
+	 */
 	public void addMapButtonActionListener(ActionListener listener) {
-		for(int i = 0; i < 5; ++i) {
-			for(int j = 0; j < 9; ++j) {
-				buttons[i][j].addActionListener(listener);;
-			}
-		}
+			buttons[2][4].addActionListener(listener);
 	}
 	
 	/**
@@ -108,17 +166,17 @@ public class Overworld extends JPanel {
 		String playerName = players[playerTurn].getName();
 			   
 		if(selectionRounds < 2) {
-			JOptionPane.showMessageDialog (frame, (playerName + " select a property."), "Land Selection Phase"
+			JOptionPane.showMessageDialog(frame, (playerName + " select a property."), "Land Selection Phase"
 					, JOptionPane.INFORMATION_MESSAGE);
 		}
 		else {
 			int dialogButton = JOptionPane.YES_NO_OPTION;
-			dialogResult = JOptionPane.showConfirmDialog (frame, (playerName + " would you like to buy a property for $300? If yes," + 
+			dialogResult = JOptionPane.showConfirmDialog(frame, (playerName + " would you like to buy a property for $300? If yes," + 
 					" click a property. Money available: $" + players[playerTurn].getMoney()),"Land Selection Phase", dialogButton);
 			   
 			if(dialogResult == JOptionPane.YES_OPTION) {
 				if(players[playerTurn].getMoney() < 300) {
-					JOptionPane.showMessageDialog (frame, (playerName + " you do not have enough money!"), "Land Selection Phase"
+					JOptionPane.showMessageDialog(frame, (playerName + " you do not have enough money!"), "Land Selection Phase"
 							, JOptionPane.ERROR_MESSAGE);
 					selectionPhaseTurn();
 				}
@@ -135,7 +193,7 @@ public class Overworld extends JPanel {
 					}
 					else {
 						playerName = players[playerTurn].getName();
-						JOptionPane.showMessageDialog (frame, (playerName + " begin production phase!"), "Production Phase"
+						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 								, JOptionPane.INFORMATION_MESSAGE);
 						
 						productionPhaseTurn(players[playerTurn]);
@@ -150,8 +208,12 @@ public class Overworld extends JPanel {
 	}
 	
 	//Creates a new production phase
-	public ProductionPhase productionPhaseTurn(Player player) {
-		ProductionPhase prodPhase = new ProductionPhase(player);
+	public void productionPhaseTurn(Player player) {
+		prodPhase = new ProductionPhase(player);
+	}
+	
+	//Returns the production phase for a certain player
+	public ProductionPhase getProductionPhaseTurn() {
 		return prodPhase;
 	}
 	
@@ -165,7 +227,7 @@ public class Overworld extends JPanel {
 		return playerTurn;
 	}
 	
-	//Returns the number of times a player has selcted no
+	//Returns the number of times a player has selected no
 	public int getSelectionSkips() {
 		return selectionSkips;
 	}
@@ -174,21 +236,6 @@ public class Overworld extends JPanel {
 	//a round is complete when all players have gone
 	public int getSelectionRounds() {
 		return selectionRounds;
-	}
-	
-	//Returns the buttons on the panel
-	public JButton[][] getButtons() {
-		return buttons;
-	}
-	
-	//Returns the resulting dialog from a player
-	public int getDialogResult() {
-		return dialogResult;
-	}
-	
-	//Returns the tiles on the map
-	public Tile[][] getTiles() {
-		return tiles;
 	}
 	
 	//Sets the number of players in a given game

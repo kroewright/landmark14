@@ -21,8 +21,6 @@ public class GameDriver{
 	private Selpage selPage; 
 	private Overworld overworld;
 	private ProductionPhase prodPhase;
-	private JButton[][] buttons;
-	private Tile[][] tiles;
 	private int numOfPlayers = 0;
 	private Player[] players;
 	private int isStandard = 0;
@@ -74,8 +72,6 @@ public class GameDriver{
 
 				players = selPage.createPlayers(numOfPlayers);
 				if(null != players) {             
-					tiles = overworld.getTiles();
-					buttons = overworld.getButtons();
 					overworld.setPlayers(players);
 					overworld.setFrame(frame);
 					cardlayout.show(mainPanel, MAP);
@@ -85,77 +81,14 @@ public class GameDriver{
 		});
 		
 		/**
-		 * Action listener for the Property Selection buttons on the map.
-		 * Selects properties on the Map.
+		 * Action listener for when a player only clicks on the town after the selection phase is finished.
 		 */
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selectionSkips = overworld.getSelectionSkips();
-				if(selectionSkips < numOfPlayers) {
-					for(int i = 0; i < 5; ++i) {
-						for(int j = 0; j < 9; ++j) {
-							if(e.getSource() == buttons[i][j]) {
-								if(i == 2 && j == 4) {
-									int index = overworld.getPlayerTurns();
-									String playerName = players[index].getName();
-									JOptionPane.showMessageDialog (frame, playerName + " you cannot have the town! Please " +
-											"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
-								}
-								else if (overworld.getSelectionRounds() < 2) {
-									if(tiles[i][j].getOwner() == null) {
-										players[overworld.getPlayerTurns()].addTileOwned(tiles[i][j]);
-										buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
-												getResource("Tiles/" + tiles[i][j].getImage())));
-
-										int index = overworld.getPlayerTurns();
-										if(index != numOfPlayers - 1) {
-											overworld.increasePlayerTurns();
-										}
-										else {
-											overworld.increaseSelectionRound();
-											overworld.resetPlayerTurns();
-										}
-									}
-									else {
-										JOptionPane.showMessageDialog (frame, "This property is already owned! Please " +
-												"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
-									}
-								}
-								else {
-									if(overworld.getDialogResult() == JOptionPane.YES_OPTION) {
-										if(tiles[i][j].getOwner() == null) {
-											int index = overworld.getPlayerTurns();
-											players[index].buyLandSelectionPhase(tiles[i][j]);
-											buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
-													getResource("Tiles/" + tiles[i][j].getImage())));
-
-											if(index != numOfPlayers - 1) {
-												overworld.increasePlayerTurns();
-											}
-											else {
-												overworld.increaseSelectionRound();
-												overworld.resetPlayerTurns();
-											}
-										}
-										else {
-											JOptionPane.showMessageDialog (frame, "This property is already owned! Please " +
-													"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
-										}
-									}
-								}
-							}
-						}
-					}
-					overworld.selectionPhaseTurn();
-				}
-				else {
-					System.out.println("reached");
-
-					if( e.getSource() == buttons[2][4]){
-						prodPhase = new ProductionPhase(players[overworld.getPlayerTurns()]);
-						mainPanel.add(prodPhase.getMainComponent(),TOWN);
-						cardlayout.show(mainPanel, TOWN);
-					}
+				if(overworld.getSelectionSkips() == numOfPlayers) {
+					prodPhase = overworld.getProductionPhaseTurn();
+					mainPanel.add(prodPhase.getMainComponent(),TOWN);
+					cardlayout.show(mainPanel, TOWN);
 				}
 			}
 		});
