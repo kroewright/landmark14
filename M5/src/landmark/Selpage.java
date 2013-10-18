@@ -31,7 +31,7 @@ public class Selpage extends JPanel {
 	private Player player2;
 	private Player player3;
 	private Player player4;
-	
+
 	private int difficulty;
 
 	private JPanel panel;
@@ -59,8 +59,7 @@ public class Selpage extends JPanel {
 	private JComboBox raceBox4;
 
 	private JButton startButton;
-	//private int playerCount;
-
+	
 	/**
 	 * The Constructor creates the panel for the players selection screen .
 	 */
@@ -96,8 +95,6 @@ public class Selpage extends JPanel {
 		}
 		panel.setLayout(null);
 
-		//playerCount = 0;
-
 		/**
 		 * If 0<x<=4 players have been selected,
 		 * create JLabel for player input textbox
@@ -127,7 +124,6 @@ public class Selpage extends JPanel {
 					new String[] {"Gold", "Navy", "White", "Black"}));
 			colorBox1.setBounds(514, 240, 105, 20);
 			panel.add(colorBox1);
-			//playerCount += 1;
 		}
 		/**
 		 * If 0<x<=4 players have been selected,
@@ -158,7 +154,6 @@ public class Selpage extends JPanel {
 			raceBox2.setToolTipText("");
 			raceBox2.setBounds(632, 280, 105, 20);  
 			panel.add(raceBox2);
-			//playerCount += 1;
 		}
 
 		/**
@@ -190,7 +185,6 @@ public class Selpage extends JPanel {
 			raceBox3.setToolTipText("");
 			raceBox3.setBounds(750, 280, 97, 20);
 			panel.add(raceBox3);
-			//playerCount += 1;
 		}
 
 		/**
@@ -222,7 +216,6 @@ public class Selpage extends JPanel {
 			raceBox4.setToolTipText("");
 			raceBox4.setBounds(860, 280, 97, 20);
 			panel.add(raceBox4);
-			//playerCount += 1;
 		}
 
 		//JLabel for picture, creates bounds
@@ -240,7 +233,7 @@ public class Selpage extends JPanel {
 	public void addStartButtonActionListener(ActionListener listener) {
 		startButton.addActionListener(listener);//{
 	}
-	
+
 	/**
 	 * The createPlayers method configures players.
 	 * 
@@ -276,10 +269,6 @@ public class Selpage extends JPanel {
 					throw new BadColorException(i+1);
 				}
 
-			/*	if (raceBox2.getSelectedIndex() == raceBox1.getSelectedIndex()) {
-					throw new BadRaceException(i+1);
-				}*/
-
 				else {
 
 					player2 = new Player(txtPlayer2.getText().trim(), colorBox2.getSelectedIndex(),
@@ -299,12 +288,7 @@ public class Selpage extends JPanel {
 						|| colorBox3.getSelectedIndex() == colorBox2.getSelectedIndex()) {
 					throw new BadColorException(i+1);
 				}
-/*
-				if (raceBox3.getSelectedIndex() == raceBox1.getSelectedIndex()
-						|| raceBox3.getSelectedIndex() == raceBox2.getSelectedIndex()) {
-					throw new BadRaceException(i+1);
-				}
-*/
+
 				else {
 					player3 = new Player(txtPlayer3.getText().trim(), colorBox3.getSelectedIndex(),
 							difficulty, raceBox3.getSelectedIndex());
@@ -324,12 +308,6 @@ public class Selpage extends JPanel {
 					throw new BadColorException(i+1);
 				}
 
-		/*		if (raceBox4.getSelectedIndex() == raceBox1.getSelectedIndex()
-						|| raceBox4.getSelectedIndex() == raceBox2.getSelectedIndex()
-						|| raceBox4.getSelectedIndex() == raceBox3.getSelectedIndex()){
-					throw new BadRaceException(i+1);
-				}	
-*/
 				else {
 					player4 = new Player(txtPlayer4.getText().trim(), colorBox4.getSelectedIndex(),
 							difficulty, raceBox4.getSelectedIndex());
@@ -348,11 +326,6 @@ public class Selpage extends JPanel {
 			return null;
 		}
 
-	/*	catch (BadRaceException e){ 
-			JOptionPane.showMessageDialog(panel, e.getMessage());
-			return null;
-		}
-*/
 		return players;
 	}
 
@@ -365,7 +338,7 @@ public class Selpage extends JPanel {
 	public JComponent getMainComponent() {
 		return panel;
 	}
-	
+
 	/**
 	 * The setDifficulty method sets the level picked by the player(s).
 	 * @param level
