@@ -2,6 +2,7 @@ package landmark;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * 
@@ -17,7 +18,7 @@ public class Player {
 	private int race;
 	private ArrayList<Tile> ownedTiles;	
 	private boolean inStore;
-	
+
 	/**
 	 * Contains the player's name, color, difficulty of the current game,
 	 * and their race.
@@ -32,7 +33,7 @@ public class Player {
 		this.color = color;
 		this.difficulty = difficulty;
 		ownedTiles = new ArrayList<Tile>();
-		
+
 		//Sets initial money based on race.
 		if(race == 0) {
 			money = 600;
@@ -47,15 +48,15 @@ public class Player {
 			money = 1600;
 		}
 	}
-	
+
 	/*
 	 * Getter for player color.
 	 */
 	public int getColor(){
 		return color;
 	}
-	
-	
+
+
 	/**
 	 * Method that adds tiles to new owners and sets the new owner.
 	 * @param tile
@@ -64,7 +65,7 @@ public class Player {
 		ownedTiles.add(tile);
 		tile.setOwner(this);
 	}
-	
+
 	/**
 	 * Getter for owner tiles.
 	 * @return tiles
@@ -72,7 +73,7 @@ public class Player {
 	public Tile getTile() {
 		return ownedTiles.get(0);
 	}
-	
+
 	/**
 	 * Deducts money when land is purchased.
 	 * @param tile
@@ -83,10 +84,10 @@ public class Player {
 		}
 		addTileOwned(tile);
 	}
-	
-	
-	
-	
+
+
+
+
 	/*
 	 * Getters and setters for each player parameter.
 	 * Also getters and setters for scores and money.
@@ -95,20 +96,80 @@ public class Player {
 	public String getName(){
 		return name;
 	}
-	
+
 	private int getScore(){
 		return score;
 	}
-	
+
 	private void setScore(int i){
 		this.score = i;
 	}
-	
+
 	public int getMoney(){
 		return money;
 	}
-	
+
 	private void setMoney(int i){
 		this.money = i;
+	}
+
+	public int goToPub(int timeLeft, int round) {
+
+		final int bonus1 = 50;
+		final int bonus2 = 100; 
+		final int bonus3 = 150;
+		final int bonus4 = 200;
+
+		int roundBonus = 0;
+		int timeBonus = 0;
+		int moneyBonus = 0;
+
+		Random randomGenerator = new Random();
+
+		//Round 12
+		if(round > 11) {
+			roundBonus = bonus4;
+		}
+
+		//Rounds 8-11
+		if(round > 7 ) {
+			roundBonus = bonus3;
+		}
+
+		//Rounds 4-17
+		if(round > 3 ) {
+			roundBonus = bonus2;
+		}
+
+		//Rounds 1-3
+		if(round > 0 ) {
+			roundBonus = bonus1;
+		}
+
+		//Time Frame: 37-50 seconds left
+		if(timeLeft > 36) {            // && timeLeft < 51) ???
+			timeBonus = bonus4;
+		}
+
+		//Time Frame: 25-37 seconds left
+		if(timeLeft > 24) {
+			timeBonus = bonus3;
+		}
+
+		//Time Frame: 12-25 seconds left
+		if(timeLeft > 11) {
+			timeBonus = bonus2;
+		}		
+		//Time Frame: 1-12 seconds left
+		if(timeLeft > 0) {                 // include 0?
+			timeBonus = bonus1;
+		}	
+
+		moneyBonus = roundBonus * randomGenerator.nextInt(timeBonus+1);
+
+		if(moneyBonus > 250)
+			moneyBonus = 250;
+		
+		return moneyBonus;
 	}
 }
