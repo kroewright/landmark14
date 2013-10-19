@@ -119,6 +119,7 @@ public class Player {
 		final int bonus2 = 100; 
 		final int bonus3 = 150;
 		final int bonus4 = 200;
+		final int maxBonus = 250;
 
 		int roundBonus = 0;
 		int timeBonus = 0;
@@ -147,7 +148,7 @@ public class Player {
 		}
 
 		//Time Frame: 37-50 seconds left
-		if(timeLeft > 36) {            // && timeLeft < 51) ???
+		if(timeLeft > 36) {                  // && timeLeft < 51) ???
 			timeBonus = bonus4;
 		}
 
@@ -161,14 +162,16 @@ public class Player {
 			timeBonus = bonus2;
 		}		
 		//Time Frame: 1-12 seconds left
-		if(timeLeft > 0) {                 // include 0?
+		if(timeLeft > 0) {                     // include 0?
 			timeBonus = bonus1;
 		}	
 
 		moneyBonus = roundBonus * randomGenerator.nextInt(timeBonus+1);
 
-		if(moneyBonus > 250)
-			moneyBonus = 250;
+		if(moneyBonus > maxBonus)
+			moneyBonus = maxBonus;
+		
+		money += moneyBonus;
 		
 		return moneyBonus;
 	}
