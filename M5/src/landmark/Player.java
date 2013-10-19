@@ -133,41 +133,43 @@ public class Player {
 		}
 
 		//Rounds 8-11
-		if(round > 7 ) {
+		else if(round > 7) {
 			roundBonus = bonus3;
 		}
 
 		//Rounds 4-17
-		if(round > 3 ) {
+		else if(round > 3) {
 			roundBonus = bonus2;
 		}
 
 		//Rounds 1-3
-		if(round > 0 ) {
+		else if(round > 0) {
 			roundBonus = bonus1;
 		}
 
-		//Time Frame: 37-50 seconds left
-		if(timeLeft > 36) {                  // && timeLeft < 51) ???
+		//Time Frame: 38-50 seconds left
+		if(timeLeft > 37) {                  // && timeLeft < 51) ???
 			timeBonus = bonus4;
 		}
 
-		//Time Frame: 25-37 seconds left
-		if(timeLeft > 24) {
+		//Time Frame: 26-37 seconds left
+		else if(timeLeft > 25) {
 			timeBonus = bonus3;
 		}
 
-		//Time Frame: 12-25 seconds left
-		if(timeLeft > 11) {
+		//Time Frame: 13-25 seconds left
+		else if(timeLeft > 12) {
 			timeBonus = bonus2;
 		}		
 		//Time Frame: 1-12 seconds left
-		if(timeLeft > 0) {                     // include 0?
+		else if(timeLeft > 0) {                     // include 0?
 			timeBonus = bonus1;
 		}	
-
-		moneyBonus = roundBonus * randomGenerator.nextInt(timeBonus+1);
-
+		//System.out.println("timeBonus = " + timeBonus);      //to test it
+		//System.out.println("roundBonus = " + roundBonus);
+		int random = randomGenerator.nextInt(timeBonus+1);
+		moneyBonus = roundBonus * random; //randomGenerator.nextInt(timeBonus+1);
+		//System.out.println("random = " + random);     //random int or double?? 
 		if(moneyBonus > maxBonus)
 			moneyBonus = maxBonus;
 		
