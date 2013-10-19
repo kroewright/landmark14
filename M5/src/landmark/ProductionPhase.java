@@ -127,6 +127,9 @@ public class ProductionPhase extends JPanel {
 				//		currentPlayer.goToPub(timeLeft, round) +
 				//		" money bonus");
 				//System.out.println("money = " + currentPlayer.getMoney()); //to test it
+			
+				//Needs to end player turn and activate the another player
+			
 			}
 		});
 
