@@ -120,12 +120,13 @@ public class ProductionPhase extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				Player currentPlayer = getPlayer();
-			
-			
-			//Needs to be activated once timeLeft and round are available	
-			//	JOptionPane.showMessageDialog(panel, "You just got a $" +
-			//			currentPlayer.goToPub(timeLeft, round) +
-			//			" money bonus");
+
+
+				//Needs to be activated once timeLeft and round are available	
+				//JOptionPane.showMessageDialog(panel, "You just got a $" +
+				//		currentPlayer.goToPub(timeLeft, round) +
+				//		" money bonus");
+				//System.out.println("money = " + currentPlayer.getMoney()); //to test it
 			}
 		});
 
