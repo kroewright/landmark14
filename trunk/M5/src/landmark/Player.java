@@ -110,6 +110,10 @@ public class Player {
 	public String getName(){
 		return name;
 	}
+	
+	public int getFood() {
+		return food;
+	}
 
 	private int getScore(){
 		return score;

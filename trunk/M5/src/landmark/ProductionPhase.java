@@ -65,12 +65,16 @@ import java.awt.Font;
  */
 
 public class ProductionPhase extends JPanel {
+	
+	private static int productionRound = 0;
 	private Player player;
 	JPanel panel;
 
 	//Sets the player and the layout for Production Phase
 	public ProductionPhase(Player player){
+		productionRound += 1;
 		this.player = player;
+		Clock timer = new Clock(player, productionRound);
 		setLayout(new BorderLayout(0, 0));
 
 
@@ -144,9 +148,10 @@ public class ProductionPhase extends JPanel {
 		panel.add(btnMules);
 
 		//Arrow keys for time left label
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(270, 585, 29, 20);
-		panel.add(spinner);
+		int timeLeft = timer.getCurrentTime();
+		JLabel clock = new JLabel(String.valueOf(timeLeft));
+		clock.setBounds(270, 585, 29, 20);
+		panel.add(clock);
 
 		//Labels time left on the game screen
 		JLabel lblTimeLeft = new JLabel("Time Left");
