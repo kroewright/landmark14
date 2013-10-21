@@ -64,19 +64,19 @@ import java.awt.Font;
  *
  */
 
-public class ProductionPhase extends JPanel {
+public class TownPanel extends JPanel {
 	
 	private static int productionRound = 0;
 	private Player player;
-	private Clock timer;
+	//private Clock timer;
 	JPanel panel;
 	private JLabel time;
 
 	//Sets the player and the layout for Production Phase
-	public ProductionPhase(Player player){
+	public TownPanel(){
 		productionRound += 1;
-		this.player = player;
-		timer = new Clock(player, productionRound, this);
+		//this.player = player;
+		//timer = new Clock(player, productionRound, this);
 		setLayout(new BorderLayout(0, 0));
 
 
@@ -150,8 +150,7 @@ public class ProductionPhase extends JPanel {
 		panel.add(btnMules);
 
 		//Arrow keys for time left label
-		int timeLeft = timer.getCurrentTime();
-		time = new JLabel(String.valueOf(timeLeft));
+		time = new JLabel();
 		time.setBounds(270, 585, 29, 20);
 		panel.add(time);
 
@@ -163,17 +162,13 @@ public class ProductionPhase extends JPanel {
 		panel.add(lblTimeLeft);
 
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(ProductionPhase.class.getResource("/Tiles/storeBig.gif")));
+		lblNewLabel.setIcon(new ImageIcon(TownPanel.class.getResource("/Tiles/storeBig.gif")));
 		lblNewLabel.setBounds(0, 0, 1449, 720);
 		panel.add(lblNewLabel);
 	}
 
 	public Player getPlayer(){        // added to use in btnPub  ib
 		return player;
-	}
-	
-	public Clock getTimer() {
-		return timer;
 	}
 	
 	public JLabel getTimeLabel() {

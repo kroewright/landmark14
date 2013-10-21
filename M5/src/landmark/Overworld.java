@@ -45,7 +45,8 @@ public class Overworld extends JPanel {
 	private int playerTurn = 0;
 	private int numberOfPlayers;
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
-	private ProductionPhase prodPhase;
+	//private ProductionPhase prodPhase;
+	private TownPanel town;
 	
 	/**
      * Create the panel.
@@ -191,7 +192,8 @@ public class Overworld extends JPanel {
 							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 									, JOptionPane.INFORMATION_MESSAGE);
 							
-							productionPhaseTurn(players[playerTurn]);
+							town = new TownPanel();
+							ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, town);
 						}
 					}
 					else {
@@ -215,7 +217,8 @@ public class Overworld extends JPanel {
 						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 								, JOptionPane.INFORMATION_MESSAGE);
 						
-						productionPhaseTurn(players[playerTurn]);
+						town = new TownPanel();
+						ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, town);
 					}
 				}
 				else {
@@ -226,14 +229,15 @@ public class Overworld extends JPanel {
 		}
 	}
 	
+	/*
 	//Creates a new production phase
 	public void productionPhaseTurn(Player player) {
 		prodPhase = new ProductionPhase(player);
 	}
+	*/
 	
-	//Returns the production phase for a certain player
-	public ProductionPhase getProductionPhaseTurn() {
-		return prodPhase;
+	public TownPanel getTownPanel() {
+		return town;
 	}
 	
 	//Returns main panel
