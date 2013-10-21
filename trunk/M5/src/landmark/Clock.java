@@ -12,7 +12,7 @@ public class Clock {
 	private static Timer timer;
 	private static boolean stopped = false;
 	
-	public Clock(Player player, int productionRound, final ProductionPhase town) {
+	public Clock(Player player, int productionRound, final TownPanel town) {
 		int delay = 1000;
 	    int period = 1000;
 	    timer = new Timer();

@@ -20,7 +20,7 @@ public class GameDriver{
 	private OpeningScreen openingScreen; 
 	private Selpage selPage; 
 	private Overworld overworld;
-	private ProductionPhase prodPhase;
+	//private ProductionPhase prodPhase;
 	private int numOfPlayers = 0;
 	private Player[] players;
 	private int isStandard = 0;
@@ -87,8 +87,8 @@ public class GameDriver{
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
-					prodPhase = overworld.getProductionPhaseTurn();
-					mainPanel.add(prodPhase.getMainComponent(),TOWN);
+					TownPanel town = overworld.getTownPanel();
+					mainPanel.add(town.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
 				}
 			}
