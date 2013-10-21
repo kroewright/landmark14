@@ -29,7 +29,7 @@ import java.awt.GridLayout;
 public class OpeningScreen extends JPanel{ // JFrame {
 
 	private int isStandard = 0; // 1 = standard map and 2 = random map
-	private int difficulty = 0; // 1 = normal 2 = advanced and 3 = tournament
+	private int difficulty = 0; // 1 = beginner 2 = standard and 3 = tournament
 	private int numOfPlayers = 0;
 	private JPanel contentPane;
 	private JButton btnNext;   
@@ -254,7 +254,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		/**
 		 * Creates new radio button for Advanced level.	
 		 */
-		JRadioButton rdbtnAdvanced = new JRadioButton("Advanced");
+		JRadioButton rdbtnAdvanced = new JRadioButton("Standard");
 		rdbtnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficulty = 2;
