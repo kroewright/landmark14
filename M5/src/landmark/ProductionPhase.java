@@ -68,13 +68,15 @@ public class ProductionPhase extends JPanel {
 	
 	private static int productionRound = 0;
 	private Player player;
+	private Clock timer;
 	JPanel panel;
+	private JLabel time;
 
 	//Sets the player and the layout for Production Phase
 	public ProductionPhase(Player player){
 		productionRound += 1;
 		this.player = player;
-		Clock timer = new Clock(player, productionRound);
+		timer = new Clock(player, productionRound, this);
 		setLayout(new BorderLayout(0, 0));
 
 
@@ -149,9 +151,9 @@ public class ProductionPhase extends JPanel {
 
 		//Arrow keys for time left label
 		int timeLeft = timer.getCurrentTime();
-		JLabel clock = new JLabel(String.valueOf(timeLeft));
-		clock.setBounds(270, 585, 29, 20);
-		panel.add(clock);
+		time = new JLabel(String.valueOf(timeLeft));
+		time.setBounds(270, 585, 29, 20);
+		panel.add(time);
 
 		//Labels time left on the game screen
 		JLabel lblTimeLeft = new JLabel("Time Left");
@@ -168,6 +170,14 @@ public class ProductionPhase extends JPanel {
 
 	public Player getPlayer(){        // added to use in btnPub  ib
 		return player;
+	}
+	
+	public Clock getTimer() {
+		return timer;
+	}
+	
+	public JLabel getTimeLabel() {
+		return time;
 	}
 
 	public JPanel getMainComponent(){

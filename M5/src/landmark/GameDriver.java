@@ -26,6 +26,7 @@ public class GameDriver{
 	private int isStandard = 0;
 	private int difficulty = 0;
 	private static JFrame frame;
+	private int productionRound = 1;
 
 	/**
 	 * The Constructor sets the main panel
@@ -85,7 +86,7 @@ public class GameDriver{
 		 */
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(overworld.getSelectionSkips() == numOfPlayers) {
+				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
 					prodPhase = overworld.getProductionPhaseTurn();
 					mainPanel.add(prodPhase.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);

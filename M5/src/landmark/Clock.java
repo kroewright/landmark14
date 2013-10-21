@@ -3,13 +3,16 @@ package landmark;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class Clock {
+	
 	private static int interval;
 	private static Timer timer;
-	private Player player;
+	private static boolean stopped = false;
 	
-	public Clock(Player player, int productionRound) {
-		this.player = player;
+	public Clock(Player player, int productionRound, final ProductionPhase town) {
 		int delay = 1000;
 	    int period = 1000;
 	    timer = new Timer();
@@ -52,8 +55,8 @@ public class Clock {
 	    timer.scheduleAtFixedRate(new TimerTask() {
 
 	        public void run() {
-	            System.out.println(setInterval());
-
+	            JLabel time = town.getTimeLabel();
+	            time.setText(String.valueOf(setInterval()));
 	        }
 	    }, delay, period);
 	}
@@ -61,10 +64,15 @@ public class Clock {
 	public int getCurrentTime() {
 		return setInterval();
 	}
+	
+	public boolean getStopped() {
+		return stopped;
+	}
 
 	private static final int setInterval() {
 	    if (interval == 1)
 	        timer.cancel();
+	    	stopped = true;
 	    return --interval;
 	}
 }
