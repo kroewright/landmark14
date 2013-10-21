@@ -18,6 +18,9 @@ public class Player {
 	private int race;
 	private ArrayList<Tile> ownedTiles;	
 	private boolean inStore;
+	private int food;
+	private int energy;
+	private int ore;
 
 	/**
 	 * Contains the player's name, color, difficulty of the current game,
@@ -46,6 +49,17 @@ public class Player {
 		}
 		else {
 			money = 1600;
+		}
+		
+		if(difficulty == 1) {
+			food = 8;
+			energy = 4;
+			ore = 0;
+		}
+		else {
+			food = 4;
+			energy = 2;
+			ore = 0;
 		}
 	}
 
