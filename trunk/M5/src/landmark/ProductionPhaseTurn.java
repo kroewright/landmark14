@@ -33,12 +33,6 @@ public class ProductionPhaseTurn {
     	else {
     		turn += 1;
     	}
-    	
-		
-		//This class needs to be filled in guys. This should be responsible for cycling through the player array for 
-		//for the production phase. Once the clock goes out, the next player goes. If the player pushes the pub button,
-		//their turn is ended and the next player goes.
-		
 	}
 	
 	public TownPanel getTownPanel() {
