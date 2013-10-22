@@ -27,11 +27,14 @@ public class GameDriver{
 	private int difficulty = 0;
 	private static JFrame frame;
 	private int productionRound = 1;
+	private Clock timer;
+	private GameDriver driver;
 
 	/**
 	 * The Constructor sets the main panel
 	 */
 	public GameDriver() {
+		this.driver = this;
 		cardlayout = new CardLayout();
 		mainPanel = new JPanel(cardlayout);
 		openingScreen = new OpeningScreen();
@@ -87,7 +90,10 @@ public class GameDriver{
 		overworld.addMapButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
-					TownPanel town = overworld.getTownPanel();
+					ProductionPhaseTurn turn = overworld.getProductionTurn();
+					TownPanel town = turn.getTownPanel();
+					timer = turn.getClock();
+					timer.setPanel(driver);
 					mainPanel.add(town.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
 				}
@@ -101,7 +107,10 @@ public class GameDriver{
 	 */
 	private JComponent getPanel() {
 		return mainPanel;
-
+	}
+	
+	public void changeToMapPanel(JPanel panel) {
+		cardlayout.show(mainPanel, MAP);
 	}
 
 	/**

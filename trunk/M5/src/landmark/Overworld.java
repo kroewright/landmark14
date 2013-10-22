@@ -1,26 +1,15 @@
 package landmark;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-
 import landmark.Tiles.Mountains;
 import landmark.Tiles.Plains;
 import landmark.Tiles.River;
@@ -45,7 +34,7 @@ public class Overworld extends JPanel {
 	private int playerTurn = 0;
 	private int numberOfPlayers;
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
-	//private ProductionPhase prodPhase;
+	private ProductionPhaseTurn productionTurn;
 	private TownPanel town;
 	
 	/**
@@ -192,8 +181,7 @@ public class Overworld extends JPanel {
 							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 									, JOptionPane.INFORMATION_MESSAGE);
 							
-							town = new TownPanel();
-							ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, town);
+							productionTurn = new ProductionPhaseTurn(players, this);
 						}
 					}
 					else {
@@ -217,8 +205,7 @@ public class Overworld extends JPanel {
 						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 								, JOptionPane.INFORMATION_MESSAGE);
 						
-						town = new TownPanel();
-						ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, town);
+						productionTurn = new ProductionPhaseTurn(players, this);
 					}
 				}
 				else {
@@ -229,15 +216,9 @@ public class Overworld extends JPanel {
 		}
 	}
 	
-	/*
 	//Creates a new production phase
-	public void productionPhaseTurn(Player player) {
-		prodPhase = new ProductionPhase(player);
-	}
-	*/
-	
-	public TownPanel getTownPanel() {
-		return town;
+	public ProductionPhaseTurn getProductionTurn() {
+		return productionTurn;
 	}
 	
 	//Returns main panel
@@ -265,6 +246,10 @@ public class Overworld extends JPanel {
 	public void setPlayers(Player[] people) {
 		players = people;
 		numberOfPlayers = players.length;
+	}
+	
+	public void setProduction(ProductionPhaseTurn turn) {
+		productionTurn = turn;
 	}
 	
 	//Sets the JFrame window for the game
