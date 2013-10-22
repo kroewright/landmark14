@@ -65,7 +65,7 @@ public class Selpage extends JPanel {
 	 */
 	public Selpage() {
 		panel = new JPanel();
-		panel.setBackground(new Color(255, 204, 0)); //sets background
+		panel.setBackground(new Color(207,181,59)); //sets background
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5)); //sets border
 		panel.setLayout(new BorderLayout(0, 0)); //sets layout
 

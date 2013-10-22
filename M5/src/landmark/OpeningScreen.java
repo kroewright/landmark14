@@ -43,7 +43,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 	 */
 	public OpeningScreen() {
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 204, 0));
+		contentPane.setBackground(new Color(207,181,59));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 
@@ -177,7 +177,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * opening screen. 
 		 */
 		JPanel south = new JPanel();
-		south.setBackground(new Color(255, 204, 0));
+		south.setBackground(new Color(207,181,59));
 		contentPane.add(south, BorderLayout.SOUTH);
 		south.setLayout(new GridLayout(0, 8, 0, 0));
 
@@ -199,7 +199,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 			}
 		});
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnNewRadioButton.setBackground(new Color(255, 204, 0));
+		rdbtnNewRadioButton.setBackground(new Color(207,181,59));
 
 		/**
 		 * Creates second radio button for Random map type.
@@ -211,7 +211,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 			}
 		});
 		rdbtnRandom.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnRandom.setBackground(new Color(255, 204, 0));
+		rdbtnRandom.setBackground(new Color(207,181,59));
 
 		/**
 		 * Adds the buttons to the button group.
@@ -249,7 +249,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * Set background and aligns radio button.
 		 */
 		rdbtnBeginner.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnBeginner.setBackground(new Color(255, 204, 0));
+		rdbtnBeginner.setBackground(new Color(207,181,59));
 
 		/**
 		 * Creates new radio button for Advanced level.	
@@ -265,7 +265,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * Set background and aligns radio button.
 		 */
 		rdbtnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnAdvanced.setBackground(new Color(255, 204, 0));
+		rdbtnAdvanced.setBackground(new Color(207,181,59));
 
 		/**
 		 * Creates new radio button for Tournament level.	
@@ -281,7 +281,7 @@ public class OpeningScreen extends JPanel{ // JFrame {
 		 * Set background and aligns radio button.
 		 */
 		rdbtnTournament.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnTournament.setBackground(new Color(255, 204, 0));
+		rdbtnTournament.setBackground(new Color(207,181,59));
 
 		/**
 		 * Adds the buttons to the button group.
