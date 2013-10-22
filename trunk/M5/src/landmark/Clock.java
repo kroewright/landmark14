@@ -102,5 +102,9 @@ public class Clock {
 	public void setPanel(GameDriver game) {
 		driver = game;
 	}
+	
+	public void stopTimer() {
+		timer.cancel();
+	}
 }
 
