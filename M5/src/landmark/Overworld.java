@@ -292,7 +292,8 @@ public class Overworld extends JPanel {
 	 *
 	 */
 	public static Tile tileFactory(int i, int j){
-		int location = (i*j)+j;
+		int numOfColumns = 9;
+		int location = (i*numOfColumns)+j;
 		
 		if (i != 2 && j == 4){
 			return new River(location);
