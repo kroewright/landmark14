@@ -61,6 +61,10 @@ public class Player {
 			energy = 2;
 			ore = 0;
 		}
+		
+		this.setScore(money);
+		
+		
 	}
 
 	/*
@@ -95,6 +99,7 @@ public class Player {
 	public void buyLandSelectionPhase(Tile tile) {
 		if(money >= 300) {
 			money -= 300;
+			setScore(money);
 		}
 		addTileOwned(tile);
 	}
@@ -115,7 +120,7 @@ public class Player {
 		return food;
 	}
 
-	private int getScore(){
+	public int getScore(){
 		return score;
 	}
 
@@ -192,6 +197,7 @@ public class Player {
 			moneyBonus = maxBonus;
 		
 		money += moneyBonus;
+		setScore(money);
 		
 		return moneyBonus;
 	}

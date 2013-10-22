@@ -177,6 +177,7 @@ public class Overworld extends JPanel {
 							selectionPhaseTurn();
 						}
 						else {
+							players = orderPlayersByScore(players);							
 							playerName = players[playerTurn].getName();
 							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 									, JOptionPane.INFORMATION_MESSAGE);
@@ -201,6 +202,8 @@ public class Overworld extends JPanel {
 						selectionPhaseTurn();
 					}
 					else {
+						players = orderPlayersByScore(players);
+
 						playerName = players[playerTurn].getName();
 						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 								, JOptionPane.INFORMATION_MESSAGE);
@@ -282,6 +285,8 @@ public class Overworld extends JPanel {
 		selectionSkips = 0;
 	}
 	
+	
+	
 	/**
 	 * Tile factory that places tiles on the map.
 	 *
@@ -310,4 +315,36 @@ public class Overworld extends JPanel {
 			return new Plains(location);
 		}
 	}
+	
+	/**
+	 * 
+	 * Orders the list of players using a reverse insertion sort! XD
+	 * 
+	 * @param unordered list of players
+	 * @return ordered list of players
+	 */
+	public static Player[] orderPlayersByScore(Player[] players){
+		Player holder;
+		int k;
+		for(int i=1;i<players.length;i++){
+			holder = players[i];
+			for(k=i-1;	k>=0 ;k--){
+				if(holder.getScore() < players[k].getScore()){
+					players[k+1]=players[k];
+				}
+				else break;
+				
+			}
+			players[k+1]=holder;
+		}
+		for(Player el: players){
+			System.out.print(el.getName());
+			System.out.println(el.getScore());
+		}
+		
+		
+		return players;
+	}
+	
+	
 }
