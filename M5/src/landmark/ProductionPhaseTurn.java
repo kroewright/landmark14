@@ -18,17 +18,18 @@ public class ProductionPhaseTurn {
 	public ProductionPhaseTurn(Player[] players, Overworld map) {
 		this.map = map;
 		this.players = players;
-		town = new TownPanel();
+		//town = new TownPanel();
 		
 		if(turn == 0) {
 			productionRound += 1;
 		}
 		
 		timer = new Clock(players, productionRound, turn, town, map);
+		town = new TownPanel(players[turn], productionRound, timer.getCurrentTime());
 		
 		if(turn == (players.length - 1)) {
     		turn = 0;
-    		
+    		players = map.orderPlayersByScore(players);
     	}
     	else {
     		turn += 1;

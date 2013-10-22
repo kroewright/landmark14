@@ -2,6 +2,7 @@ package landmark;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -24,6 +25,7 @@ public class Clock {
 	    int period = 1000;
 	    timer = new Timer();
 	    int food = players[turn].getFood();
+	    players[turn].setTimer(this);
 	    
 	    if(productionRound <= 4) {
 	    	if(food >= 3) {
@@ -78,7 +80,7 @@ public class Clock {
 	    	
 	    	if(turn == (players.length - 1)) {
 	    		turn = 0;
-	    		
+	    		players = map.orderPlayersByScore(players);
 	    	}
 	    	else {
 	    		turn += 1;
@@ -101,6 +103,22 @@ public class Clock {
 	
 	public void setPanel(GameDriver game) {
 		driver = game;
+	}
+	
+	public int getTurn() {
+		return turn;		
+	}
+	
+	public Player[] getPlayers() {
+		return players;		
+	}
+	
+	public Overworld getMap() {
+		return map;
+	}
+	
+	public GameDriver getDriver() {
+		return driver;
 	}
 	
 	public void stopTimer() {

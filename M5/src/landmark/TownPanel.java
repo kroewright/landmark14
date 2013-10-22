@@ -55,7 +55,9 @@ import landmark.Tiles.River;
 import landmark.Tiles.Town;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JSpinner;
+
 import java.awt.Font;
 
 /**
@@ -66,16 +68,20 @@ import java.awt.Font;
 
 public class TownPanel extends JPanel {
 	
-	private static int productionRound = 0;
+	//private static int productionRound = 0;
+	final private int productionRound;
 	private Player player;
+	private final int timeLeft;
 	//private Clock timer;
 	JPanel panel;
 	private JLabel time;
 
 	//Sets the player and the layout for Production Phase
-	public TownPanel(){
-		productionRound += 1;
-		//this.player = player;
+	public TownPanel(final Player player, final int productionRound, final int timeLeft){		
+		this.player = player;
+		this.productionRound = productionRound;
+		
+		this.timeLeft = timeLeft;			
 		//timer = new Clock(player, productionRound, this);
 		setLayout(new BorderLayout(0, 0));
 
@@ -122,22 +128,41 @@ public class TownPanel extends JPanel {
 		panel.add(btnPub);
 
 		//ActionListener for btnPub
-		btnPub.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+				btnPub.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 
-				Player currentPlayer = getPlayer();
+						JOptionPane.showMessageDialog(panel, "You just got a $" +
+								player.goToPub(timeLeft, productionRound) +
+								" money bonus");
+						//System.out.println("money = " + currentPlayer.getMoney()); //to test it
+					
+						//Ends a player's turn and activate the another player
+						
+						    Clock timer = player.getTimer();
+						    timer.stopTimer();
+						    int turn = timer.getTurn();
+						    Overworld map = timer.getMap();
+						    Player[] players = timer.getPlayers();
+						    GameDriver driver = timer.getDriver();
+						    	
+						    	if(timer.getTurn() == (players.length - 1)) {
+						    		turn = 0;
+						    		Player[] p = map.orderPlayersByScore(players);
+						    	}
+						    	else {
+						    		turn += 1;
+						    	}
+						    	
+						    	
+						    	JOptionPane.showMessageDialog(panel, (players[turn].getName() + " begin production phase!"), "Production Phase"
+										, JOptionPane.INFORMATION_MESSAGE);
+						    	
+						    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
+						    	map.setProduction(productionTurn);
+						    	driver.changeToMapPanel(map);
+						    }
+				});
 
-
-				//Needs to be activated once timeLeft and round are available	
-				//JOptionPane.showMessageDialog(panel, "You just got a $" +
-				//		currentPlayer.goToPub(timeLeft, round) +
-				//		" money bonus");
-				//System.out.println("money = " + currentPlayer.getMoney()); //to test it
-			
-				//Needs to end player turn and activate the another player
-			
-			}
-		});
 
 		//Button for Land Office
 		JButton btnLand = new JButton("Land");
@@ -151,6 +176,7 @@ public class TownPanel extends JPanel {
 
 		//Arrow keys for time left label
 		time = new JLabel();
+		time.setForeground(Color.YELLOW);
 		time.setBounds(270, 585, 29, 20);
 		panel.add(time);
 
@@ -167,10 +193,6 @@ public class TownPanel extends JPanel {
 		panel.add(lblNewLabel);
 	}
 
-	public Player getPlayer(){        // added to use in btnPub  ib
-		return player;
-	}
-	
 	public JLabel getTimeLabel() {
 		return time;
 	}
