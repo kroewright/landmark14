@@ -21,7 +21,8 @@ public class Player {
 	private int food;
 	private int energy;
 	private int ore;
-
+	private Clock timer;
+	
 	/**
 	 * Contains the player's name, color, difficulty of the current game,
 	 * and their race.
@@ -136,6 +137,14 @@ public class Player {
 		this.money = i;
 	}
 
+	public void setTimer(Clock timer){
+		this.timer = timer;
+	}
+
+	public Clock getTimer(){
+		return timer;
+	}
+
 	public int goToPub(int timeLeft, int round) {
 
 		final int bonus1 = 50;
@@ -188,11 +197,11 @@ public class Player {
 		else if(timeLeft > 0) {                     // include 0?
 			timeBonus = bonus1;
 		}	
-		//System.out.println("timeBonus = " + timeBonus);      //to test it
-		//System.out.println("roundBonus = " + roundBonus);
+		System.out.println("timeBonus = " + timeBonus);      //to test it
+		System.out.println("roundBonus = " + roundBonus);
 		int random = randomGenerator.nextInt(timeBonus+1);
-		moneyBonus = roundBonus * random; //randomGenerator.nextInt(timeBonus+1);
-		//System.out.println("random = " + random);     //random int or double?? 
+		moneyBonus = roundBonus * random;        //randomGenerator.nextInt(timeBonus+1);
+		System.out.println("random = " + random);     //random int or double?? 
 		if(moneyBonus > maxBonus)
 			moneyBonus = maxBonus;
 		

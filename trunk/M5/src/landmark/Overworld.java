@@ -324,7 +324,7 @@ public class Overworld extends JPanel {
 	 * @param unordered list of players
 	 * @return ordered list of players
 	 */
-	public static Player[] orderPlayersByScore(Player[] players){
+	public Player[] orderPlayersByScore(Player[] players){
 		Player holder;
 		int k;
 		for(int i=1;i<players.length;i++){
