@@ -318,7 +318,7 @@ public class Overworld extends JPanel {
 	
 	/**
 	 * 
-	 * Orders the list of players using a reverse insertion sort! XD
+	 * Orders the list of players using an insertion sort :)
 	 * 
 	 * @param unordered list of players
 	 * @return ordered list of players
