@@ -2,21 +2,28 @@ package landmark;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 public class Clock {
 	
 	private static int interval;
 	private static Timer timer;
-	private static boolean stopped = false;
+	private static Player[] players;
+	private static TownPanel town;
+	private static int turn;
+	private static Overworld map;
+	private static GameDriver driver;
 	
-	public Clock(Player player, int productionRound, final TownPanel town) {
+	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, Overworld map) {
+		this.players = players;
+		this.turn = turn;
+		this.town = town;
+		this.map = map;
 		int delay = 1000;
 	    int period = 1000;
 	    timer = new Timer();
-	    int food = player.getFood();
+	    int food = players[turn].getFood();
 	    
 	    if(productionRound <= 4) {
 	    	if(food >= 3) {
@@ -64,16 +71,36 @@ public class Clock {
 	public int getCurrentTime() {
 		return setInterval();
 	}
-	
-	public boolean getStopped() {
-		return stopped;
-	}
 
 	private static final int setInterval() {
-	    if (interval == 1)
-	        timer.cancel();
-	    	stopped = true;
+	    if (interval == 1) {
+	    	timer.cancel();
+	    	
+	    	if(turn == (players.length - 1)) {
+	    		turn = 0;
+	    		
+	    	}
+	    	else {
+	    		turn += 1;
+	    	}
+	    	
+	    	
+	    	JOptionPane.showMessageDialog(town, (players[turn].getName() + " begin production phase!"), "Production Phase"
+					, JOptionPane.INFORMATION_MESSAGE);
+	    	
+	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
+	    	map.setProduction(productionTurn);
+	    	driver.changeToMapPanel(map);
+	    }
 	    return --interval;
+	}
+	
+	public int getStartingInterval() {
+		return interval;
+	}
+	
+	public void setPanel(GameDriver game) {
+		driver = game;
 	}
 }
 
