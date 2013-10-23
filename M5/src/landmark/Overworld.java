@@ -30,7 +30,7 @@ import landmark.Tiles.Town;
 public class Overworld extends JPanel {
 	
 	private Tile[][] tiles = new Tile[5][9];
-	private static Tile[][] randTiles;
+	private static Tile[][] randTiles = new Tile[5][9];
 	private JPanel panel;
 	private JButton[][] buttons = new JButton[5][9];
 	private Player[] players;
@@ -60,14 +60,17 @@ public class Overworld extends JPanel {
 	public void setMapType(int mapType) {
 		this.mapType = mapType;
 		
+		if(mapType == 2){
+			Random rand = new Random();
+			initializeRandTiles(rand);
+		}
+		
+		
 		for(int i = 0; i < 5; ++i) {
 			for(int j = 0; j < 9; ++j) {
-				if(mapType == 1) {
-					addTileStandardMap(i, j);
-				}
-				else if(mapType == 2) {
-					//Insert code here to make random map using new tile factory
-				}
+				addTileStandardMap(i, j);
+			
+				
 			}
 		}
 	}
@@ -79,7 +82,12 @@ public class Overworld extends JPanel {
 	 * @param j
 	 */
 	public void addTileStandardMap(int i, int j) {
-		Tile p = tileFactory(i, j);
+		Tile p;
+		if(mapType == 1){
+			p = tileFactory(i, j);
+			}
+		else p = randTiles[i][j];
+		
 		JButton button = new JButton();
 		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
 		buttons[i][j] = button;
