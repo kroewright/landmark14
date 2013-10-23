@@ -67,17 +67,25 @@ import java.awt.Font;
  */
 
 public class TownPanel extends JPanel {
-	
-	final private int productionRound;
+
+	private Player[] players;
 	private Player player;
+	private int productionRound;
+	private Overworld map;
+	private  int turn;
 	JPanel panel;
 	private JLabel time;
+	private JButton btnPub;
 
 	//Sets the player and the layout for Production Phase
-	public TownPanel(final Player player, final int productionRound){		
-		this.player = player;
+	public TownPanel(final Player[] players, final int productionRound, 
+			final int turn, final Overworld map){		
+		this.players = players;
+		player = players[turn];
 		this.productionRound = productionRound;
-		
+		this.turn = turn;
+		this.map = map;
+
 		setLayout(new BorderLayout(0, 0));
 
 		BufferedImage myPicture = null;
@@ -94,7 +102,6 @@ public class TownPanel extends JPanel {
 
 		add(panel);
 		panel.setLayout(null);
-
 
 		//Button for energy
 		JButton Energy = new JButton("Energy");
@@ -117,46 +124,10 @@ public class TownPanel extends JPanel {
 		panel.add(btnAssay);
 
 		//Button for Pub Office
-		JButton btnPub = new JButton("Pub");
+		btnPub = new JButton("Pub");
 		btnPub.setBounds(694, 356, 89, 100);
 		panel.add(btnPub);
-
-		//ActionListener for btnPub
-				btnPub.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-						Clock timer = player.getTimer();
-						int timeLeft = timer.getCurrentTime();
-						JOptionPane.showMessageDialog(panel, "You just got a $" +
-								player.goToPub(timeLeft, productionRound) +
-								" money bonus! \nMoney: $" + player.getMoney());
-					
-						//Ends a player's turn and activate the another player
-						
-						    int turn = timer.getTurn();
-						    Overworld map = timer.getMap();
-						    Player[] players = timer.getPlayers();
-						    GameDriver driver = timer.getDriver();
-						    	
-						    	if(timer.getTurn() == (players.length - 1)) {
-						    		turn = 0;
-						    		players = map.orderPlayersByScore(players);
-						    	}
-						    	else {
-						    		turn += 1;
-						    	}
-						    	
-						    	
-						    	JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
-						    			, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
-						    	
-						    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
-						    	map.setProduction(productionTurn);
-						    	driver.changeToMapPanel(map);
-						    }
-				});
-
-
+		
 		//Button for Land Office
 		JButton btnLand = new JButton("Land");
 		btnLand.setBounds(481, 361, 89, 118);
@@ -184,6 +155,41 @@ public class TownPanel extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon(TownPanel.class.getResource("/Tiles/storeBig.gif")));
 		lblNewLabel.setBounds(0, 0, 1449, 720);
 		panel.add(lblNewLabel);
+	}
+	
+	public void addPubBtnActionListener(ActionListener listener) {
+		btnPub.addActionListener(listener);
+	}
+	
+	public void setPub(final Clock timer) {
+	//ActionListener for btnPub
+		addPubBtnActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int timeLeft = timer.getCurrentTime();
+				GameDriver driver = timer.getPanel();
+
+				JOptionPane.showMessageDialog(panel, "You just got a $" +
+						player.goToPub(timeLeft, productionRound) +
+						" money bonus! \nMoney: $" + player.getMoney());
+
+				//Ends the player's turn and activate the another player
+				if(turn == (players.length - 1)) {
+					turn = 0;
+					players = map.orderPlayersByScore(players);
+				}
+				else {
+					turn += 1;
+				}
+
+				JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
+						, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
+
+				ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
+				map.setProduction(productionTurn);
+				driver.changeToMapPanel(map);
+			}
+		});
 	}
 
 	public JLabel getTimeLabel() {
