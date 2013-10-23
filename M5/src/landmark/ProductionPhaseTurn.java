@@ -22,8 +22,9 @@ public class ProductionPhaseTurn {
 			System.out.println(productionRound);
 		}
 		
-		town = new TownPanel(players[turn], productionRound);
+		town = new TownPanel(players, productionRound, turn, map);
 		timer = new Clock(players, productionRound, turn, town, map);
+		town.setPub(timer);
 		
 		if(turn == (players.length - 1)) {
     		turn = 0;

@@ -10,13 +10,14 @@ public class Clock {
 	
 	private static int interval;
 	private static Timer timer;
-	private static Player[] players;
+	private static Player[] players;  //static
 	private static TownPanel town;
 	private static int turn;
 	private static Overworld map;
 	private static GameDriver driver;
 	
 	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, Overworld map) {
+		
 		this.players = players;
 		this.turn = turn;
 		this.town = town;
@@ -104,20 +105,8 @@ public class Clock {
 	public void setPanel(GameDriver game) {
 		driver = game;
 	}
-	
-	public int getTurn() {
-		return turn;		
-	}
-	
-	public Player[] getPlayers() {
-		return players;		
-	}
-	
-	public Overworld getMap() {
-		return map;
-	}
-	
-	public GameDriver getDriver() {
+
+	public GameDriver getPanel() {
 		return driver;
 	}
 	
