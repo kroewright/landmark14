@@ -185,6 +185,7 @@ public class Player {
 	 * public boolean putMule(Mule m, Tile t){
 	 * 		if(!hasTile(t) || !hasMule() || t.hasMule()){
 	 * 			throw new IllegalPlantException( e );
+	 * 			return false;
 	 * 		}
 	 * 		plantedMules.add(m);
 	 * 
@@ -198,9 +199,15 @@ public class Player {
 	 * 			case "food":
 	 * 				increaseFoodYield(t.getFoodYield);
 	 * 				break;
-	 * }		}
+	 * 		}
 	 * 
+	 * 		// Now need some functionality for showing the Mule Image
+	 * 		overworld.getTileAt(t.getLocation().addLabel( new JLabel(m.getImage) ) );
+	 * 		overworld.refresh;
 	 * 
+	 * 		return true;
+	 * 
+	 * }
 	 */
 	
 	/*
