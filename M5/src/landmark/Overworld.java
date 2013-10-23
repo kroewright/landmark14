@@ -6,10 +6,15 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 import landmark.Tiles.Mountains;
 import landmark.Tiles.Plains;
 import landmark.Tiles.River;
@@ -25,6 +30,7 @@ import landmark.Tiles.Town;
 public class Overworld extends JPanel {
 	
 	private Tile[][] tiles = new Tile[5][9];
+	private static Tile[][] randTiles;
 	private JPanel panel;
 	private JButton[][] buttons = new JButton[5][9];
 	private Player[] players;
@@ -314,6 +320,53 @@ public class Overworld extends JPanel {
 		}
 		else{
 			return new Plains(location);
+		}
+	}
+	
+	
+	/**
+	 * Randomized Tile factory
+	 * 
+	 * This function first creates a linked list holding a tuple
+	 * of the row and column for each tile. it then uses a random
+	 * number generator to add it to a randomized list of coordinates
+	 * name randomCoors. Which would look as follows:
+	 *  [ [1,4] , [2,3] , [0,8] ..... ] etc. 
+	 *  The coordinates are then placed in a Tile[][] called
+	 *  randTiles, after being instantiated.
+	 * 
+	 * @param Random object
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void initializeRandTiles(Random r){
+		int[][] randomCoors = new int[45][2];
+		
+		
+		List nums = new LinkedList();
+		for(int i = 0; i<5; i++){
+			for(int j=0; j<9; j++){
+				int[] tup = new int[2];
+				tup[0] = i;
+				tup[1] = j;
+				nums.add(tup);
+			}
+		}
+
+		int size = 45;
+		for(int i = 0; i<45;i++){
+			int randy = r.nextInt(size);
+			int[] tup = (int[])nums.remove(randy);
+			size--;
+			randomCoors[i] = tup;
+		}
+		
+		for(int i = 0; i<5; i++){
+			for(int j = 0; j<9; j++){
+				int[] tup = randomCoors[i*9+j];
+				randTiles[i][j] = tileFactory(tup[0],tup[1]);
+				System.out.print(i);
+				System.out.print(j);
+			}
 		}
 	}
 	
