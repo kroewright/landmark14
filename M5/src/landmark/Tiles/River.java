@@ -1,7 +1,6 @@
 package landmark.Tiles;
 
 import java.awt.image.BufferedImage;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -28,6 +27,8 @@ public class River extends Tile {
 	private int foodYield;
 	private int energyYield;
 	private int oreYield;
+
+	private int tileType;
 	
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
@@ -55,7 +56,7 @@ public class River extends Tile {
 	 * Getter that returns the owner of a tile
 	 * @return owner - who owns the tile
 	 */
-	protected Player getOwner(){
+	public Player getOwner(){
 		if (isOwned) return this.owner;
 		else return null;
 	}
@@ -64,7 +65,7 @@ public class River extends Tile {
 	 * Getter that returns the location of a tile
 	 * @return location - location of the tile
 	 */
-	protected int getLocation(){
+	public int getLocation(){
 		return this.location;
 	}
 	
@@ -91,7 +92,7 @@ public class River extends Tile {
 	 * Returns the amount of food available.
 	 * @return foodYield - food left
 	 */
-	protected int getFYield(){
+	public int getFYield(){
 		return this.foodYield;
 	}
 	
@@ -99,7 +100,7 @@ public class River extends Tile {
 	 * Returns the amount of energy available.
 	 * @return EYield - energy left
 	 */
-	protected int getEYield(){
+	public int getEYield(){
 		return this.energyYield;
 	}
 	
@@ -107,7 +108,7 @@ public class River extends Tile {
 	 * Returns the amount of ore available.
 	 * @return OYield - ore left
 	 */
-	protected int getOYield(){
+	public int getOYield(){
 		return this.oreYield;
 	}
 	
@@ -137,6 +138,17 @@ public class River extends Tile {
 		
 		this.file = imgLink;
 
+	}
+	
+	@Override
+	public int getTileType() {
+		return tileType;
+	}
+
+	@Override
+	public boolean equals(Tile t) {
+		if(this.getLocation() == t.getLocation()) return true;
+		return false;
 	}
 
 }

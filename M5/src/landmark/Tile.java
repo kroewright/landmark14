@@ -28,14 +28,17 @@ public abstract class Tile {
 	 * private Mule muleOnTile;
 	 */
 	
-	protected abstract Player getOwner();
-	protected abstract int getLocation();
+	public abstract Player getOwner();
+	public abstract int getLocation();
 	protected abstract String getImage();
 	protected abstract void setOwner(Player p);
 	
-	protected abstract int getFYield();
-	protected abstract int getEYield();
-	protected abstract int getOYield();
+	public abstract int getFYield();
+	public abstract int getEYield();
+	public abstract int getOYield();
 
 	protected abstract void setImage();
+	public abstract boolean equals(Tile t);
+	//0 for mountains 1 for plains 2 for river 3 for town
+	public abstract int getTileType();
 }

@@ -12,6 +12,7 @@ import landmark.Tile;
 
 public class Town extends Tile{
 	private String file;
+	private int tileType;
 	
 	
 	public Town(){
@@ -20,13 +21,13 @@ public class Town extends Tile{
 	
 	//Returns null, no one owns the town
 	@Override
-	protected Player getOwner() {
+	public Player getOwner() {
 		return null;
 	}
 
 	//Returns the location of the town on the map
 	@Override
-	protected int getLocation(){
+	public int getLocation(){
 		return 14;
 	}
 
@@ -44,21 +45,21 @@ public class Town extends Tile{
 
 	//Food yield is 0 at the town
 	@Override
-	protected int getFYield() {
+	public int getFYield() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	//Energy yield is 0 at the town
 	@Override
-	protected int getEYield() {
+	public int getEYield() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	//Ore yield is 0 at the town
 	@Override
-	protected int getOYield() {
+	public int getOYield() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -68,6 +69,17 @@ public class Town extends Tile{
 	protected void setImage() {
 		file = "town.jpg";
 		
+	}
+	
+	@Override
+	public int getTileType() {
+		return tileType;
+	}
+
+	@Override
+	public boolean equals(Tile t) {
+		if(this.getLocation() == t.getLocation()) return true;
+		return false;
 	}
 
 }

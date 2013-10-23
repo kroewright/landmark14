@@ -16,11 +16,19 @@ public class Player {
 	private int color;
 	private int difficulty;
 	private int race;
-	private ArrayList<Tile> ownedTiles;	
+	private ArrayList<Tile> ownedTiles;
+	//private ArrayList<Mule> planetedMules;
 	private boolean inStore;
+	private boolean hasMule;
+	
 	private int food;
 	private int energy;
 	private int ore;
+	
+	private int oreYield;
+	private int foodYield;
+	private int energyYield;
+	
 	private Clock timer;
 	
 	/**
@@ -65,7 +73,9 @@ public class Player {
 		
 		this.setScore(money);
 		
-		
+		this.foodYield = 0;
+		this.energyYield = 0;
+		this.oreYield = 0;
 	}
 
 	/*
@@ -144,7 +154,65 @@ public class Player {
 	public Clock getTimer(){
 		return timer;
 	}
-
+	public boolean hasMule(){
+		return hasMule;
+	}
+	
+	public int getOreYield(){
+		return this.oreYield;
+	}
+	public int getEnergyYield(){
+		return this.energyYield;
+	}
+	public int getFoodYield(){
+		return this.foodYield;
+	}
+	
+	public void increaseOreYield( int amount ){
+		this.oreYield += amount;
+	}
+	public void increaseEnergyYield( int amount ){
+		this.energyYield += amount;
+	}
+	public void increaseFoodYield( int amount ){
+		this.foodYield += amount;
+	}
+	
+	
+	/*
+	 * putMule method, to be implemented after MULE class created
+	 * 
+	 * public boolean putMule(Mule m, Tile t){
+	 * 		if(!hasTile(t) || !hasMule() || t.hasMule()){
+	 * 			throw new IllegalPlantException( e );
+	 * 		}
+	 * 		plantedMules.add(m);
+	 * 
+	 * 		switch (m.type() ){
+	 * 			case "ore":
+	 * 				increaseOreYield(t.getOreYield);
+	 * 				break;
+	 * 			case "energy":
+	 * 				increaseEnergyYield(t.getEnergyYield);
+	 * 				break;
+	 * 			case "food":
+	 * 				increaseFoodYield(t.getFoodYield);
+	 * 				break;
+	 * }		}
+	 * 
+	 * 
+	 */
+	
+	/*
+	 * Helper method for putMule
+	 */
+	public boolean hasTile(Tile t){
+		for(Tile t1: this.ownedTiles){
+			if(t.equals(t1)) return true;
+		}
+		return false;
+	}
+	
 	public int goToPub(int timeLeft, int round) {
 
 		timer.stopTimer();
@@ -211,4 +279,8 @@ public class Player {
 		
 		return moneyBonus;
 	}
+	
+	
+	
+	
 }
