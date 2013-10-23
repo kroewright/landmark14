@@ -87,8 +87,8 @@ public class Clock {
 	    	}
 	    	
 	    	
-	    	JOptionPane.showMessageDialog(town, (players[turn].getName() + " begin production phase!"), "Production Phase"
-					, JOptionPane.INFORMATION_MESSAGE);
+	    	JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
+	    			, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
 	    	
 	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
 	    	map.setProduction(productionTurn);

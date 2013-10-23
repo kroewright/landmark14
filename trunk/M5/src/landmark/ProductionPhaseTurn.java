@@ -12,20 +12,18 @@ public class ProductionPhaseTurn {
 	private Overworld map;
 	private Clock timer;
 	private Player[] players;
-	private static JPanel driver;
-	private static CardLayout layout;
 	
 	public ProductionPhaseTurn(Player[] players, Overworld map) {
 		this.map = map;
 		this.players = players;
-		//town = new TownPanel();
 		
 		if(turn == 0) {
 			productionRound += 1;
+			System.out.println(productionRound);
 		}
 		
+		town = new TownPanel(players[turn], productionRound);
 		timer = new Clock(players, productionRound, turn, town, map);
-		town = new TownPanel(players[turn], productionRound, timer.getCurrentTime());
 		
 		if(turn == (players.length - 1)) {
     		turn = 0;

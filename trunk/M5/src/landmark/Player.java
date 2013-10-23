@@ -147,6 +147,7 @@ public class Player {
 
 	public int goToPub(int timeLeft, int round) {
 
+		timer.stopTimer();
 		final int bonus1 = 50;
 		final int bonus2 = 100; 
 		final int bonus3 = 150;

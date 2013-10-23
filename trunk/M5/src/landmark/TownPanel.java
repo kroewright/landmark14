@@ -68,23 +68,17 @@ import java.awt.Font;
 
 public class TownPanel extends JPanel {
 	
-	//private static int productionRound = 0;
 	final private int productionRound;
 	private Player player;
-	private final int timeLeft;
-	//private Clock timer;
 	JPanel panel;
 	private JLabel time;
 
 	//Sets the player and the layout for Production Phase
-	public TownPanel(final Player player, final int productionRound, final int timeLeft){		
+	public TownPanel(final Player player, final int productionRound){		
 		this.player = player;
 		this.productionRound = productionRound;
 		
-		this.timeLeft = timeLeft;			
-		//timer = new Clock(player, productionRound, this);
 		setLayout(new BorderLayout(0, 0));
-
 
 		BufferedImage myPicture = null;
 		//Try-catch for image for selection screen
@@ -131,15 +125,14 @@ public class TownPanel extends JPanel {
 				btnPub.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
+						Clock timer = player.getTimer();
+						int timeLeft = timer.getCurrentTime();
 						JOptionPane.showMessageDialog(panel, "You just got a $" +
 								player.goToPub(timeLeft, productionRound) +
-								" money bonus");
-						//System.out.println("money = " + currentPlayer.getMoney()); //to test it
+								" money bonus! \nMoney: $" + player.getMoney());
 					
 						//Ends a player's turn and activate the another player
 						
-						    Clock timer = player.getTimer();
-						    timer.stopTimer();
 						    int turn = timer.getTurn();
 						    Overworld map = timer.getMap();
 						    Player[] players = timer.getPlayers();
@@ -147,15 +140,15 @@ public class TownPanel extends JPanel {
 						    	
 						    	if(timer.getTurn() == (players.length - 1)) {
 						    		turn = 0;
-						    		Player[] p = map.orderPlayersByScore(players);
+						    		players = map.orderPlayersByScore(players);
 						    	}
 						    	else {
 						    		turn += 1;
 						    	}
 						    	
 						    	
-						    	JOptionPane.showMessageDialog(panel, (players[turn].getName() + " begin production phase!"), "Production Phase"
-										, JOptionPane.INFORMATION_MESSAGE);
+						    	JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
+						    			, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
 						    	
 						    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
 						    	map.setProduction(productionTurn);
@@ -181,10 +174,10 @@ public class TownPanel extends JPanel {
 		panel.add(time);
 
 		//Labels time left on the game screen
-		JLabel lblTimeLeft = new JLabel("Time Left");
+		JLabel lblTimeLeft = new JLabel("Time Left: ");
 		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTimeLeft.setForeground(Color.YELLOW);
-		lblTimeLeft.setBounds(187, 578, 71, 31);
+		lblTimeLeft.setBounds(187, 578, 100, 31);
 		panel.add(lblTimeLeft);
 
 		JLabel lblNewLabel = new JLabel("New label");
