@@ -76,6 +76,8 @@ public class TownPanel extends JPanel {
 	JPanel panel;
 	private JLabel time;
 	private JButton btnPub;
+	private JButton btnMap;
+	private GameDriver driver;
 
 	//Sets the player and the layout for Production Phase
 	public TownPanel(final Player[] players, final int productionRound, 
@@ -137,7 +139,22 @@ public class TownPanel extends JPanel {
 		JButton btnMules = new JButton("Mules");
 		btnMules.setBounds(1040, 457, 89, 100);
 		panel.add(btnMules);
-
+		
+		//Button for Map
+		btnMap = new JButton("Go Back to Map");
+		btnMap.setBounds(1175, 550, 150, 100);
+		panel.add(btnMap);
+		
+		/**
+		 * Allows the user to go back and forth between the map
+		 * and town
+		 */
+		btnMap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg2) {
+				driver.changeToMapPanel(map);
+			}
+		});
+		
 		//Arrow keys for time left label
 		time = new JLabel();
 		time.setForeground(Color.YELLOW);
@@ -167,7 +184,6 @@ public class TownPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				int timeLeft = timer.getCurrentTime();
-				GameDriver driver = timer.getPanel();
 
 				JOptionPane.showMessageDialog(panel, "You just got a $" +
 						player.goToPub(timeLeft, productionRound) +
@@ -176,7 +192,7 @@ public class TownPanel extends JPanel {
 				//Ends the player's turn and activate the another player
 				if(turn == (players.length - 1)) {
 					turn = 0;
-					players = map.orderPlayersByScore(players);
+					//players = map.orderPlayersByScore(players);
 				}
 				else {
 					turn += 1;
@@ -198,5 +214,9 @@ public class TownPanel extends JPanel {
 
 	public JPanel getMainComponent(){
 		return panel;
+	}
+	
+	public void setDriver(GameDriver driver) {
+		this.driver = driver;
 	}
 }

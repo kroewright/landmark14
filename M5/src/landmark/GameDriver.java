@@ -87,11 +87,13 @@ public class GameDriver{
 		/**
 		 * Action listener for when a player only clicks on the town after the selection phase is finished.
 		 */
-		overworld.addMapButtonActionListener(new ActionListener() {
+		overworld.addTownButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
 					ProductionPhaseTurn turn = overworld.getProductionTurn();
+					turn.setDriver(driver);
 					TownPanel town = turn.getTownPanel();
+					town.setDriver(driver);
 					timer = turn.getClock();
 					timer.setPanel(driver);
 					mainPanel.add(town.getMainComponent(),TOWN);
