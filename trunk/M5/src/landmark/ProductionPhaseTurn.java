@@ -12,6 +12,7 @@ public class ProductionPhaseTurn {
 	private Overworld map;
 	private Clock timer;
 	private Player[] players;
+	private GameDriver driver;
 	
 	public ProductionPhaseTurn(Player[] players, Overworld map) {
 		this.map = map;
@@ -33,6 +34,14 @@ public class ProductionPhaseTurn {
     	else {
     		turn += 1;
     	}
+	}
+	
+	public void setDriver(GameDriver driver) {
+		this.driver = driver;
+	}
+	
+	public GameDriver getDriver() {
+		return driver;
 	}
 	
 	public TownPanel getTownPanel() {

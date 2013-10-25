@@ -86,7 +86,9 @@ public class Overworld extends JPanel {
 		if(mapType == 1){
 			p = tileFactory(i, j);
 			}
-		else p = randTiles[i][j];
+		else {
+			p = randTiles[i][j];
+		}
 		
 		JButton button = new JButton();
 		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
@@ -156,7 +158,7 @@ public class Overworld extends JPanel {
 	/**
 	 * Action listener for when a player only clicks on the town after the selection phase is finished.
 	 */
-	public void addMapButtonActionListener(ActionListener listener) {
+	public void addTownButtonActionListener(ActionListener listener) {
 			buttons[2][4].addActionListener(listener);
 	}
 	
