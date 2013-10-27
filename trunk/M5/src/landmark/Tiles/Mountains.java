@@ -173,5 +173,9 @@ public class Mountains extends Tile{
 	public boolean hasMule(){
 		return hasMule;
 	}
+	
+	public void setHasMule(boolean b){
+		hasMule = b;
+	}
 
 }

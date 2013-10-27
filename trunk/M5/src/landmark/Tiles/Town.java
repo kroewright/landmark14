@@ -88,4 +88,7 @@ public class Town extends Tile{
 		//So that MULE can never be planted
 		return true;
 	}
+	public void setHasMule(boolean b){
+		hasMule = b;
+	}
 }
