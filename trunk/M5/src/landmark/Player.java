@@ -17,7 +17,7 @@ public class Player {
 	private int difficulty;
 	private int race;
 	private ArrayList<Tile> ownedTiles;
-	//private ArrayList<Mule> planetedMules;
+	private ArrayList<Mule> plantedMules;
 	private boolean inStore;
 	private boolean hasMule;
 	
@@ -99,8 +99,8 @@ public class Player {
 	 * Getter for owner tiles.
 	 * @return tiles
 	 */
-	public Tile getTile() {
-		return ownedTiles.get(0);
+	public ArrayList<Tile> getTilesOwned() {
+		return ownedTiles;
 	}
 
 	/**
@@ -179,36 +179,44 @@ public class Player {
 	}
 	
 	
-	/*
-	 * putMule method, to be implemented after MULE class created
-	 * 
-	 * public boolean putMule(Mule m, Tile t){
-	 * 		if(!hasTile(t) || !hasMule() || t.hasMule()){
-	 * 			throw new IllegalPlantException( e );
-	 * 			return false;
-	 * 		}
-	 * 		plantedMules.add(m);
-	 * 
-	 * 		switch (m.type() ){
-	 * 			case "ore":
-	 * 				increaseOreYield(t.getOreYield);
-	 * 				break;
-	 * 			case "energy":
-	 * 				increaseEnergyYield(t.getEnergyYield);
-	 * 				break;
-	 * 			case "food":
-	 * 				increaseFoodYield(t.getFoodYield);
-	 * 				break;
-	 * 		}
-	 * 
-	 * 		// Now need some functionality for showing the Mule Image
-	 * 		overworld.getTileAt(t.getLocation().addLabel( new JLabel(m.getImage) ) );
-	 * 		overworld.refresh;
-	 * 
-	 * 		return true;
-	 * 
-	 * }
-	 */
+	
+	
+	
+	  /*
+	   * Incomplete method, needs to have exception functionality altered (Irina)
+	   * and then addition of graphics changing when successful.
+	   */
+	  public boolean putMule(Mule m, Tile t){
+	  		if(!hasTile(t) || !hasMule() || t.hasMule()){
+	  			// throw new IllegalPlantException( e );
+	  			return false;
+	  		}
+	  		plantedMules.add(m);
+	  
+	  		switch (m.getType() ){
+	  			case "ore":
+	  				increaseOreYield(t.getOYield());
+	  				break;
+	  			case "energy":
+	  				increaseEnergyYield(t.getEYield());
+	  				break;
+	  			case "food":
+	  				increaseFoodYield(t.getFYield());
+	  				break;
+	  		}
+	  
+	  		// Now need some functionality for showing the Mule Image
+	  		//overworld.getTileAt(t.getLocation().addLabel( new JLabel(m.getImage) ) );
+	  		//overworld.refresh();
+	  		
+	  		
+	  		t.setHasMule(true);
+	  		this.hasMule = false;
+	  		
+	 		return true;
+	  
+	  }
+	
 	
 	/*
 	 * Helper method for putMule
