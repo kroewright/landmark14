@@ -22,6 +22,7 @@ public abstract class Tile {
 	private int energyYield;
 	private int oreYield;
 	
+	
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
 	 * private boolean hasMule;
@@ -41,4 +42,8 @@ public abstract class Tile {
 	public abstract boolean equals(Tile t);
 	//0 for mountains 1 for plains 2 for river 3 for town
 	public abstract int getTileType();
+	
+	
+	private boolean hasMule;
+	public abstract boolean hasMule();
 }
