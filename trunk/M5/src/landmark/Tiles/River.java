@@ -150,5 +150,10 @@ public class River extends Tile {
 		if(this.getLocation() == t.getLocation()) return true;
 		return false;
 	}
+	
+	private boolean hasMule;
+	public boolean hasMule(){
+		return hasMule;
+	}
 
 }

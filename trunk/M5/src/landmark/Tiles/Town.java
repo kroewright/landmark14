@@ -82,4 +82,10 @@ public class Town extends Tile{
 		return false;
 	}
 
+	
+	private boolean hasMule;
+	public boolean hasMule(){
+		//So that MULE can never be planted
+		return true;
+	}
 }

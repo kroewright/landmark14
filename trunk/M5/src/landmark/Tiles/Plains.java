@@ -148,5 +148,10 @@ public class Plains extends Tile {
 		return false;
 	}
 	
+
+	private boolean hasMule;
+	public boolean hasMule(){
+		return hasMule;
+	}
 	
 }

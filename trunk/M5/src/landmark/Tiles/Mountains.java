@@ -167,5 +167,11 @@ public class Mountains extends Tile{
 	public int getTileType() {
 		return tileType;
 	}
+	
+
+	private boolean hasMule;
+	public boolean hasMule(){
+		return hasMule;
+	}
 
 }
