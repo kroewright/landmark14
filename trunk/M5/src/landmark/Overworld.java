@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -305,7 +306,9 @@ public class Overworld extends JPanel {
 	
 	/**
 	 * Tile factory that places tiles on the map.
-	 *
+	 * @param i - row
+	 * @param j - column
+	 * @return Tile - tile created
 	 */
 	public static Tile tileFactory(int i, int j){
 		int numOfColumns = 9;
@@ -340,7 +343,7 @@ public class Overworld extends JPanel {
 	 * This function first creates a linked list holding a tuple
 	 * of the row and column for each tile. it then uses a random
 	 * number generator to add it to a randomized list of coordinates
-	 * name randomCoors. Which would look as follows:
+	 * named randomCoors. Which would look as follows:
 	 *  [ [1,4] , [2,3] , [0,8] ..... ] etc. 
 	 *  The coordinates are then placed in a Tile[][] called
 	 *  randTiles, after being instantiated.
@@ -409,6 +412,25 @@ public class Overworld extends JPanel {
 		
 		return players;
 	}
+	
+	
+	/*
+	 * Note for future construction:
+	 * 	
+	 * In order to allow Mule's to appear graphically on the screen, methods allowing
+	 * each tile in the grid to have items added to them need to be implemented. 
+	 * Some sort of getTileAt(i,j) and then addToTile(Tile t, JLabel mulePic) should be made
+	 * 
+	 * -Mason
+	 */
+	public Tile getTileAt(int i, int j){
+		return null;
+	}
+	
+	public void addToTile(Tile t, JLabel mulePicture){
+		
+	}
+	
 	
 	
 }
