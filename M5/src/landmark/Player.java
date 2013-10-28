@@ -291,7 +291,7 @@ public class Player {
 		}	
 
 		int random = randomGenerator.nextInt(timeBonus+1);
-		moneyBonus = roundBonus * random;        //randomGenerator.nextInt(timeBonus+1);
+		moneyBonus = roundBonus + random;        //randomGenerator.nextInt(timeBonus+1);
 		
 		if(moneyBonus > maxBonus)
 			moneyBonus = maxBonus;
