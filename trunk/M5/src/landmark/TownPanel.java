@@ -73,7 +73,7 @@ public class TownPanel extends JPanel {
 	private int productionRound;
 	private Overworld map;
 	private  int turn;
-	JPanel panel;
+	private JPanel panel;
 	private JLabel time;
 	private JButton btnPub;
 	private JButton btnMap;
@@ -178,6 +178,13 @@ public class TownPanel extends JPanel {
 		btnPub.addActionListener(listener);
 	}
 	
+	/**
+	 * This method is called when the user presses the pub button.
+	 * The appropriate amount of money is given to the player based
+	 * on how much time is left once the pub button is clicked.
+	 * 
+	 * @param timer
+	 */
 	public void setPub(final Clock timer) {
 	//ActionListener for btnPub
 		addPubBtnActionListener(new ActionListener() {
@@ -208,14 +215,30 @@ public class TownPanel extends JPanel {
 		});
 	}
 
+	/**
+	 * Returns the JLabel for the clock.
+	 * 
+	 * @return time
+	 */
 	public JLabel getTimeLabel() {
 		return time;
 	}
 
+	/**
+	 * Returns the town panel as a JPanel
+	 * 
+	 * @return panel
+	 */
 	public JPanel getMainComponent(){
 		return panel;
 	}
 	
+	/**
+	 * Sets the GameDriver for the TownPanel in order
+	 * to update the graphics.
+	 * 
+	 * @param driver
+	 */
 	public void setDriver(GameDriver driver) {
 		this.driver = driver;
 	}
