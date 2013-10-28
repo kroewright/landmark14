@@ -134,10 +134,7 @@ public class River extends Tile {
 					break;
 			}
 		}
-		
-		
 		this.file = imgLink;
-
 	}
 	
 	@Override

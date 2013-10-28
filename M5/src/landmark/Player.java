@@ -130,6 +130,14 @@ public class Player {
 	public int getFood() {
 		return food;
 	}
+	
+	public int getEnergy() {
+		return energy;
+	}
+	
+	public int getOre() {
+		return ore;
+	}
 
 	public int getScore(){
 		return score;
