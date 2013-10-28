@@ -1,17 +1,29 @@
 package landmark;
 
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -33,6 +45,8 @@ public class Overworld extends JPanel {
 	private Tile[][] tiles = new Tile[5][9];
 	private static Tile[][] randTiles = new Tile[5][9];
 	private JPanel panel;
+	private JPanel grid;
+	private JPanel playerPanel;
 	private JButton[][] buttons = new JButton[5][9];
 	private Player[] players;
 	private int selectionRounds = 0;
@@ -42,14 +56,26 @@ public class Overworld extends JPanel {
 	private int numberOfPlayers;
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
 	private ProductionPhaseTurn productionTurn;
-	private TownPanel town;
+	private JList player1;
+	private JList player2;
+	private JList player3;
+	private JList player4;
+	private String player1Name;
+	private String player2Name;
+	private String player3Name;
+	private String player4Name;
 	
 	/**
      * Create the panel.
 	 */
 	public Overworld() {
-		super(new GridLayout(5, 9));
-		setPreferredSize(new Dimension(1469, 720));
+		super(new BorderLayout());
+		grid = new JPanel(new GridLayout(5, 9));
+		add(grid, BorderLayout.CENTER);
+		playerPanel = new JPanel();
+		playerPanel.setBackground(new Color(207,181,59));
+		add(playerPanel, BorderLayout.SOUTH);
+		setPreferredSize(new Dimension(1480, 820));
 		setMapType(mapType);
 	}
 	
@@ -95,7 +121,7 @@ public class Overworld extends JPanel {
 		button.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Tiles/" + p.getImage())));
 		buttons[i][j] = button;
 		tiles[i][j] = p;
-		add(button);
+		grid.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(selectionSkips < numberOfPlayers) {
@@ -130,6 +156,7 @@ public class Overworld extends JPanel {
 								else {
 									if(tiles[i][j].getOwner() == null) {
 										players[playerTurn].buyLandSelectionPhase(tiles[i][j]);
+										setPlayerPanel(numberOfPlayers);
 										buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
 												getResource("Tiles/" + tiles[i][j].getImage())));
 
@@ -266,6 +293,29 @@ public class Overworld extends JPanel {
 	public void setPlayers(Player[] people) {
 		players = people;
 		numberOfPlayers = players.length;
+		
+		switch(numberOfPlayers) {
+			case 1:
+				player1Name = players[0].getName();
+				break;
+			case 2:
+				player1Name = players[0].getName();
+				player2Name = players[1].getName();
+				break;
+			case 3:
+				player1Name = players[0].getName();
+				player2Name = players[1].getName();
+				player3Name = players[2].getName();
+				break;
+			case 4:
+				player1Name = players[0].getName();
+				player2Name = players[1].getName();
+				player3Name = players[2].getName();
+				player4Name = players[3].getName();
+				break;
+		}
+		
+		setPlayerPanel(numberOfPlayers);
 	}
 	
 	public void setProduction(ProductionPhaseTurn turn) {
@@ -431,6 +481,101 @@ public class Overworld extends JPanel {
 		
 	}
 	
-	
-	
+	/**
+	 * Creates the panel on the bottom of the map so players
+	 * can see their metrics.
+	 * 
+	 * @param numOfPlayers
+	 */
+	public void setPlayerPanel(int numOfPlayers) {
+		
+		/**
+		 * If 1 players has been selected,
+		 * create a JList for him.
+		 */
+		if(numOfPlayers > 0) {
+			for(Player p : players) {
+				if(player1Name == p.getName()) {
+					DefaultListModel player1Info = new DefaultListModel();
+					player1Info.addElement(player1Name);
+					player1Info.addElement("Money: $" + p.getMoney());
+					player1Info.addElement("Food: " + p.getFood());
+					player1Info.addElement("Energy: " + p.getEnergy());
+					player1Info.addElement("Ore: " + p.getOre());
+					if(player1 != null) {
+						playerPanel.remove(player1);
+					}
+					player1 = new JList(player1Info);
+					playerPanel.add(player1);
+				}
+			}
+		}
+		
+		/**
+		 * If 2 players have been selected,
+		 * create JList for another player.
+		 */
+		if(numOfPlayers > 1) {
+			for(Player p : players) {
+				if(player2Name == p.getName()) {
+					DefaultListModel player2Info = new DefaultListModel();
+					player2Info.addElement(player2Name);
+					player2Info.addElement("Money: $" + p.getMoney());
+					player2Info.addElement("Food: " + p.getFood());
+					player2Info.addElement("Energy: " + p.getEnergy());
+					player2Info.addElement("Ore: " + p.getOre());
+					if(player2 != null) {
+						playerPanel.remove(player2);
+					}
+					player2 = new JList(player2Info);
+					playerPanel.add(player2);
+				}
+			}
+		}
+
+		/**
+		 * If 3 players have been selected,
+		 * create another JList.
+		 */
+		if(numOfPlayers > 2) {
+			for(Player p : players) {
+				if(player3Name == p.getName()) {
+					DefaultListModel player3Info = new DefaultListModel();
+					player3Info.addElement(player3Name);
+					player3Info.addElement("Money: $" + p.getMoney());
+					player3Info.addElement("Food: " + p.getFood());
+					player3Info.addElement("Energy: " + p.getEnergy());
+					player3Info.addElement("Ore: " + p.getOre());
+					if(player3 != null) {
+						playerPanel.remove(player3);
+					}
+					player3 = new JList(player3Info);
+					playerPanel.add(player3);
+				}
+			}
+		}
+
+		/**
+		 * If 4 players have been selected,
+		 * create another JList.
+		 */
+		if(numOfPlayers > 3) {
+			for(Player p : players) {
+				if(player4Name == p.getName()) {
+					DefaultListModel player4Info = new DefaultListModel();
+					player4Info.addElement(player4Name);
+					player4Info.addElement("Money: $" + p.getMoney());
+					player4Info.addElement("Food: " + p.getFood());
+					player4Info.addElement("Energy: " + p.getEnergy());
+					player4Info.addElement("Ore: " + p.getOre());
+					if(player4 != null) {
+						playerPanel.remove(player4);
+					}
+					player4 = new JList(player4Info);
+					playerPanel.add(player4);
+				}
+			}
+		}
+		updateUI();
+	}	
 }

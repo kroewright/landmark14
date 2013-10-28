@@ -121,7 +121,7 @@ public class GameDriver{
 	private static void createAndShowUI() {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 1469, 720);
+		frame.setBounds(100, 100, 1480, 820);
 
 		frame.setContentPane(new GameDriver().getPanel());
 		//frame.getContentPane().add(new GameDriver().getPanel());
