@@ -14,6 +14,14 @@ public class ProductionPhaseTurn {
 	private Player[] players;
 	private GameDriver driver;
 	
+	/**
+	 * Constructor for a turn in the production phase. This
+	 * class creates a TownPanel and a clock for each player's 
+	 * turn.
+	 * 
+	 * @param players
+	 * @param map
+	 */
 	public ProductionPhaseTurn(Player[] players, Overworld map) {
 		this.map = map;
 		this.players = players;
@@ -36,18 +44,38 @@ public class ProductionPhaseTurn {
     	}
 	}
 	
+	/**
+	 * Sets the GameDriver JPanel so graphics can be updated.
+	 * 
+	 * @param driver
+	 */
 	public void setDriver(GameDriver driver) {
 		this.driver = driver;
 	}
 	
+	/**
+	 * Gets the GameDriver JPanel.
+	 * 
+	 * @return driver
+	 */
 	public GameDriver getDriver() {
 		return driver;
 	}
 	
+	/**
+	 * Gets the TownPanel JPanel.
+	 * 
+	 * @return town
+	 */
 	public TownPanel getTownPanel() {
 		return town;
 	}
 	
+	/**
+	 * Gets the working clock for this turn.
+	 * 
+	 * @return timer
+	 */
 	public Clock getClock() {
 		return timer;
 	}
