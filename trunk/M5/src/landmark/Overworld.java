@@ -273,6 +273,10 @@ public class Overworld extends JPanel {
 		return panel;
     }
 	
+	public JPanel getPlayerPanel() {
+		return playerPanel;
+	}
+	
 	//Returns number of player turns
 	public int getPlayerTurns() {
 		return playerTurn;

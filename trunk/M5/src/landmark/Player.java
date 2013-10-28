@@ -289,11 +289,10 @@ public class Player {
 		else if(timeLeft > 0) {                     // include 0?
 			timeBonus = bonus1;
 		}	
-		System.out.println("timeBonus = " + timeBonus);      //to test it
-		System.out.println("roundBonus = " + roundBonus);
+
 		int random = randomGenerator.nextInt(timeBonus+1);
 		moneyBonus = roundBonus * random;        //randomGenerator.nextInt(timeBonus+1);
-		System.out.println("random = " + random);     //random int or double?? 
+		
 		if(moneyBonus > maxBonus)
 			moneyBonus = maxBonus;
 		

@@ -81,14 +81,13 @@ public class TownPanel extends JPanel {
 
 	//Sets the player and the layout for Production Phase
 	public TownPanel(final Player[] players, final int productionRound, 
-			final int turn, final Overworld map){		
+			final int turn, final Overworld map){
+		super(new BorderLayout());
 		this.players = players;
 		player = players[turn];
 		this.productionRound = productionRound;
 		this.turn = turn;
 		this.map = map;
-
-		setLayout(new BorderLayout(0, 0));
 
 		BufferedImage myPicture = null;
 		//Try-catch for image for selection screen
@@ -101,9 +100,8 @@ public class TownPanel extends JPanel {
 		}
 
 		panel = new JPanel();
-
-		add(panel);
 		panel.setLayout(null);
+		add(panel);
 
 		//Button for energy
 		JButton Energy = new JButton("Energy");
@@ -168,7 +166,7 @@ public class TownPanel extends JPanel {
 		lblTimeLeft.setBounds(187, 578, 100, 31);
 		panel.add(lblTimeLeft);
 
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(new ImageIcon(TownPanel.class.getResource("/Tiles/storeBig.gif")));
 		lblNewLabel.setBounds(0, 0, 1449, 720);
 		panel.add(lblNewLabel);
@@ -191,6 +189,7 @@ public class TownPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				int timeLeft = timer.getCurrentTime();
+				System.out.println(timeLeft);
 
 				JOptionPane.showMessageDialog(panel, "You just got a $" +
 						player.goToPub(timeLeft, productionRound) +
@@ -208,6 +207,7 @@ public class TownPanel extends JPanel {
 				JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
 						, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
 
+				map.setPlayerPanel(players.length);
 				ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
 				map.setProduction(productionTurn);
 				driver.changeToMapPanel(map);
