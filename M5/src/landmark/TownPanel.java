@@ -213,7 +213,6 @@ public class TownPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				int timeLeft = timer.getCurrentTime();
-				System.out.println(timeLeft);
 
 				JOptionPane.showMessageDialog(panel, "You just got a $" +
 						player.goToPub(timeLeft, productionRound) +
@@ -243,6 +242,13 @@ public class TownPanel extends JPanel {
 		return this.player;
 	}
 	
+	public Player[] getPlayers() {
+		return players;
+	}
+	
+	public Overworld getMap() {
+		return map;
+	}
 	
 	public TownPanel getTP(){
 		return this;

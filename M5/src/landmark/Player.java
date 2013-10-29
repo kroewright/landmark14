@@ -131,24 +131,24 @@ public class Player {
 		return food;
 	}
 	
-	public int setFood(int newtotal){
-		return newtotal;
+	public void setFood(int newtotal){
+		food = newtotal;
 	}
 	
 	public int getEnergy() {
 		return energy;
 	}
 	
-	public int setEnergy(int newtotal){
-		return newtotal;
+	public void setEnergy(int newtotal){
+		energy = newtotal;
 	}
 	
 	public int getOre() {
 		return ore;
 	}
 
-	public int setOre(int newtotal){
-		return newtotal;
+	public void setOre(int newtotal){
+		ore =  newtotal;
 	}
 	public int getScore(){
 		return score;
