@@ -223,6 +223,10 @@ public class TownPanel extends JPanel {
 		return (TownPanel) this.panel;
 	}
 	
+	public JPanel getPanel(){
+		return panel;
+	}
+	
 	
 	/**
 	 * Returns the JLabel for the clock.
