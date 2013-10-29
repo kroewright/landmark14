@@ -113,7 +113,7 @@ public class Store {
 			}
 
 		}
-		else System.exit(1);
+		
 	}
 
 
@@ -159,7 +159,7 @@ public class Store {
 			}
 
 		}
-		else System.exit(1);	
+			
 	}
 	
 	public void foodButt() {
@@ -204,7 +204,7 @@ public class Store {
 					}
 	
 		}
-		else System.exit(1);
+		
 	}
 	
 	
@@ -300,6 +300,5 @@ public class Store {
 				
 
 			}
-			else System.exit(1);
-	}
+		}	
 }
