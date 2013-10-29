@@ -166,6 +166,7 @@ public class Player {
 		return difficulty;
 	}
 
+
 	public void setMoney(int i){
 		this.money = i;
 	}
