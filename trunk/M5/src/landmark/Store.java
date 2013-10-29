@@ -85,8 +85,11 @@ public class Store {
 			//check if player has enough money
 			if (player.getMoney() >= totalCost && invOre >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
-				player.setOre(player.getOre() + valInt);
-				invOre= invOre-valInt;
+				int totalOre = player.getOre() + valInt;
+				player.setOre(totalOre);
+				invOre = invOre-valInt;
+				Overworld map = town.getMap();
+				map.setPlayerPanel(town.getPlayers().length);
 			} else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
@@ -130,8 +133,11 @@ public class Store {
 			//check if player has enough money
 			if (player.getMoney() >= totalCost && invEnergy >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
-				player.setEnergy(player.getEnergy() + valInt);
+				int totalEnergy = player.getEnergy() + valInt;
+				player.setEnergy(totalEnergy);
 				invEnergy = invEnergy-valInt;
+				Overworld map = town.getMap();
+				map.setPlayerPanel(town.getPlayers().length);
 			}
 			else {
 				if (player.getMoney() <totalCost){
@@ -176,8 +182,11 @@ public class Store {
 			//check if player has enough money
 			if (player.getMoney() >= totalCost && invFood >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
-				player.setFood(player.getFood() + valInt);
+				int totalFood = player.getFood() + valInt;
+				player.setFood(totalFood);
 				invFood = invFood-valInt;
+				Overworld map = town.getMap();
+				map.setPlayerPanel(town.getPlayers().length);
 			} else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
