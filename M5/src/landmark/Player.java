@@ -131,14 +131,25 @@ public class Player {
 		return food;
 	}
 	
+	public int setFood(int newtotal){
+		return newtotal;
+	}
+	
 	public int getEnergy() {
 		return energy;
+	}
+	
+	public int setEnergy(int newtotal){
+		return newtotal;
 	}
 	
 	public int getOre() {
 		return ore;
 	}
 
+	public int setOre(int newtotal){
+		return newtotal;
+	}
 	public int getScore(){
 		return score;
 	}
@@ -150,8 +161,12 @@ public class Player {
 	public int getMoney(){
 		return money;
 	}
+	
+	public int getDifficulty(){
+		return difficulty;
+	}
 
-	private void setMoney(int i){
+	public void setMoney(int i){
 		this.money = i;
 	}
 
