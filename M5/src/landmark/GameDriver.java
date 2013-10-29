@@ -19,6 +19,7 @@ public class GameDriver{
 	private JPanel mainPanel; 
 	private OpeningScreen openingScreen; 
 	private Selpage selPage; 
+	private Store store;
 	private Overworld overworld;
 	//private ProductionPhase prodPhase;
 	private int numOfPlayers = 0;
@@ -88,7 +89,7 @@ public class GameDriver{
 		 * Action listener for when a player only clicks on the town after the selection phase is finished.
 		 */
 		overworld.addTownButtonActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //BC OF LAW OF DEM. THIS COULD BE MOVED INTO OVERWORLD
 				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
 					ProductionPhaseTurn turn = overworld.getProductionTurn();
 					turn.setDriver(driver);
@@ -98,6 +99,8 @@ public class GameDriver{
 					timer.setPanel(driver);
 					mainPanel.add(town.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
+					Store store= new Store(overworld.getPlayer(), town);
+					PresenterStoreTownPanel.addListeners(town, store);
 				}
 			}
 		});

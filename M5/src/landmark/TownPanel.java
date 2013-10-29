@@ -78,6 +78,10 @@ public class TownPanel extends JPanel {
 	private JButton btnPub;
 	private JButton btnMap;
 	private GameDriver driver;
+	private JButton btnOre;
+	private JButton btnFood;
+	private JButton btnMules;
+	private JButton btnEnergy;
 
 	//Sets the player and the layout for Production Phase
 	public TownPanel(final Player[] players, final int productionRound, 
@@ -103,18 +107,19 @@ public class TownPanel extends JPanel {
 		panel.setLayout(null);
 		add(panel);
 
+		
 		//Button for energy
-		JButton Energy = new JButton("Energy");
-		Energy.setBounds(781, 117, 89, 74);
-		panel.add(Energy);
+		btnEnergy = new JButton("Energy");
+		btnEnergy.setBounds(781, 117, 89, 74);
+		panel.add(btnEnergy);
 
 		//Button for Food
-		JButton Food = new JButton("Food");
-		Food.setBounds(1040, 117, 89, 74);
-		panel.add(Food);
+		btnFood = new JButton("Food");
+		btnFood.setBounds(1040, 117, 89, 74);
+		panel.add(btnFood);
 
 		//Button for Ore
-		JButton btnOre = new JButton("Ore");
+		btnOre = new JButton("Ore");
 		btnOre.setBounds(521, 124, 89, 60);
 		panel.add(btnOre);
 
@@ -134,7 +139,7 @@ public class TownPanel extends JPanel {
 		panel.add(btnLand);
 
 		//Button for Mules
-		JButton btnMules = new JButton("Mules");
+		btnMules = new JButton("Mules");
 		btnMules.setBounds(1040, 457, 89, 100);
 		panel.add(btnMules);
 		
@@ -152,6 +157,8 @@ public class TownPanel extends JPanel {
 				driver.changeToMapPanel(map);
 			}
 		});
+		
+		
 		
 		//Arrow keys for time left label
 		time = new JLabel();
@@ -172,9 +179,26 @@ public class TownPanel extends JPanel {
 		panel.add(lblNewLabel);
 	}
 	
+	public void setOreActionListener(ActionListener E){
+		btnOre.addActionListener(E);
+	}
+	
+	public void setFoodActionListener(ActionListener E){
+		btnFood.addActionListener(E);
+	}
+	
+	public void setEnergyActionListener(ActionListener E){
+		btnEnergy.addActionListener(E);
+	}
+	
+	public void setMulesActionListener(ActionListener E){
+		btnMules.addActionListener(E);
+	}
+	
 	public void addPubBtnActionListener(ActionListener listener) {
 		btnPub.addActionListener(listener);
 	}
+
 	
 	/**
 	 * This method is called when the user presses the pub button.
@@ -219,13 +243,16 @@ public class TownPanel extends JPanel {
 		return this.player;
 	}
 	
+	
 	public TownPanel getTP(){
-		return (TownPanel) this.panel;
+		return this;
 	}
 	
 	public JPanel getPanel(){
 		return panel;
 	}
+	
+	
 	
 	
 	/**

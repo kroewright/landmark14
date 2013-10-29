@@ -22,13 +22,25 @@ public class Store {
 	private JButton btnEnergy;
 	private JButton btnFood;
 	private JButton btnMules;
+	
+	private Mule mule;
+	private String energy;
+	private String ore;
+	private String food;
 
 
 	private int invFood;
 	private int invEnergy;
 	private int invOre;
+	private int invOreMules;
+	private int invFoodMules;
+	private int invEnergyMules;
 	private int invMules;
 	private int difficulty;
+	
+	private final int MULE_FOOD = 25;
+	private final int MULE_ENERGY = 50;
+	private final int MULE_ORE = 75;
 
 	private final int FOOD_COST = 30;
 	private final int ENERGY_COST = 25;
@@ -39,8 +51,11 @@ public class Store {
 
 
 	public Store(Player player, TownPanel town) {
-		town = town.getTP();
-		player = town.getPlayer();
+		food= "food";
+		ore= "ore";
+		energy= "energy";
+		this.town = town.getTP();
+		this.player = town.getPlayer();
 		difficulty = player.getDifficulty();
 		if (difficulty== 1){
 			invFood= 16;
@@ -57,194 +72,234 @@ public class Store {
 
 	}
 
-	public void addOreBtnActionListener(ActionListener listener) {
-		btnOre.addActionListener(listener);
-	}
-
-	//if player clicks on ore
-	//ACTION LISTENER
-	public void setOre(final Clock timer) {
-		addOreBtnActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Object[] options = {"Buy", "Sell", "Cancel"};
-				int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
-						"Buy or sell Ore", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-						null, options, null);
-				if (n == JOptionPane.YES_OPTION) { //buy ore
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
-							"Buying Ore", JOptionPane.OK_CANCEL_OPTION);
-					int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-					int totalCost = ORE_COST * valInt;
-					//check if player has enough money
-					if (player.getMoney() >= totalCost && invOre >= valInt){
-						player.setMoney(player.getMoney() - totalCost);
-						player.setOre(player.getOre() + valInt);
-						invOre= invOre-valInt;
-					} else {
-						//DO NOT ALLOW THEM TO BUY
-					}
+	public void oreButt() {
+		Object[] options = {"Buy", "Sell", "Cancel"};
+		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
+				"Buy or sell Ore", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				null, options, null);
+		if (n == JOptionPane.YES_OPTION) { //buy ore
+			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
+					"Buying Ore", JOptionPane.OK_CANCEL_OPTION);
+			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+			int totalCost = ORE_COST * valInt;
+			//check if player has enough money
+			if (player.getMoney() >= totalCost && invOre >= valInt){
+				player.setMoney(player.getMoney() - totalCost);
+				player.setOre(player.getOre() + valInt);
+				invOre= invOre-valInt;
+			} else {
+				if (player.getMoney() <totalCost){
+					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
+						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-
-				else if (n == JOptionPane.NO_OPTION){ //sell ore
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to sell.",
-							"Selling Ore", JOptionPane.OK_CANCEL_OPTION);
-					int valInt= Integer.parseInt(valStr);
-					int moneyGiven = ORE_COST * valInt;
-					//Add the money to players total
-					if (player.getOre() >= valInt){
-						player.setMoney(player.getMoney() + moneyGiven);
-						player.setOre(player.getOre() - valInt);
-						invOre = invOre + valInt;
-					}
-
-				} else { 
-					//CANCEL OPTION	
+				if (invMules < valInt){
+					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
+							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
+
+		else if (n == JOptionPane.NO_OPTION){ //sell ore
+			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to sell.",
+					"Selling Ore", JOptionPane.OK_CANCEL_OPTION);
+			int valInt= Integer.parseInt(valStr);
+			int moneyGiven = ORE_COST * valInt;
+			//Add the money to players total
+			if (player.getOre() >= valInt){
+				player.setMoney(player.getMoney() + moneyGiven);
+				player.setOre(player.getOre() - valInt);
+				invOre = invOre + valInt;
+			}
+
+		}
+		else System.exit(1);
 	}
 
 
-	public void addEnergyBtnActionListener(ActionListener listener) {
-		btnEnergy.addActionListener(listener);
-	}
-
-	//if player clicks on energy
-	//ACTION LISTENER
-	public void setEnergy(final Clock timer) {
-		addEnergyBtnActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Object[] options = {"Buy", "Sell", "Cancel"};
-				int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
-						"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-						null, options, null);
-				if (n == JOptionPane.YES_OPTION) { //buy energy
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to buy.",
-							"Buying Energy", JOptionPane.OK_CANCEL_OPTION);
-					int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-					int totalCost = ENERGY_COST * valInt;
-					//check if player has enough money
-					if (player.getMoney() >= totalCost && invEnergy >= valInt){
-						player.setMoney(player.getMoney() - totalCost);
-						player.setEnergy(player.getEnergy() + valInt);
-						invEnergy = invEnergy-valInt;
-					} else {
-						//DO NOT ALLOW THEM TO BUY
-					}
+	public void energyButt() {
+		Object[] options = {"Buy", "Sell", "Cancel"};
+		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
+				"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				null, options, null);
+		if (n == JOptionPane.YES_OPTION) { //buy energy
+			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to buy.",
+					"Buying Energy", JOptionPane.OK_CANCEL_OPTION);
+			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+			int totalCost = ENERGY_COST * valInt;
+			//check if player has enough money
+			if (player.getMoney() >= totalCost && invEnergy >= valInt){
+				player.setMoney(player.getMoney() - totalCost);
+				player.setEnergy(player.getEnergy() + valInt);
+				invEnergy = invEnergy-valInt;
+			}
+			else {
+				if (player.getMoney() <totalCost){
+					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
+						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-
-				else if (n == JOptionPane.NO_OPTION){ //sell energy
-					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to sell.",
-							"Selling ENERGY", JOptionPane.OK_CANCEL_OPTION);
-					int valInt= Integer.parseInt(valStr);
-					int moneyGiven = ENERGY_COST * valInt;
-					//Add the money to players total
-					if (player.getEnergy() >= valInt){
-						player.setMoney(player.getMoney() + moneyGiven);
-						player.setEnergy(player.getEnergy() - valInt);
-						invEnergy = invEnergy + valInt;
-					}
-
-				} else { 
-					//CANCEL OPTION	
+				if (invMules < valInt){
+					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
+							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
+
+		else if (n == JOptionPane.NO_OPTION){ //sell energy
+			String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to sell.",
+					"Selling ENERGY", JOptionPane.OK_CANCEL_OPTION);
+			int valInt= Integer.parseInt(valStr);
+			int moneyGiven = ENERGY_COST * valInt;
+			//Add the money to players total
+			if (player.getEnergy() >= valInt){
+				player.setMoney(player.getMoney() + moneyGiven);
+				player.setEnergy(player.getEnergy() - valInt);
+				invEnergy = invEnergy + valInt;
+			}
+
+		}
+		else System.exit(1);	
 	}
-
-
-	public void addFoodBtnActionListener(ActionListener listener) {
-		btnFood.addActionListener(listener);
-	}
-
-	//if player clicks on food
-	//ACTION LISTENER
-	public void setFood(final Clock timer) {
-		addFoodBtnActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Object[] options = {"Buy", "Sell", "Cancel"};
-				int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
-						"Buy or sell Food", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-						null, options, null);
-				if (n == JOptionPane.YES_OPTION) { //buy ore
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to buy.",
-							"Buying Food", JOptionPane.OK_CANCEL_OPTION);
-					int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-					int totalCost = FOOD_COST * valInt;
-					//check if player has enough money
-					if (player.getMoney() >= totalCost && invFood >= valInt){
-						player.setMoney(player.getMoney() - totalCost);
-						player.setFood(player.getFood() + valInt);
-						invFood = invFood-valInt;
-					} else {
-						//DO NOT ALLOW THEM TO BUY
-					}
+	
+	public void foodButt() {
+		System.out.println("Food");
+		Object[] options = {"Buy", "Sell", "Cancel"};
+		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
+				"Buy or sell Food", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				null, options, null);
+		if (n == JOptionPane.YES_OPTION) { //buy ore
+			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to buy.",
+					"Buying Food", JOptionPane.OK_CANCEL_OPTION);
+			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+			int totalCost = FOOD_COST * valInt;
+			//check if player has enough money
+			if (player.getMoney() >= totalCost && invFood >= valInt){
+				player.setMoney(player.getMoney() - totalCost);
+				player.setFood(player.getFood() + valInt);
+				invFood = invFood-valInt;
+			} else {
+				if (player.getMoney() <totalCost){
+					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
+						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-
-				else if (n == JOptionPane.NO_OPTION){ //sell food
-					String valStr = JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to sell.",
-							"Selling Food", JOptionPane.OK_CANCEL_OPTION);
-					int valInt= Integer.parseInt(valStr);
-					int moneyGiven = FOOD_COST * valInt;
-					//Add the money to players total
+				if (invMules < valInt){
+					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
+							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		}
+	
+		else if (n == JOptionPane.NO_OPTION){ //sell food
+			String valStr = JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to sell.",
+					"Selling Food", JOptionPane.OK_CANCEL_OPTION);
+			int valInt= Integer.parseInt(valStr);
+			int moneyGiven = FOOD_COST * valInt;
+			//Add the money to players total
 					if (player.getFood() >= valInt){
 						player.setMoney(player.getMoney() + moneyGiven);
 						player.setFood(player.getOre() - valInt);
 						invFood = invFood + valInt;
 					}
-
-				} else { 
-					//CANCEL OPTION	
+	
+		}
+		else System.exit(1);
+	}
+	
+	
+	public void muleButt() {
+		System.out.println("Mules");
+		Object[] options = {"Buy", "Sell", "Cancel"};
+		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
+				"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				null, options, null);
+		if (n == JOptionPane.YES_OPTION) { //buy mules
+			Object[] types = {"Energy", "Ore", "Food"};
+			int m = JOptionPane.showOptionDialog(null, "What kind of MULE would you like to purchase?",
+					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+					null, types, null);					
+			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
+					"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
+			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+			
+			
+			int totalCost=0;
+			if (m==1){
+				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
+				mule.setType(energy);
+			}
+			
+			else if (m==2){
+				totalCost = (MULE_ORE + MULE_COST) * valInt;
+				mule.setType(ore);
+			}
+			
+			else{
+				totalCost = (MULE_FOOD + MULE_COST) * valInt;
+				mule.setType(food);
+			}
+			
+			if (player.getMoney() >= totalCost && invMules >= valInt){
+				player.setMoney(player.getMoney() - totalCost);
+				for (int i=0; i==valInt; i++){
+					player.getMules().add(mule);
+				}					
+				invMules = invMules-valInt;
+			}
+			else {
+				if (player.getMoney() <totalCost){
+					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
+						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
+				}
+				if (invMules < valInt){
+					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
+							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
-	}
-	
-	public void addMulesBtnActionListener(ActionListener listener) {
-		btnMules.addActionListener(listener);
-	}
 
-	//if player clicks on energy
-	//ACTION LISTENER
-	public void setMules(final Clock timer) {
-		addMulesBtnActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Object[] options = {"Buy", "Sell", "Cancel"};
-				int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
-						"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-						null, options, null);
-				if (n == JOptionPane.YES_OPTION) { //buy mules
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
-							"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
-					int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-					int totalCost = ENERGY_COST * valInt;
-					//check if player has enough money
-					if (player.getMoney() >= totalCost && invMules >= valInt){
-						player.setMoney(player.getMoney() - totalCost);
-						player.setMules(player.getEnergy() + valInt);
-						invMules = invMules-valInt;
-					} else {
-						//DO NOT ALLOW THEM TO BUY
-					}
-				}
-
-				else if (n == JOptionPane.NO_OPTION){ //sell mules
-					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
-							"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
-					int valInt= Integer.parseInt(valStr);
-					int moneyGiven = ENERGY_COST * valInt;
-					//Add the money to players total
-					if (player.getMules() >= valInt){
-						player.setMoney(player.getMoney() + moneyGiven);
-						player.setMules(player.getEnergy() - valInt);
-						invMules = invMules + valInt;
-					}
-
-				} else { 
-					//CANCEL OPTION	
-				}
+		else if (n == JOptionPane.NO_OPTION){ //sell mules
+			Object[] types = {"Energy", "Ore", "Food"};
+			int m = JOptionPane.showOptionDialog(null, "What kind of MULE would you like to sell?",
+					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+					null, types, null);					
+			String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
+					"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
+			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+			
+			
+			int totalCost=0;
+			if (m==1){
+				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
+				mule.setType(energy);
 			}
-		}
+			
+			else if (m==2){
+				totalCost = (MULE_ORE + MULE_COST) * valInt;
+				mule.setType(ore);
+			}
+			
+			else{
+				totalCost = (MULE_FOOD + MULE_COST) * valInt;
+				mule.setType(food);
+			}
+			
+			if (player.getMoney() >= valInt){
+				player.setMoney(player.getMoney() + totalCost);
+				for (int i=0; i==valInt; i++){
+					player.getMules().remove(mule);
+				}					
+				invMules = invMules+valInt;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough MULES for this transaction."
+						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+
+			}
+			else System.exit(1);
 	}
-	
 }

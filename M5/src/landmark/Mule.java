@@ -10,4 +10,8 @@ public abstract class Mule {
 	public abstract String getType();
 	public abstract String getImage();
 	
+	public String setType(String type){
+		return type;
+	}
+	
 }
