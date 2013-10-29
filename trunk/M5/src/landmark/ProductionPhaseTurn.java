@@ -67,7 +67,7 @@ public class ProductionPhaseTurn {
 	 * 
 	 * @return town
 	 */
-	public TownPanel getTownPanel() {
+	public TownPanel getTownPanel() { //SOURSE OF POTENTIAL ERROR
 		return town;
 	}
 	

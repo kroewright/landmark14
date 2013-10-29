@@ -182,6 +182,10 @@ public class Player {
 		return hasMule;
 	}
 	
+	public ArrayList<Mule> getMules(){
+		return plantedMules;
+	}
+	
 	public int getOreYield(){
 		return this.oreYield;
 	}
