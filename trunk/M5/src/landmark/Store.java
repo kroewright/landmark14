@@ -200,4 +200,51 @@ public class Store {
 		}
 	}
 	
+	public void addMulesBtnActionListener(ActionListener listener) {
+		btnMules.addActionListener(listener);
+	}
+
+	//if player clicks on energy
+	//ACTION LISTENER
+	public void setMules(final Clock timer) {
+		addMulesBtnActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object[] options = {"Buy", "Sell", "Cancel"};
+				int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
+						"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+						null, options, null);
+				if (n == JOptionPane.YES_OPTION) { //buy mules
+					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
+							"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
+					int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+					int totalCost = ENERGY_COST * valInt;
+					//check if player has enough money
+					if (player.getMoney() >= totalCost && invMules >= valInt){
+						player.setMoney(player.getMoney() - totalCost);
+						player.setMules(player.getEnergy() + valInt);
+						invMules = invMules-valInt;
+					} else {
+						//DO NOT ALLOW THEM TO BUY
+					}
+				}
+
+				else if (n == JOptionPane.NO_OPTION){ //sell mules
+					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
+							"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
+					int valInt= Integer.parseInt(valStr);
+					int moneyGiven = ENERGY_COST * valInt;
+					//Add the money to players total
+					if (player.getMules() >= valInt){
+						player.setMoney(player.getMoney() + moneyGiven);
+						player.setMules(player.getEnergy() - valInt);
+						invMules = invMules + valInt;
+					}
+
+				} else { 
+					//CANCEL OPTION	
+				}
+			}
+		}
+	}
+	
 }
