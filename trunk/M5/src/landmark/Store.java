@@ -18,6 +18,7 @@ public class Store {
 
 	public Player player;
 	public TownPanel town;
+	private Overworld map;
 	private JButton btnOre;
 	private JButton btnEnergy;
 	private JButton btnFood;
@@ -56,8 +57,10 @@ public class Store {
 		energy= "energy";
 		this.town = town.getTP();
 		this.player = town.getPlayer();
+		map = town.getMap();
+		map.setStore(this);
 		difficulty = player.getDifficulty();
-		if (difficulty== 1){
+		if (difficulty == 1){
 			invFood= 16;
 			invEnergy= 16;
 			invOre=0;
@@ -88,7 +91,6 @@ public class Store {
 				int totalOre = player.getOre() + valInt;
 				player.setOre(totalOre);
 				invOre = invOre-valInt;
-				Overworld map = town.getMap();
 				map.setPlayerPanel(town.getPlayers().length);
 			} else {
 				if (player.getMoney() <totalCost){
@@ -136,7 +138,6 @@ public class Store {
 				int totalEnergy = player.getEnergy() + valInt;
 				player.setEnergy(totalEnergy);
 				invEnergy = invEnergy-valInt;
-				Overworld map = town.getMap();
 				map.setPlayerPanel(town.getPlayers().length);
 			}
 			else {
@@ -185,7 +186,6 @@ public class Store {
 				int totalFood = player.getFood() + valInt;
 				player.setFood(totalFood);
 				invFood = invFood-valInt;
-				Overworld map = town.getMap();
 				map.setPlayerPanel(town.getPlayers().length);
 			} else {
 				if (player.getMoney() <totalCost){
@@ -306,8 +306,23 @@ public class Store {
 				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough MULES for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				
-
 			}
-		}	
+		}
+	
+	public int getFoodInv() {
+		return invFood;
+	}
+	
+	public int getEnergyInv() {
+		return invEnergy;
+	}
+	
+	public int getOreInv() {
+		return invOre;
+	}
+	
+	public int getMuleInv() {
+		return invMules;
+	}
+	
 }

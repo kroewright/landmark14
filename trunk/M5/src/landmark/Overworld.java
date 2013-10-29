@@ -60,10 +60,13 @@ public class Overworld extends JPanel {
 	private JList player2;
 	private JList player3;
 	private JList player4;
+	private JList storeInfo;
+	private Store store;
 	private String player1Name;
 	private String player2Name;
 	private String player3Name;
 	private String player4Name;
+	private boolean playerPanelCalled = false;
 	
 	/**
      * Create the panel.
@@ -335,6 +338,10 @@ public class Overworld extends JPanel {
 		frame = window;
 	}
 	
+	public void setStore(Store store) {
+		this.store = store;
+	}
+	
 	//Increments number of times a player has selected no by 1
 	public void increaseSelectionSkips() {
 		selectionSkips += 1;
@@ -583,6 +590,48 @@ public class Overworld extends JPanel {
 					playerPanel.add(player4);
 				}
 			}
+		}
+		
+		if(players[0].getDifficulty() == 1 && playerPanelCalled == false) {
+			DefaultListModel storeModel = new DefaultListModel();
+			storeModel.addElement("Store Inventory");
+			storeModel.addElement("Food: 16");
+			storeModel.addElement("Energy: 16");
+			storeModel.addElement("Smithore: 0");
+			storeModel.addElement("Mules: 25");
+			if(storeInfo != null) {
+				playerPanel.remove(storeInfo);
+			}
+			storeInfo = new JList(storeModel);
+			playerPanel.add(storeInfo);
+			playerPanelCalled = true;
+		}
+		else if(playerPanelCalled == false) {
+			DefaultListModel storeModel = new DefaultListModel();
+			storeModel.addElement("Store Inventory");
+			storeModel.addElement("Food: 8");
+			storeModel.addElement("Energy: 8");
+			storeModel.addElement("Smithore: 8");
+			storeModel.addElement("Mules: 14");
+			if(storeInfo != null) {
+				playerPanel.remove(storeInfo);
+			}
+			storeInfo = new JList(storeModel);
+			playerPanel.add(storeInfo);
+			playerPanelCalled = true;
+		}
+		else {
+			DefaultListModel storeModel = new DefaultListModel();
+			storeModel.addElement("Store Inventory");
+			storeModel.addElement("Food: " + store.getFoodInv());
+			storeModel.addElement("Energy: " + store.getEnergyInv());
+			storeModel.addElement("Smithore: " + store.getOreInv());
+			storeModel.addElement("Mules: " + store.getMuleInv());
+			if(storeInfo != null) {
+				playerPanel.remove(storeInfo);
+			}
+			storeInfo = new JList(storeModel);
+			playerPanel.add(storeInfo);
 		}
 		updateUI();
 	}	
