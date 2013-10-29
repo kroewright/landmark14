@@ -215,6 +215,15 @@ public class TownPanel extends JPanel {
 		});
 	}
 
+	public Player getPlayer(){
+		return this.player;
+	}
+	
+	public TownPanel getTP(){
+		return (TownPanel) this.panel;
+	}
+	
+	
 	/**
 	 * Returns the JLabel for the clock.
 	 * 
