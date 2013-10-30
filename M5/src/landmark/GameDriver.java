@@ -28,7 +28,6 @@ public class GameDriver{
 	private int difficulty = 0;
 	private static JFrame frame;
 	private int productionRound = 1;
-	private Clock timer;
 	private GameDriver driver;
 
 	/**
@@ -79,6 +78,7 @@ public class GameDriver{
 				if(null != players) {             
 					overworld.setPlayers(players);
 					overworld.setFrame(frame);
+					overworld.setDriver(driver);
 					cardlayout.show(mainPanel, MAP);
 					overworld.selectionPhaseTurn();
 				}
@@ -92,11 +92,7 @@ public class GameDriver{
 			public void actionPerformed(ActionEvent e) { //BC OF LAW OF DEM. THIS COULD BE MOVED INTO OVERWORLD
 				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
 					ProductionPhaseTurn turn = overworld.getProductionTurn();
-					turn.setDriver(driver);
 					TownPanel town = turn.getTownPanel();
-					town.setDriver(driver);
-					timer = turn.getClock();
-					timer.setPanel(driver);
 					mainPanel.add(town.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
 					Store store= new Store(overworld.getPlayer(), town);

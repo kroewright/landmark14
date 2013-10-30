@@ -50,6 +50,7 @@ public class Overworld extends JPanel {
 	private JPanel panel;
 	private JPanel grid;
 	private JPanel playerPanel;
+	private GameDriver driver;
 	private JLabel time;
 	private JButton[][] buttons = new JButton[5][9];
 	private Player[] players;
@@ -305,7 +306,8 @@ public class Overworld extends JPanel {
 							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 									, JOptionPane.INFORMATION_MESSAGE);
 
-							productionTurn = new ProductionPhaseTurn(players, this);
+							productionTurn = new ProductionPhaseTurn(players, this, driver);
+							//productionTurn.setDriver(driver);
 						}
 					}
 					else {
@@ -331,7 +333,8 @@ public class Overworld extends JPanel {
 						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
 								, JOptionPane.INFORMATION_MESSAGE);
 
-						productionTurn = new ProductionPhaseTurn(players, this);
+						productionTurn = new ProductionPhaseTurn(players, this, driver);
+						//productionTurn.setDriver(driver);
 					}
 				}
 				else {
@@ -378,6 +381,10 @@ public class Overworld extends JPanel {
 	//a round is complete when all players have gone
 	public int getSelectionRounds() {
 		return selectionRounds;
+	}
+	
+	public void setDriver(GameDriver driver) {
+		this.driver = driver;
 	}
 
 	//Sets the number of players in a given game
