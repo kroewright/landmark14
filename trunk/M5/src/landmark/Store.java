@@ -23,6 +23,7 @@ public class Store {
 	private JButton btnEnergy;
 	private JButton btnFood;
 	private JButton btnMules;
+	private static boolean storeCreated = false;
 	
 	private Mule mule;
 	private String energy;
@@ -30,13 +31,13 @@ public class Store {
 	private String food;
 
 
-	private int invFood;
-	private int invEnergy;
-	private int invOre;
-	private int invOreMules;
-	private int invFoodMules;
-	private int invEnergyMules;
-	private int invMules;
+	private static int invFood = 0;
+	private static int invEnergy = 0;
+	private static int invOre = 0;
+	private static int invOreMules = 0;
+	private static int invFoodMules = 0;
+	private static int invEnergyMules = 0;
+	private static int invMules = 0;
 	private int difficulty;
 	
 	private final int MULE_FOOD = 25;
@@ -57,21 +58,23 @@ public class Store {
 		energy= "energy";
 		this.town = town.getTP();
 		this.player = town.getPlayer();
+		difficulty = player.getDifficulty();
+		if (difficulty == 1 && storeCreated == false){
+			invFood = 16;
+			invEnergy = 16;
+			invOre = 0;
+			invMules = 25;
+			storeCreated = true;
+		}
+		else if(storeCreated == false) {
+			invFood = 8;
+			invEnergy = 8;
+			invOre = 0;
+			invMules = 14;		
+			storeCreated = true;
+		}
 		map = town.getMap();
 		map.setStore(this);
-		difficulty = player.getDifficulty();
-		if (difficulty == 1){
-			invFood= 16;
-			invEnergy= 16;
-			invOre=0;
-			invMules=25;
-		}
-		else{
-			invFood= 8;
-			invEnergy= 8;
-			invOre=0;
-			invMules=14;			
-		}
 
 	}
 
@@ -91,15 +94,14 @@ public class Store {
 				int totalOre = player.getOre() + valInt;
 				player.setOre(totalOre);
 				invOre = invOre-valInt;
-				map.setPlayerPanel(town.getPlayers().length);
 			} else {
-				if (player.getMoney() <totalCost){
+				if (player.getMoney() < totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				if (invMules < valInt){
+				else if (invOre < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Smithore: " + invOre +"\nEnergy: " + invEnergy + "\nFood: " + invFood + "\nMules: " + invMules,
 							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -116,9 +118,12 @@ public class Store {
 				player.setOre(player.getOre() - valInt);
 				invOre = invOre + valInt;
 			}
-
+			else {
+				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough smithore for this transaction."
+						, "Insufficient Amount of Smithore", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
-		
+		map.setPlayerPanel(town.getPlayers().length);
 	}
 
 
@@ -138,16 +143,15 @@ public class Store {
 				int totalEnergy = player.getEnergy() + valInt;
 				player.setEnergy(totalEnergy);
 				invEnergy = invEnergy-valInt;
-				map.setPlayerPanel(town.getPlayers().length);
 			}
 			else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				if (invMules < valInt){
+				else if (invEnergy < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Smithore: " + invOre +"\nEnergy: " + invEnergy + "\nFood: " + invFood + "\nMules: " + invMules,
 							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -164,9 +168,12 @@ public class Store {
 				player.setEnergy(player.getEnergy() - valInt);
 				invEnergy = invEnergy + valInt;
 			}
-
+			else {
+				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough energy for this transaction."
+						, "Insufficient Amount of Energy", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
-			
+		map.setPlayerPanel(town.getPlayers().length);	
 	}
 	
 	public void foodButt() {
@@ -186,15 +193,14 @@ public class Store {
 				int totalFood = player.getFood() + valInt;
 				player.setFood(totalFood);
 				invFood = invFood-valInt;
-				map.setPlayerPanel(town.getPlayers().length);
 			} else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				if (invMules < valInt){
+				else if (invFood < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
+							"Smithore: " + invOre +"\nEnergy: " + invEnergy + "\nFood: " + invFood + "\nMules: " + invMules,
 							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -206,14 +212,17 @@ public class Store {
 			int valInt= Integer.parseInt(valStr);
 			int moneyGiven = FOOD_COST * valInt;
 			//Add the money to players total
-					if (player.getFood() >= valInt){
-						player.setMoney(player.getMoney() + moneyGiven);
-						player.setFood(player.getOre() - valInt);
-						invFood = invFood + valInt;
-					}
-	
+			if (player.getFood() >= valInt){
+				player.setMoney(player.getMoney() + moneyGiven);
+				player.setFood(player.getFood() - valInt);
+				invFood = invFood + valInt;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough food for this transaction."
+						, "Insufficient Amount of Food", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
-		
+		map.setPlayerPanel(town.getPlayers().length);
 	}
 	
 	
