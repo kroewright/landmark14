@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -218,8 +219,6 @@ public class Overworld extends JPanel {
 								//Needs a boolean so exceptions may show up only when trying to place a mule
 								//Now they show up every time you press the tile
 							
-								System.out.println(players[playerTurn].getName());
-								System.out.println(playerTurn);
 								if(!players[playerTurn].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"You do not have a Mule to place");
@@ -232,7 +231,11 @@ public class Overworld extends JPanel {
 									
 									//needs to update variables related to mule
 									players[playerTurn].setCurrentMule(null);
-									players[playerTurn].setHasCurrentMule(false); 
+									players[playerTurn].setHasCurrentMule(false);
+									ArrayList<Mule> mules = players[playerTurn].getMules();
+									System.out.println(mules.get(0).getType());
+									int size = mules.size();
+									mules.remove(size - 1);
 									
 									//what the player should do once the mule is lost?
 									//break;
@@ -244,6 +247,10 @@ public class Overworld extends JPanel {
 									//needs to update variables related to mule
 									players[playerTurn].setCurrentMule(null);
 									players[playerTurn].setHasCurrentMule(false); 
+									ArrayList<Mule> mules = players[playerTurn].getMules();
+									System.out.println(mules.get(0).getType());
+									int size = mules.size();
+									mules.remove(size - 1);
 									
 									//what the player should do once the mule is lost?
 									//break;

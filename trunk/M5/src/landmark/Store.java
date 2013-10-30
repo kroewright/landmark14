@@ -308,129 +308,62 @@ public class Store {
 
 
 	public void muleButt() {
-		System.out.println("Mules");
-		Mule farm = new Farm();
-		player.setCurrentMule(farm);
-		player.setHasCurrentMule(true);
-		System.out.println(player.hasMule());
-		/*
-		Object[] options = {"Buy", "Sell", "Cancel"};
-		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
-				"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-				null, options, null);
-		if (n == JOptionPane.YES_OPTION) { //buy mules
+		int dialogButton = JOptionPane.YES_NO_OPTION;
+		int n = JOptionPane.showConfirmDialog(town, "Would you like to buy a mule?",
+				"Buy a Mule", dialogButton);
+		
+		if (n == JOptionPane.YES_OPTION && invMules != 0 && player.hasMule() == false) { //buy mules
 			Object[] types = {"Energy", "Ore", "Food"};
-			int m = JOptionPane.showOptionDialog(null, "What kind of MULE would you like to purchase?",
-					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
+			int m = JOptionPane.showOptionDialog(town, "What kind of MULE would you like to purchase?",
+					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
 					null, types, null);	
 
-			int valInt = 0;
-			//boolean done = false;  
-			
-			//while(!done) {
-			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
-					"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
-
-			//	try { 
-					valInt = Integer.parseInt(valStr); 
-			//		done = true;
-			//	}
-			//	catch (NumberFormatException e){
-			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-			//	}
-			//}
-
 			int totalCost=0;
-			if (m==1){
-				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
+			if (m == JOptionPane.YES_OPTION) {
+				totalCost = (MULE_ENERGY + MULE_COST);
 				mule = new PPlant();
 				player.setCurrentMule(mule);
 				player.setHasCurrentMule(true);		//added by irina
 			}
 
-			else if (m==2){
-				totalCost = (MULE_ORE + MULE_COST) * valInt;
+			else if (m == JOptionPane.NO_OPTION) {
+				totalCost = (MULE_ORE + MULE_COST);
 				mule = new Mine();
 				player.setCurrentMule(mule);		
 				player.setHasCurrentMule(true);		//added by irina
 			}
 
 			else{
-				totalCost = (MULE_FOOD + MULE_COST) * valInt;
+				totalCost = (MULE_FOOD + MULE_COST);
 				mule = new Farm();
 				player.setCurrentMule(mule);
 				player.setHasCurrentMule(true);    //added by irina
 			}
 
-			if (player.getMoney() >= totalCost && invMules >= valInt){
+			if (player.getMoney() >= totalCost){
 				player.setMoney(player.getMoney() - totalCost);
+				player.getMules().add(mule);
+				/*
 				for (int i=0; i==valInt; i++){
 					player.getMules().add(mule);	
-				}					
-				invMules = invMules-valInt;
+				}
+				*/					
+				invMules = invMules - 1;
 			}
 			else {
-				if (player.getMoney() <totalCost){
-					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
-							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
-				}
-				if (invMules < valInt){
-					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Ore -" + invOre +"\n Energy -" + invEnergy + "\n Food -" + invFood + "\n Mules -" +invMules,
-							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		}
-
-		else if (n == JOptionPane.NO_OPTION){ //sell mules
-			Object[] types = {"Energy", "Ore", "Food"};
-			int m = JOptionPane.showOptionDialog(null, "What kind of MULE would you like to sell?",
-					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-					null, types, null);	
-
-			int valInt = 0;
-			//boolean done = false;  
-
-			//while(!done) {			
-			//	try { 
-					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
-							"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
-					valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-			//		done = true;
-			//	}
-			//	catch (NumberFormatException e){
-			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-			//	}
-			//}
-
-			int totalCost=0;
-			if (m==1){ 
-				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
-				//mule.setType(energy);
-			}
-
-			else if (m==2){
-				totalCost = (MULE_ORE + MULE_COST) * valInt;
-				//mule.setType(ore);
-			}
-
-			else{
-				totalCost = (MULE_FOOD + MULE_COST) * valInt;
-				//mule.setType(food);
-			}
-
-			if (player.getMoney() >= valInt){
-				player.setMoney(player.getMoney() + totalCost);
-				for (int i=0; i==valInt; i++){
-					player.getMules().remove(mule);
-				}					
-				invMules = invMules+valInt;
-			}
-			else {
-				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough MULES for this transaction."
+				JOptionPane.showMessageDialog(town, player.getName() + ", you do not have enough money for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 			}
-			*/
+		}
+		else if(n == JOptionPane.YES_OPTION && invMules == 0) {
+			JOptionPane.showMessageDialog(town, "Sorry, the store doesn't have anymore mules!",
+					"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if(player.hasMule() == true) {
+			JOptionPane.showMessageDialog(town, "You already bought a mule!",
+					"Mule Already Purchased", JOptionPane.INFORMATION_MESSAGE);
+		}
+		map.setPlayerPanel(town.getPlayers().length);
 	}
 
 	public int getFoodInv() {

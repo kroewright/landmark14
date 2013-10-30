@@ -95,8 +95,8 @@ public class GameDriver{
 					TownPanel town = turn.getTownPanel();
 					mainPanel.add(town.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
-					Store store= new Store(overworld.getPlayer(), town);
-					PresenterStoreTownPanel.addListeners(town, store);
+					//Store store= new Store(overworld.getPlayer(), town);
+					//PresenterStoreTownPanel.addListeners(town, store);
 				}
 			}
 		});
