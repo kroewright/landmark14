@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -177,7 +178,21 @@ public class Overworld extends JPanel {
 								
 								
 								//Block for production phase (i.e. planting mules)
-								
+								else if(productionTurn != null){
+									if(!((Player)e.getSource()).hasTile(tiles[i][j]) || 
+											!((Player)e.getSource()).hasMule() || 
+											tiles[i][j].hasMule()){
+										//throw new IllegalPlantException(e);
+										
+										}
+									else{
+										//TODO
+										((Player)e.getSource()).putMule(tiles[i][j]);
+										addToTile(tiles[i][j],((Player)e.getSource()).getCurrentMule().getImage());
+									}
+									
+									
+								}
 								
 								
 								
@@ -523,8 +538,8 @@ public class Overworld extends JPanel {
 		return null;
 	}
 	
-	public void addToTile(Tile t, JLabel mulePicture){
-		
+	public static void addToTile(Tile t, Graphics mulePicture){
+		//TODO 
 	}
 	
 	/**
