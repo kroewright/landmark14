@@ -535,7 +535,7 @@ public class Overworld extends JPanel {
 	 * -Mason
 	 */
 	public Tile getTileAt(int i, int j){
-		return null;
+		return tiles[i][j];
 	}
 	/**
 	 * 
