@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
  * @author k_wright0510
@@ -225,10 +227,22 @@ public class Player {
 	   * and then addition of graphics changing when successful.
 	   */
 	  public boolean putMule(Tile t){
-	  		if(!hasTile(t) || !hasMule() || t.hasMule()){
+		  try{
+	  		/*if(!hasTile(t) || !hasMule() || t.hasMule()){
 	  			// throw new IllegalPlantException( e );
 	  			return false;
-	  		}
+	  		}*/
+	  		
+		  if(!hasTile(t))
+				throw new IllegalPlantException("You cannot place a M.U.L.E on the prperty you do not own");
+
+			if(!hasMule())
+				throw new IllegalPlantException("You do not have a M.U.L.E. to place");
+
+			if(t.hasMule())
+				throw new IllegalPlantException("You cannot place anoter M.U.L.E on this property." +
+						"Only one is allowed ");
+ 
 	  		Mule m = getCurrentMule();
 	  		plantedMules.add(m);
 	  
@@ -253,7 +267,13 @@ public class Player {
 	  		this.hasMule = false;
 	  		
 	 		return true;
-	  
+		  }
+			catch (IllegalPlantException e){ 
+				JOptionPane.showMessageDialog(null, e.getMessage());  
+				return false;
+			}
+
+		  
 	  }
 	
 	
