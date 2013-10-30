@@ -250,14 +250,12 @@ public class Store {
 			if (m==1){
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
 				mule = new PPlant();
-				mule.setType(energy);
 				player.setCurrentMule(mule);
 			}
 			
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
 				mule = new Mine();
-				mule.setType(ore);
 				player.setCurrentMule(mule);
 
 			}
@@ -265,7 +263,6 @@ public class Store {
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
 				mule = new Farm();
-				mule.setType(food);
 				player.setCurrentMule(mule);
 
 			}
@@ -303,17 +300,17 @@ public class Store {
 			int totalCost=0;
 			if (m==1){
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
-				mule.setType(energy);
+				//mule.setType(energy);
 			}
 			
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
-				mule.setType(ore);
+				//mule.setType(ore);
 			}
 			
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
-				mule.setType(food);
+				//mule.setType(food);
 			}
 			
 			if (player.getMoney() >= valInt){
