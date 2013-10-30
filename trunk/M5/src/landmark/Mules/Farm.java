@@ -22,7 +22,7 @@ public class Farm extends Mule {
 		//this.image = "Farm.jpg";
 		File img = new File("Tiles/farm.png");
 		System.out.println(img);
-		BufferedImage anImage = new BufferedImage(99,77, 0);
+		BufferedImage anImage = new BufferedImage(99,77, BufferedImage.TYPE_INT_ARGB);
 		try { anImage = ImageIO.read(img ); } catch (IOException e) { }
 		Graphics g = anImage.createGraphics();
 		image = g;

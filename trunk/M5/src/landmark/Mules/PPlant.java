@@ -22,7 +22,7 @@ public class PPlant extends Mule {
 		//this.image = "PPlant.jpg";
 		File img = new File("Tiles/powerplant.png");
 		System.out.println(img);
-		BufferedImage anImage = new BufferedImage(99,77, 0);
+		BufferedImage anImage = new BufferedImage(99,77, BufferedImage.TYPE_INT_ARGB);
 		try { anImage = ImageIO.read(img ); } catch (IOException e) { }
 		Graphics g = anImage.createGraphics();
 		image = g;
