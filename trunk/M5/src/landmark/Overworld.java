@@ -604,6 +604,20 @@ public class Overworld extends JPanel {
 						playerPanel.remove(player1);
 					}
 					player1 = new JList(player1Info);
+					int color = p.getColor();
+					switch(color) {
+					case 0:
+						player1.setBackground(new Color(207,181,59));
+						break;
+					case 1:
+						player1.setBackground(new Color(0,51,102));
+						player1.setForeground(Color.WHITE);
+						break;
+					case 3:
+						player1.setBackground(Color.BLACK);
+						player1.setForeground(Color.WHITE);
+						break;
+					}
 					playerPanel.add(player1);
 				}
 			}
@@ -626,6 +640,20 @@ public class Overworld extends JPanel {
 						playerPanel.remove(player2);
 					}
 					player2 = new JList(player2Info);
+					int color = p.getColor();
+					switch(color) {
+					case 0:
+						player2.setBackground(new Color(207,181,59));
+						break;
+					case 1:
+						player2.setBackground(new Color(0,51,102));
+						player2.setForeground(Color.WHITE);
+						break;
+					case 3:
+						player2.setBackground(Color.BLACK);
+						player2.setForeground(Color.WHITE);
+						break;
+					}
 					playerPanel.add(player2);
 				}
 			}
@@ -648,6 +676,20 @@ public class Overworld extends JPanel {
 						playerPanel.remove(player3);
 					}
 					player3 = new JList(player3Info);
+					int color = p.getColor();
+					switch(color) {
+					case 0:
+						player3.setBackground(new Color(207,181,59));
+						break;
+					case 1:
+						player3.setBackground(new Color(0,51,102));
+						player3.setForeground(Color.WHITE);
+						break;
+					case 3:
+						player3.setBackground(Color.BLACK);
+						player3.setForeground(Color.WHITE);
+						break;
+					}
 					playerPanel.add(player3);
 				}
 			}
@@ -670,6 +712,20 @@ public class Overworld extends JPanel {
 						playerPanel.remove(player4);
 					}
 					player4 = new JList(player4Info);
+					int color = p.getColor();
+					switch(color) {
+					case 0:
+						player4.setBackground(new Color(207,181,59));
+						break;
+					case 1:
+						player4.setBackground(new Color(0,51,102));
+						player1.setForeground(Color.WHITE);
+						break;
+					case 3:
+						player4.setBackground(Color.BLACK);
+						player4.setForeground(Color.WHITE);
+						break;
+					}
 					playerPanel.add(player4);
 				}
 			}
@@ -686,7 +742,7 @@ public class Overworld extends JPanel {
 				playerPanel.remove(storeInfo);
 			}
 			storeInfo = new JList(storeModel);
-			storeInfo.setBackground(new Color(0,51,102));
+			storeInfo.setBackground(Color.GRAY);
 			storeInfo.setForeground(Color.WHITE);
 			playerPanel.add(storeInfo);
 		}
@@ -701,7 +757,7 @@ public class Overworld extends JPanel {
 				playerPanel.remove(storeInfo);
 			}
 			storeInfo = new JList(storeModel);
-			storeInfo.setBackground(new Color(0,51,102));
+			storeInfo.setBackground(Color.GRAY);
 			storeInfo.setForeground(Color.WHITE);
 			playerPanel.add(storeInfo);
 		}
@@ -716,7 +772,7 @@ public class Overworld extends JPanel {
 				playerPanel.remove(storeInfo);
 			}
 			storeInfo = new JList(storeModel);
-			storeInfo.setBackground(new Color(0,51,102));
+			storeInfo.setBackground(Color.GRAY);
 			storeInfo.setForeground(Color.WHITE);
 			playerPanel.add(storeInfo);
 		}
