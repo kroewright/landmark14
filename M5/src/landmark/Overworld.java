@@ -188,7 +188,7 @@ public class Overworld extends JPanel {
 									else{
 										//TODO Test me
 										players[playerTurn].putMule(tiles[i][j]);
-										addToJButton(i,j,players[playerTurn].getCurrentMule().getImage());
+										buttons[i][j].paint(players[playerTurn].getCurrentMule().getImage());
 									}
 									
 									
@@ -537,14 +537,7 @@ public class Overworld extends JPanel {
 	public Tile getTileAt(int i, int j){
 		return tiles[i][j];
 	}
-	/**
-	 * 
-	 * @param i,j - locations of button
-	 * @param mulePicture - graphics added on
-	 */
-	public static void addToJButton(int i, int j, Graphics mulePicture){
-		//TODO 
-	}
+	
 	
 	/**
 	 * Creates the panel on the bottom of the map so players
