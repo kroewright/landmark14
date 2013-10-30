@@ -4,8 +4,9 @@ package landmark;
 public class IllegalPlantException extends Exception{
 
 
-	public IllegalPlantException (String e) {
-		super(e);
+	public IllegalPlantException (String message) {
+		super(message);
 	}
 }
+
 
