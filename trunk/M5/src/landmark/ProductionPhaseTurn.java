@@ -36,6 +36,7 @@ public class ProductionPhaseTurn {
 		town.setPub(timer);
 		
 		if(turn == (players.length - 1)) {
+			map.setPlayerTurn(turn);
     		turn = 0;
     		players = map.orderPlayersByScore(players);
     	}
