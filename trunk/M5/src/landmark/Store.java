@@ -8,6 +8,10 @@ import java.util.Objects;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import landmark.Mules.Farm;
+import landmark.Mules.Mine;
+import landmark.Mules.PPlant;
+
 /**
  * 
  * @author landmark - team 14
@@ -245,16 +249,19 @@ public class Store {
 			int totalCost=0;
 			if (m==1){
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
+				mule = new PPlant();
 				mule.setType(energy);
 			}
 			
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
+				mule = new Mine();
 				mule.setType(ore);
 			}
 			
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
+				mule = new Farm();
 				mule.setType(food);
 			}
 			
