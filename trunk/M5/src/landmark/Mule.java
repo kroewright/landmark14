@@ -11,8 +11,5 @@ public abstract class Mule {
 	public abstract String getType();
 	public abstract Graphics getImage();
 	
-	public String setType(String type){
-		return type;
-	}
 	
 }
