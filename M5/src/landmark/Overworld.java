@@ -213,12 +213,11 @@ public class Overworld extends JPanel {
 						for(int j = 0; j < 9; ++j) {
 							if(e.getSource() == buttons[i][j] && !(i==2 && j==4) ){
 
-								/*
-								if(!players[playerTurn].hasTile(tiles[i][j]) || 
-										!players[playerTurn].hasMule() || 
-										tiles[i][j].hasMule()){
-									//throw new IllegalPlantException(e);
-								 */
+								
+								//Needs a boolean so exceptions may show up only when trying to place a mule
+								//Now they show up every time you press the tile
+							
+								
 								if(!players[playerTurn].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"You do not have a Mule to place");
@@ -228,16 +227,23 @@ public class Overworld extends JPanel {
 									JOptionPane.showMessageDialog(null,
 											"You cannot place the Mule on the property you do not own" +
 											"\nSorry, you lost your Mule");
-									//what the player should do once the mule is lost?
+									
 									//needs to update variables related to mule
+									players[playerTurn].setCurrentMule(null);
+									players[playerTurn].setHasCurrentMule(false); 
+									
+									//what the player should do once the mule is lost?
 									//break;
 								}
 								else if(tiles[i][j].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"Mule is already on property. You cannot place another one. + "
 													+ "\nSorry, you lost your M.U.L.E.");
-									//what the player should do once the mule is lost?
 									//needs to update variables related to mule
+									players[playerTurn].setCurrentMule(null);
+									players[playerTurn].setHasCurrentMule(false); 
+									
+									//what the player should do once the mule is lost?
 									//break;
 								}
 								else{
