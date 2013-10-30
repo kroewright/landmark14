@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Clock {
 	
@@ -28,11 +29,13 @@ public class Clock {
 	 * @param town
 	 * @param map
 	 */
-	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, final Overworld map) {
+	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, final Overworld map, 
+			GameDriver driver) {
 		this.players = players;
 		this.turn = turn;
 		this.town = town;
 		this.map = map;
+		this.driver = driver;
 		int delay = 1000;
 	    int period = 1000;
 	    timer = new Timer();
@@ -119,7 +122,7 @@ public class Clock {
 	    	JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
 	    			, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
 	    	
-	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
+	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
 	    	map.setProduction(productionTurn);
 	    	driver.changeToMapPanel(map);
 	    }
@@ -142,7 +145,7 @@ public class Clock {
 	 * @param game
 	 */
 	public void setPanel(GameDriver game) {
-		driver = game;
+		this.driver = game;
 	}
 
 	/**

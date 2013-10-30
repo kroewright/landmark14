@@ -85,13 +85,14 @@ public class TownPanel extends JPanel {
 
 	//Sets the player and the layout for Production Phase
 	public TownPanel(final Player[] players, final int productionRound, 
-			final int turn, final Overworld map){
+			final int turn, final Overworld map, final GameDriver driver){
 		super(new BorderLayout());
 		this.players = players;
 		player = players[turn];
 		this.productionRound = productionRound;
 		this.turn = turn;
 		this.map = map;
+		this.driver = driver;
 
 		BufferedImage myPicture = null;
 		//Try-catch for image for selection screen
@@ -231,7 +232,7 @@ public class TownPanel extends JPanel {
 						, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
 
 				map.setPlayerPanel(players.length);
-				ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
+				ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
 				map.setProduction(productionTurn);
 				driver.changeToMapPanel(map);
 			}

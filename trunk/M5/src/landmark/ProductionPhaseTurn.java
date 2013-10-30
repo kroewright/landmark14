@@ -22,9 +22,10 @@ public class ProductionPhaseTurn {
 	 * @param players
 	 * @param map
 	 */
-	public ProductionPhaseTurn(Player[] players, Overworld map) {
+	public ProductionPhaseTurn(Player[] players, Overworld map, GameDriver driver) {
 		this.map = map;
 		this.players = players;
+		this.driver = driver;
 		map.setPlayerTurn(turn);
 		map.setPlayers(players);
 		
@@ -33,8 +34,8 @@ public class ProductionPhaseTurn {
 			//System.out.println(productionRound);
 		}
 		
-		town = new TownPanel(players, productionRound, turn, map);
-		timer = new Clock(players, productionRound, turn, town, map);
+		town = new TownPanel(players, productionRound, turn, map, driver);
+		timer = new Clock(players, productionRound, turn, town, map, driver);
 		town.setPub(timer);
 		
 		if(turn == (players.length - 1)) {
