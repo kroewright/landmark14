@@ -260,7 +260,8 @@ public class Overworld extends JPanel {
 									players[playerTurn].putMule(tiles[i][j]);
 									System.out.println("reached");
 
-									buttons[i][j].paint(players[playerTurn].getCurrentMule().getImage());
+									buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
+											getResource(players[playerTurn].getCurrentMule().getImage())));
 								}
 							}
 						}
