@@ -110,7 +110,7 @@ public class GameDriver{
 	 * The getPanel method returns the main panel.
 	 * 
 	 */
-	public JComponent getPanel() {
+	private JComponent getPanel() {
 		return mainPanel;
 	}
 	
