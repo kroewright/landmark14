@@ -177,24 +177,6 @@ public class Overworld extends JPanel {
 								}
 								
 								
-								//Block for production phase (i.e. planting mules)
-								else if(productionTurn != null){
-									if(!players[playerTurn].hasTile(tiles[i][j]) || 
-											!players[playerTurn].hasMule() || 
-											tiles[i][j].hasMule()){
-										//throw new IllegalPlantException(e);
-										
-										}
-									else{
-										//TODO Test me
-										players[playerTurn].putMule(tiles[i][j]);
-										buttons[i][j].paint(players[playerTurn].getCurrentMule().getImage());
-									}
-									
-									
-								}
-								
-								
 								
 								
 								else {
@@ -223,7 +205,35 @@ public class Overworld extends JPanel {
 					}
 					selectionPhaseTurn();
 				}
+				//During production phase!
+				else{
+					
+					for(int i = 0; i < 5; ++i) {
+						for(int j = 0; j < 9; ++j) {
+							if(e.getSource() == buttons[i][j] && !(i==2 && j==4) ){
+								
+									/*
+								if(!players[playerTurn].hasTile(tiles[i][j]) || 
+										!players[playerTurn].hasMule() || 
+										tiles[i][j].hasMule()){
+									//throw new IllegalPlantException(e);
+									*/
+								
+								//else{
+									//TODO Test me
+									players[playerTurn].putMule(tiles[i][j]);
+									System.out.println("Reached");
+									buttons[i][j].paint(players[playerTurn].getCurrentMule().getImage());
+								//}
+							}
+						
+						}
+					}
+				}
 			}
+		
+				
+			
 		});
 	}
 	

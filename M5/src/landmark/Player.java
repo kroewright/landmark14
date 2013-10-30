@@ -47,6 +47,7 @@ public class Player {
 		this.name = name;
 		this.color = color;
 		this.difficulty = difficulty;
+		plantedMules = new ArrayList<Mule>();
 		ownedTiles = new ArrayList<Tile>();
 
 		//Sets initial money based on race.
