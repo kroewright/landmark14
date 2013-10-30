@@ -309,6 +309,11 @@ public class Store {
 
 	public void muleButt() {
 		System.out.println("Mules");
+		Mule farm = new Farm();
+		player.setCurrentMule(farm);
+		player.setHasCurrentMule(true);
+		System.out.println(player.hasMule());
+		/*
 		Object[] options = {"Buy", "Sell", "Cancel"};
 		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
 				"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -425,7 +430,7 @@ public class Store {
 				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough MULES for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 			}
-		}
+			*/
 	}
 
 	public int getFoodInv() {

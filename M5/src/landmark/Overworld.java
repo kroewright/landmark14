@@ -217,7 +217,6 @@ public class Overworld extends JPanel {
 								//Needs a boolean so exceptions may show up only when trying to place a mule
 								//Now they show up every time you press the tile
 							
-								
 								if(!players[playerTurn].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"You do not have a Mule to place");
@@ -420,6 +419,10 @@ public class Overworld extends JPanel {
 	public void setStore(Store store) {
 		this.store = store;
 		storeSet = true;
+	}
+	
+	public void setPlayerTurn(int turn) {
+		this.playerTurn = turn;
 	}
 
 	//Increments number of times a player has selected no by 1
