@@ -93,7 +93,7 @@ public class TownPanel extends JPanel {
 		this.turn = turn;
 		this.map = map;
 		this.driver = driver;
-
+		
 		BufferedImage myPicture = null;
 		//Try-catch for image for selection screen
 		try {
@@ -178,6 +178,9 @@ public class TownPanel extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon(TownPanel.class.getResource("/Tiles/storeBig.gif")));
 		lblNewLabel.setBounds(0, 0, 1449, 720);
 		panel.add(lblNewLabel);
+		
+		Store store= new Store(getPlayer(), this);
+		PresenterStoreTownPanel.addListeners(this, store);
 	}
 	
 	public void setOreActionListener(ActionListener E){
