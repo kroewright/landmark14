@@ -23,17 +23,17 @@ public class Player {
 	private Mule currentMule;
 	private boolean inStore;
 	private boolean hasMule;
-	
+
 	private int food;
 	private int energy;
 	private int ore;
-	
+
 	private int oreYield;
 	private int foodYield;
 	private int energyYield;
-	
+
 	private Clock timer;
-	
+
 	/**
 	 * Contains the player's name, color, difficulty of the current game,
 	 * and their race.
@@ -62,7 +62,7 @@ public class Player {
 		else {
 			money = 1600;
 		}
-		
+
 		if(difficulty == 1) {
 			food = 8;
 			energy = 4;
@@ -73,9 +73,9 @@ public class Player {
 			energy = 2;
 			ore = 0;
 		}
-		
+
 		this.setScore(money);
-		
+
 		this.foodYield = 0;
 		this.energyYield = 0;
 		this.oreYield = 0;
@@ -129,23 +129,23 @@ public class Player {
 	public String getName(){
 		return name;
 	}
-	
+
 	public int getFood() {
 		return food;
 	}
-	
+
 	public void setFood(int newtotal){
 		food = newtotal;
 	}
-	
+
 	public int getEnergy() {
 		return energy;
 	}
-	
+
 	public void setEnergy(int newtotal){
 		energy = newtotal;
 	}
-	
+
 	public int getOre() {
 		return ore;
 	}
@@ -164,7 +164,7 @@ public class Player {
 	public int getMoney(){
 		return money;
 	}
-	
+
 	public int getDifficulty(){
 		return difficulty;
 	}
@@ -187,11 +187,11 @@ public class Player {
 	public void setHasCurrentMule(boolean b){
 		this.hasMule = b;
 	}
-	
+
 	public ArrayList<Mule> getMules(){
 		return plantedMules;
 	}
-	
+
 	public int getOreYield(){
 		return this.oreYield;
 	}
@@ -201,7 +201,7 @@ public class Player {
 	public int getFoodYield(){
 		return this.foodYield;
 	}
-	
+
 	public void increaseOreYield( int amount ){
 		this.oreYield += amount;
 	}
@@ -211,29 +211,29 @@ public class Player {
 	public void increaseFoodYield( int amount ){
 		this.foodYield += amount;
 	}
-	
+
 	public void setCurrentMule(Mule m){
 		this.currentMule = m;
 	}
 	public Mule getCurrentMule(){
 		return currentMule;
 	}
-	
-	
-	
-	
-	  /*
-	   * Incomplete method, needs to have exception functionality altered (Irina)
-	   * and then addition of graphics changing when successful.
-	   */
-	  public boolean putMule(Tile t){
-		  try{
-	  		/*if(!hasTile(t) || !hasMule() || t.hasMule()){
+
+
+
+
+	/*
+	 * Incomplete method, needs to have exception functionality altered (Irina)
+	 * and then addition of graphics changing when successful.
+	 */
+	public boolean putMule(Tile t){
+		try{
+			/*if(!hasTile(t) || !hasMule() || t.hasMule()){
 	  			// throw new IllegalPlantException( e );
 	  			return false;
 	  		}*/
-	  		
-		  if(!hasTile(t))
+
+			if(!hasTile(t))
 				throw new IllegalPlantException("You cannot place a M.U.L.E on the prperty you do not own");
 
 			if(!hasMule())
@@ -242,41 +242,40 @@ public class Player {
 			if(t.hasMule())
 				throw new IllegalPlantException("You cannot place anoter M.U.L.E on this property." +
 						"Only one is allowed ");
- 
-	  		Mule m = getCurrentMule();
-	  		plantedMules.add(m);
-	  
-	  		switch (m.getType() ){
-	  			case "ore":
-	  				increaseOreYield(t.getOYield());
-	  				break;
-	  			case "energy":
-	  				increaseEnergyYield(t.getEYield());
-	  				break;
-	  			case "food":
-	  				increaseFoodYield(t.getFYield());
-	  				break;
-	  		}
-	  
-	  		// Now need some functionality for showing the Mule Image
-	  		//overworld.getTileAt(t.getLocation().addLabel( new JLabel(m.getImage) ) );
-	  		//overworld.refresh();
-	  		
-	  		
-	  		t.setHasMule(true);
-	  		this.hasMule = false;
-	  		
-	 		return true;
-		  }
-			catch (IllegalPlantException e){ 
-				JOptionPane.showMessageDialog(null, e.getMessage());  
-				return false;
+
+			Mule m = getCurrentMule();
+			plantedMules.add(m);
+
+			switch (m.getType() ){
+			case "ore":
+				increaseOreYield(t.getOYield());
+				break;
+			case "energy":
+				increaseEnergyYield(t.getEYield());
+				break;
+			case "food":
+				increaseFoodYield(t.getFYield());
+				break;
 			}
 
-		  
-	  }
-	
-	
+			// Now need some functionality for showing the Mule Image
+			//overworld.getTileAt(t.getLocation().addLabel( new JLabel(m.getImage) ) );
+			//overworld.refresh();
+
+
+			t.setHasMule(true);
+			this.hasMule = false;
+
+			return true;
+		}
+		catch (IllegalPlantException e){ 
+			JOptionPane.showMessageDialog(null, e.getMessage());  
+			return false;
+		}
+
+	}
+
+
 	/*
 	 * Helper method for putMule
 	 */
@@ -286,7 +285,7 @@ public class Player {
 		}
 		return false;
 	}
-	
+
 	public int goToPub(int timeLeft, int round) {
 
 		timer.stopTimer();
@@ -323,7 +322,7 @@ public class Player {
 		}
 
 		//Time Frame: 38-50 seconds left
-		if(timeLeft > 37) {                  // && timeLeft < 51) ???
+		if(timeLeft > 37) {                  
 			timeBonus = bonus4;
 		}
 
@@ -337,23 +336,23 @@ public class Player {
 			timeBonus = bonus2;
 		}		
 		//Time Frame: 1-12 seconds left
-		else if(timeLeft > 0) {                     // include 0?
+		else if(timeLeft > 0) {                     
 			timeBonus = bonus1;
 		}	
 
-		int random = randomGenerator.nextInt(timeBonus+1);
-		moneyBonus = roundBonus + random;        //randomGenerator.nextInt(timeBonus+1);
-		
+		int random = randomGenerator.nextInt(timeBonus+1);  
+		moneyBonus = roundBonus + random;        
+
 		if(moneyBonus > maxBonus)
 			moneyBonus = maxBonus;
-		
+
 		money += moneyBonus;
 		setScore(money);
-		
+
 		return moneyBonus;
 	}
-	
-	
-	
-	
+
+
+
+
 }
