@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,6 +48,7 @@ public class Overworld extends JPanel {
 	private JPanel panel;
 	private JPanel grid;
 	private JPanel playerPanel;
+	private JLabel time;
 	private JButton[][] buttons = new JButton[5][9];
 	private Player[] players;
 	private int selectionRounds = 0;
@@ -77,6 +79,22 @@ public class Overworld extends JPanel {
 		add(grid, BorderLayout.CENTER);
 		playerPanel = new JPanel();
 		playerPanel.setBackground(new Color(207,181,59));
+		JLabel lblTimeLeft = new JLabel("Time Left: ");
+		lblTimeLeft.setFont(new Font("Garuda", Font.PLAIN, 17));
+		lblTimeLeft.setForeground(Color.BLACK);
+		playerPanel.add(lblTimeLeft);
+		time = new JLabel("50");
+		time.setFont(new Font("Garuda", Font.PLAIN, 17));
+		time.setForeground(Color.BLACK);
+		playerPanel.add(time);
+		JLabel spaceLabel = new JLabel();
+		playerPanel.add(spaceLabel);
+		JLabel spaceLabel2 = new JLabel();
+		playerPanel.add(spaceLabel2);
+		JLabel spaceLabel3 = new JLabel();
+		playerPanel.add(spaceLabel3);
+		JLabel spaceLabel4 = new JLabel();
+		playerPanel.add(spaceLabel4);
 		add(playerPanel, BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(1480, 820));
 		setMapType(mapType);
@@ -292,6 +310,10 @@ public class Overworld extends JPanel {
 	//Returns the number of times a player has selected no
 	public int getSelectionSkips() {
 		return selectionSkips;
+	}
+	
+	public JLabel getTimeLabel() {
+		return time;
 	}
 	
 	//Returns number of rounds played, 
@@ -604,6 +626,8 @@ public class Overworld extends JPanel {
 				playerPanel.remove(storeInfo);
 			}
 			storeInfo = new JList(storeModel);
+			storeInfo.setBackground(new Color(0,51,102));
+			storeInfo.setForeground(Color.WHITE);
 			playerPanel.add(storeInfo);
 		}
 		else if(storeSet == false) {
@@ -617,6 +641,8 @@ public class Overworld extends JPanel {
 				playerPanel.remove(storeInfo);
 			}
 			storeInfo = new JList(storeModel);
+			storeInfo.setBackground(new Color(0,51,102));
+			storeInfo.setForeground(Color.WHITE);
 			playerPanel.add(storeInfo);
 		}
 		else if(storeSet == true) {
@@ -630,6 +656,8 @@ public class Overworld extends JPanel {
 				playerPanel.remove(storeInfo);
 			}
 			storeInfo = new JList(storeModel);
+			storeInfo.setBackground(new Color(0,51,102));
+			storeInfo.setForeground(Color.WHITE);
 			playerPanel.add(storeInfo);
 		}
 		updateUI();
