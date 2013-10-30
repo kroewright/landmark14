@@ -161,7 +161,7 @@ public class TownPanel extends JPanel {
 		
 		
 		//Arrow keys for time left label
-		time = new JLabel();
+		time = new JLabel("50");
 		time.setForeground(Color.YELLOW);
 		time.setBounds(270, 585, 29, 20);
 		panel.add(time);

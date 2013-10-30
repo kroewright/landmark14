@@ -28,7 +28,7 @@ public class Clock {
 	 * @param town
 	 * @param map
 	 */
-	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, Overworld map) {
+	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, final Overworld map) {
 		this.players = players;
 		this.turn = turn;
 		this.town = town;
@@ -76,8 +76,13 @@ public class Clock {
 	    timer.scheduleAtFixedRate(new TimerTask() {
 
 	        public void run() {
-	            JLabel time = town.getTimeLabel();
-	            time.setText(String.valueOf(setInterval()));
+	        	int momentInTime = setInterval();
+	        	if(momentInTime >= 0) {
+	        		JLabel time = town.getTimeLabel();
+		            time.setText(String.valueOf(momentInTime));
+		            JLabel mapTime = map.getTimeLabel();
+		            mapTime.setText(String.valueOf(momentInTime));
+	        	}
 	        }
 	    }, delay, period);
 	}
@@ -99,7 +104,7 @@ public class Clock {
 	 * @return interval
 	 */
 	private static final int setInterval() {
-	    if (interval == 1) {
+	    if (interval == 0) {
 	    	timer.cancel();
 	    	
 	    	if(turn == (players.length - 1)) {
@@ -116,7 +121,9 @@ public class Clock {
 	    	
 	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
 	    	map.setProduction(productionTurn);
-	    	driver.changeToMapPanel(map);
+	    	if(driver.getPanel() == map) {
+	    		driver.changeToMapPanel(map);
+	    	}
 	    }
 	    return --interval;
 	}
