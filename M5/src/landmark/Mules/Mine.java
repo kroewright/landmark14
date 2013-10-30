@@ -1,18 +1,20 @@
 package landmark.Mules;
 
 
+import java.awt.Graphics;
+
 import landmark.Mule;
 
 public class Mine extends Mule {
 
 
 	private String type;
-	private String image;
+	private Graphics image;
 	
 	
 	public Mine(){
 		this.type = "mine";
-		this.image = "Mine.jpg";
+		//this.image = "Mine.jpg";
 	}
 	
 	@Override
@@ -21,7 +23,7 @@ public class Mine extends Mule {
 	}
 
 	@Override
-	public String getImage() {
+	public Graphics getImage() {
 		return image;
 	}
 
