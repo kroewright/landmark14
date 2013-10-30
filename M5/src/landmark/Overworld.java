@@ -66,7 +66,7 @@ public class Overworld extends JPanel {
 	private String player2Name;
 	private String player3Name;
 	private String player4Name;
-	private boolean playerPanelCalled = false;
+	private boolean storeSet = false;
 	
 	/**
      * Create the panel.
@@ -340,6 +340,7 @@ public class Overworld extends JPanel {
 	
 	public void setStore(Store store) {
 		this.store = store;
+		storeSet = true;
 	}
 	
 	//Increments number of times a player has selected no by 1
@@ -516,7 +517,7 @@ public class Overworld extends JPanel {
 					player1Info.addElement("Money: $" + p.getMoney());
 					player1Info.addElement("Food: " + p.getFood());
 					player1Info.addElement("Energy: " + p.getEnergy());
-					player1Info.addElement("Ore: " + p.getOre());
+					player1Info.addElement("Smithore: " + p.getOre());
 					if(player1 != null) {
 						playerPanel.remove(player1);
 					}
@@ -538,7 +539,7 @@ public class Overworld extends JPanel {
 					player2Info.addElement("Money: $" + p.getMoney());
 					player2Info.addElement("Food: " + p.getFood());
 					player2Info.addElement("Energy: " + p.getEnergy());
-					player2Info.addElement("Ore: " + p.getOre());
+					player2Info.addElement("Smithore: " + p.getOre());
 					if(player2 != null) {
 						playerPanel.remove(player2);
 					}
@@ -560,7 +561,7 @@ public class Overworld extends JPanel {
 					player3Info.addElement("Money: $" + p.getMoney());
 					player3Info.addElement("Food: " + p.getFood());
 					player3Info.addElement("Energy: " + p.getEnergy());
-					player3Info.addElement("Ore: " + p.getOre());
+					player3Info.addElement("Smithore: " + p.getOre());
 					if(player3 != null) {
 						playerPanel.remove(player3);
 					}
@@ -582,7 +583,7 @@ public class Overworld extends JPanel {
 					player4Info.addElement("Money: $" + p.getMoney());
 					player4Info.addElement("Food: " + p.getFood());
 					player4Info.addElement("Energy: " + p.getEnergy());
-					player4Info.addElement("Ore: " + p.getOre());
+					player4Info.addElement("Smithore: " + p.getOre());
 					if(player4 != null) {
 						playerPanel.remove(player4);
 					}
@@ -592,7 +593,7 @@ public class Overworld extends JPanel {
 			}
 		}
 		
-		if(players[0].getDifficulty() == 1 && playerPanelCalled == false) {
+		if(players[0].getDifficulty() == 1 && storeSet == false) {
 			DefaultListModel storeModel = new DefaultListModel();
 			storeModel.addElement("Store Inventory");
 			storeModel.addElement("Food: 16");
@@ -604,9 +605,8 @@ public class Overworld extends JPanel {
 			}
 			storeInfo = new JList(storeModel);
 			playerPanel.add(storeInfo);
-			playerPanelCalled = true;
 		}
-		else if(playerPanelCalled == false) {
+		else if(storeSet == false) {
 			DefaultListModel storeModel = new DefaultListModel();
 			storeModel.addElement("Store Inventory");
 			storeModel.addElement("Food: 8");
@@ -618,9 +618,8 @@ public class Overworld extends JPanel {
 			}
 			storeInfo = new JList(storeModel);
 			playerPanel.add(storeInfo);
-			playerPanelCalled = true;
 		}
-		else {
+		else if(storeSet == true) {
 			DefaultListModel storeModel = new DefaultListModel();
 			storeModel.addElement("Store Inventory");
 			storeModel.addElement("Food: " + store.getFoodInv());
