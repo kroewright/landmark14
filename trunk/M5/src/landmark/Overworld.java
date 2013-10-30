@@ -174,6 +174,14 @@ public class Overworld extends JPanel {
 												"select another property.", "Land Selection Phase", JOptionPane.ERROR_MESSAGE);
 									}
 								}
+								
+								
+								//Block for production phase (i.e. planting mules)
+								
+								
+								
+								
+								
 								else {
 									if(tiles[i][j].getOwner() == null) {
 										players[playerTurn].buyLandSelectionPhase(tiles[i][j]);
