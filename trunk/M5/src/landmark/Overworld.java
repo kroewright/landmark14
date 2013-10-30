@@ -179,16 +179,16 @@ public class Overworld extends JPanel {
 								
 								//Block for production phase (i.e. planting mules)
 								else if(productionTurn != null){
-									if(!((Player)e.getSource()).hasTile(tiles[i][j]) || 
-											!((Player)e.getSource()).hasMule() || 
+									if(!players[playerTurn].hasTile(tiles[i][j]) || 
+											!players[playerTurn].hasMule() || 
 											tiles[i][j].hasMule()){
 										//throw new IllegalPlantException(e);
 										
 										}
 									else{
-										//TODO
-										((Player)e.getSource()).putMule(tiles[i][j]);
-										addToTile(tiles[i][j],((Player)e.getSource()).getCurrentMule().getImage());
+										//TODO Test me
+										players[playerTurn].putMule(tiles[i][j]);
+										addToTile(tiles[i][j],players[playerTurn].getCurrentMule().getImage());
 									}
 									
 									
@@ -537,7 +537,11 @@ public class Overworld extends JPanel {
 	public Tile getTileAt(int i, int j){
 		return null;
 	}
-	
+	/**
+	 * 
+	 * @param t - tile to add Mule
+	 * @param mulePicture - graphics added on
+	 */
 	public static void addToTile(Tile t, Graphics mulePicture){
 		//TODO 
 	}
