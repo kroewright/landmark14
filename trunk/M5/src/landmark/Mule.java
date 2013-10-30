@@ -1,5 +1,6 @@
 package landmark;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public abstract class Mule {
@@ -8,7 +9,7 @@ public abstract class Mule {
 	private String image;
 	
 	public abstract String getType();
-	public abstract String getImage();
+	public abstract Graphics getImage();
 	
 	public String setType(String type){
 		return type;
