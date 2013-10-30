@@ -251,18 +251,23 @@ public class Store {
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
 				mule = new PPlant();
 				mule.setType(energy);
+				player.setCurrentMule(mule);
 			}
 			
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
 				mule = new Mine();
 				mule.setType(ore);
+				player.setCurrentMule(mule);
+
 			}
 			
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
 				mule = new Farm();
 				mule.setType(food);
+				player.setCurrentMule(mule);
+
 			}
 			
 			if (player.getMoney() >= totalCost && invMules >= valInt){
