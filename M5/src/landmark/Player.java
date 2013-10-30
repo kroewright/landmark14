@@ -219,19 +219,37 @@ public class Player {
 		return currentMule;
 	}
 
-
+	
+	public void putMule(Tile t){
+		Mule m = getCurrentMule();
+		plantedMules.add(m);
+		
+		switch (m.getType() ){
+		case "ore":
+			increaseOreYield(t.getOYield());
+			break;
+		case "energy":
+			increaseEnergyYield(t.getEYield());
+			break;
+		case "food":
+			increaseFoodYield(t.getFYield());
+			break;
+		}
+		
+		t.setHasMule(true);
+		this.setHasCurrentMule(false);
+	}
 
 
 	/*
+	 * Skeleton code, leaving here until guaranteed new code works.
+	 * 
 	 * Incomplete method, needs to have exception functionality altered (Irina)
 	 * and then addition of graphics changing when successful.
-	 */
+	 
 	public boolean putMule(Tile t){
 		try{
-			/*if(!hasTile(t) || !hasMule() || t.hasMule()){
-	  			// throw new IllegalPlantException( e );
-	  			return false;
-	  		}*/
+			
 
 			if(!hasTile(t))
 				throw new IllegalPlantException("You cannot place a M.U.L.E on the prperty you do not own");
@@ -272,8 +290,8 @@ public class Player {
 			JOptionPane.showMessageDialog(null, e.getMessage());  
 			return false;
 		}
-
-	}
+	
+	}*/
 
 
 	/*
