@@ -18,6 +18,7 @@ public class Player {
 	private int race;
 	private ArrayList<Tile> ownedTiles;
 	private ArrayList<Mule> plantedMules;
+	private Mule currentMule;
 	private boolean inStore;
 	private boolean hasMule;
 	
@@ -181,6 +182,9 @@ public class Player {
 	public boolean hasMule(){
 		return hasMule;
 	}
+	public void setHasCurrentMule(boolean b){
+		this.hasMule = b;
+	}
 	
 	public ArrayList<Mule> getMules(){
 		return plantedMules;
@@ -206,6 +210,12 @@ public class Player {
 		this.foodYield += amount;
 	}
 	
+	public void setCurrentMule(Mule m){
+		this.currentMule = m;
+	}
+	public Mule getCurrentMule(){
+		return currentMule;
+	}
 	
 	
 	
@@ -214,11 +224,12 @@ public class Player {
 	   * Incomplete method, needs to have exception functionality altered (Irina)
 	   * and then addition of graphics changing when successful.
 	   */
-	  public boolean putMule(Mule m, Tile t){
+	  public boolean putMule(Tile t){
 	  		if(!hasTile(t) || !hasMule() || t.hasMule()){
 	  			// throw new IllegalPlantException( e );
 	  			return false;
 	  		}
+	  		Mule m = getCurrentMule();
 	  		plantedMules.add(m);
 	  
 	  		switch (m.getType() ){
