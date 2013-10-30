@@ -1,18 +1,20 @@
 package landmark.Mules;
 
 
+import java.awt.Graphics;
+
 import landmark.Mule;
 
 public class Farm extends Mule {
 
 
 	private String type;
-	private String image;
+	private Graphics image;
 	
 	
 	public Farm(){
 		this.type = "farm";
-		this.image = "Farm.jpg";
+		//this.image = "Farm.jpg";
 		
 	}
 	
@@ -23,7 +25,7 @@ public class Farm extends Mule {
 	}
 
 	@Override
-	public String getImage() {
+	public Graphics getImage() {
 		return image;
 	}
 
