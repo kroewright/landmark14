@@ -221,7 +221,7 @@ public class TownPanel extends JPanel {
 				//Ends the player's turn and activate the another player
 				if(turn == (players.length - 1)) {
 					turn = 0;
-					//players = map.orderPlayersByScore(players);
+					players = map.orderPlayersByScore(players);
 				}
 				else {
 					turn += 1;
