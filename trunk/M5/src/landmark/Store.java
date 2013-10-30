@@ -91,19 +91,19 @@ public class Store {
 		if (n == JOptionPane.YES_OPTION) { //buy ore
 
 			int valInt = 0;
-			boolean done = false;  
+		//	boolean done = false;  
 
-			while(!done) {			
-				try { 			
+		//	while(!done) {			
+			//	try { 			
 					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
 							"Buying Ore", JOptionPane.OK_CANCEL_OPTION);
 					valInt = Integer.parseInt(valStr); 
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+			//		done = true;
+		//		}
+		//		catch (NumberFormatException e){
+		//			JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+		//		}
+		//	}
 
 			int totalCost = ORE_COST * valInt;
 			//check if player has enough money
@@ -128,19 +128,19 @@ public class Store {
 		else if (n == JOptionPane.NO_OPTION){ //sell ore
 
 			int valInt = 0;
-			boolean done = false;  
+		//	boolean done = false;  
 
-			while(!done) {			
-				try { 
+		//	while(!done) {			
+		//		try { 
 					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to sell.",
 							"Selling Ore", JOptionPane.OK_CANCEL_OPTION);
 					valInt= Integer.parseInt(valStr);
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+		//			done = true;
+		//		}
+		//		catch (NumberFormatException e){
+		//			JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+		//		}
+		//	}
 
 			int moneyGiven = ORE_COST * valInt;
 			//Add the money to players total
@@ -165,19 +165,19 @@ public class Store {
 		if (n == JOptionPane.YES_OPTION) { //buy energy
 
 			int valInt = 0;
-			boolean done = false;  
+			//boolean done = false;  
 
-			while(!done) {			
-				try { 
+			//while(!done) {			
+			//	try { 
 					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to buy.",
 							"Buying Energy", JOptionPane.OK_CANCEL_OPTION);
 					valInt = Integer.parseInt(valStr); 
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+			//		done = true;
+			//	}
+			//	catch (NumberFormatException e){
+			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+			//	}
+			//}
 
 			int totalCost = ENERGY_COST * valInt;
 			//check if player has enough money
@@ -203,19 +203,19 @@ public class Store {
 		else if (n == JOptionPane.NO_OPTION){ //sell energy
 
 			int valInt = 0;
-			boolean done = false;  
+			//boolean done = false;  
 
-			while(!done) {			
-				try { 
+			//while(!done) {			
+			//	try { 
 					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to sell.",
 							"Selling ENERGY", JOptionPane.OK_CANCEL_OPTION);
 					valInt= Integer.parseInt(valStr);
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+			//		done = true;
+			//	}
+			//	catch (NumberFormatException e){
+			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+			//	}
+			//}
 
 			int moneyGiven = ENERGY_COST * valInt;
 			//Add the money to players total
@@ -240,19 +240,19 @@ public class Store {
 				null, options, null);
 		if (n == JOptionPane.YES_OPTION) { //buy food
 			int valInt = 0;
-			boolean done = false;  
+		//	boolean done = false;  
 
-			while(!done) {			
-				try { 
+		//	while(!done) {			
+		//		try { 
 					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to buy.",
 							"Buying Food", JOptionPane.OK_CANCEL_OPTION);
 					valInt = Integer.parseInt(valStr);
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+		//			done = true;
+		//		}
+		//		catch (NumberFormatException e){
+		//			JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+		//		}
+		//	}
 
 			int totalCost = FOOD_COST * valInt;
 			//check if player has enough money
@@ -277,19 +277,19 @@ public class Store {
 		else if (n == JOptionPane.NO_OPTION){ //sell food
 
 			int valInt = 0;
-			boolean done = false;  
+			//boolean done = false;  
 
-			while(!done) {			
-				try { 
+			//while(!done) {			
+			//	try { 
 					String valStr = JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to sell.",
 							"Selling Food", JOptionPane.OK_CANCEL_OPTION);
 					valInt= Integer.parseInt(valStr);
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+				//	done = true;
+				//}
+			//	catch (NumberFormatException e){
+			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+			//	}
+			//}
 
 			int moneyGiven = FOOD_COST * valInt;
 			//Add the money to players total
@@ -325,20 +325,20 @@ public class Store {
 					null, types, null);	
 
 			int valInt = 0;
-			boolean done = false;  
+			//boolean done = false;  
 			
-			while(!done) {
+			//while(!done) {
 			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
 					"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
 
-				try { 
+			//	try { 
 					valInt = Integer.parseInt(valStr); 
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+			//		done = true;
+			//	}
+			//	catch (NumberFormatException e){
+			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+			//	}
+			//}
 
 			int totalCost=0;
 			if (m==1){
@@ -389,19 +389,19 @@ public class Store {
 					null, types, null);	
 
 			int valInt = 0;
-			boolean done = false;  
+			//boolean done = false;  
 
-			while(!done) {			
-				try { 
+			//while(!done) {			
+			//	try { 
 					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
 							"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
 					valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-					done = true;
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
-				}
-			}
+			//		done = true;
+			//	}
+			//	catch (NumberFormatException e){
+			//		JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+			//	}
+			//}
 
 			int totalCost=0;
 			if (m==1){ 
