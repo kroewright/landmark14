@@ -121,9 +121,7 @@ public class Clock {
 	    	
 	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map);
 	    	map.setProduction(productionTurn);
-	    	if(driver.getPanel() == map) {
-	    		driver.changeToMapPanel(map);
-	    	}
+	    	driver.changeToMapPanel(map);
 	    }
 	    return --interval;
 	}
