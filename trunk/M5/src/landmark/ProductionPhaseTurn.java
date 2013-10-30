@@ -25,10 +25,12 @@ public class ProductionPhaseTurn {
 	public ProductionPhaseTurn(Player[] players, Overworld map) {
 		this.map = map;
 		this.players = players;
+		map.setPlayerTurn(turn);
+		map.setPlayers(players);
 		
 		if(turn == 0) {
 			productionRound += 1;
-			System.out.println(productionRound);
+			//System.out.println(productionRound);
 		}
 		
 		town = new TownPanel(players, productionRound, turn, map);
@@ -36,9 +38,8 @@ public class ProductionPhaseTurn {
 		town.setPub(timer);
 		
 		if(turn == (players.length - 1)) {
-			map.setPlayerTurn(turn);
     		turn = 0;
-    		players = map.orderPlayersByScore(players);
+    		//players = map.orderPlayersByScore(players);
     	}
     	else {
     		turn += 1;

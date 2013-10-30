@@ -217,6 +217,8 @@ public class Overworld extends JPanel {
 								//Needs a boolean so exceptions may show up only when trying to place a mule
 								//Now they show up every time you press the tile
 							
+								System.out.println(players[playerTurn].getName());
+								System.out.println(playerTurn);
 								if(!players[playerTurn].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"You do not have a Mule to place");
@@ -540,25 +542,26 @@ public class Overworld extends JPanel {
 	 */
 	public Player[] orderPlayersByScore(Player[] players){
 		Player holder;
+		Player[] newPlayers = players;
 		int k;
 		for(int i=1;i<players.length;i++){
 			holder = players[i];
 			for(k=i-1;	k>=0 ;k--){
 				if(holder.getScore() < players[k].getScore()){
-					players[k+1]=players[k];
+					newPlayers[k+1]=players[k];
 				}
 				else break;
 
 			}
-			players[k+1]=holder;
+			newPlayers[k+1]=holder;
 		}
-		for(Player el: players){
+		for(Player el: newPlayers){
 			System.out.print(el.getName());
 			System.out.println(el.getScore());
 		}
 
 
-		return players;
+		return newPlayers;
 	}
 
 
