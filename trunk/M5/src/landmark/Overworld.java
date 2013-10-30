@@ -3,6 +3,7 @@ package landmark;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -222,7 +223,8 @@ public class Overworld extends JPanel {
 								//else{
 									//TODO Test me
 									players[playerTurn].putMule(tiles[i][j]);
-									System.out.println("Reached");
+									System.out.println("reached");
+									
 									buttons[i][j].paint(players[playerTurn].getCurrentMule().getImage());
 								//}
 							}
