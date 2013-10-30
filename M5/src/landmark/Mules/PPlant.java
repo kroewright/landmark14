@@ -14,7 +14,7 @@ public class PPlant extends Mule {
 
 
 	private String type;
-	private Graphics image;
+	private String image;
 	
 	
 	public PPlant(){
@@ -25,7 +25,7 @@ public class PPlant extends Mule {
 		BufferedImage anImage = new BufferedImage(99,77, BufferedImage.TYPE_INT_ARGB);
 		try { anImage = ImageIO.read(img ); } catch (IOException e) { }
 		Graphics g = anImage.createGraphics();
-		image = g;
+		image = "Mules/powerplant.png";
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class PPlant extends Mule {
 	}
 
 	@Override
-	public Graphics getImage() {
+	public String getImage() {
 		return image;
 	}
 

@@ -14,18 +14,21 @@ public class Farm extends Mule {
 
 
 	private String type;
-	private Graphics image;
+	private String image;
 	
 	
 	public Farm(){
 		this.type = "farm";
 		//this.image = "Farm.jpg";
-		File img = new File("Tiles/farm.png");
+		File img = new File("Mules/farm.png");
 		System.out.println(img);
 		BufferedImage anImage = new BufferedImage(99,77, BufferedImage.TYPE_INT_ARGB);
 		try { anImage = ImageIO.read(img ); } catch (IOException e) { }
 		Graphics g = anImage.createGraphics();
-		image = g;
+		//image = g;
+		
+		
+		image = "Mules/farm.jpg";
 		
 	}
 	
@@ -36,7 +39,7 @@ public class Farm extends Mule {
 	}
 
 	@Override
-	public Graphics getImage() {
+	public String getImage() {
 		return image;
 	}
 

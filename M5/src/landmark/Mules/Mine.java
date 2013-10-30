@@ -14,7 +14,7 @@ public class Mine extends Mule {
 
 
 	private String type;
-	private Graphics image;
+	private String image;
 	
 	
 	public Mine(){
@@ -25,7 +25,7 @@ public class Mine extends Mule {
 		BufferedImage anImage = new BufferedImage(99,77, BufferedImage.TYPE_INT_ARGB);
 		try { anImage = ImageIO.read(img ); } catch (IOException e) { }
 		Graphics g = anImage.createGraphics();
-		image = g;
+		image = "Mules/mine.png";
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class Mine extends Mule {
 	}
 
 	@Override
-	public Graphics getImage() {
+	public String getImage() {
 		return image;
 	}
 

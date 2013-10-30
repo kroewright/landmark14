@@ -9,7 +9,7 @@ public abstract class Mule {
 	private String image;
 	
 	public abstract String getType();
-	public abstract Graphics getImage();
+	public abstract String getImage();
 	
 	
 }
