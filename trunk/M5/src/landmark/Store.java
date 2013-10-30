@@ -321,11 +321,12 @@ public class Store {
 
 			int valInt = 0;
 			boolean done = false;  
+			
+			while(!done) {
+			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
+					"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
 
-			while(!done) {			
 				try { 
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
-							"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
 					valInt = Integer.parseInt(valStr); 
 					done = true;
 				}
@@ -339,26 +340,27 @@ public class Store {
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
 				mule = new PPlant();
 				player.setCurrentMule(mule);
+				player.setHasCurrentMule(true);		//added by irina
 			}
 
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
 				mule = new Mine();
-				player.setCurrentMule(mule);
-
+				player.setCurrentMule(mule);		
+				player.setHasCurrentMule(true);		//added by irina
 			}
 
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
 				mule = new Farm();
 				player.setCurrentMule(mule);
-
+				player.setHasCurrentMule(true);    //added by irina
 			}
 
 			if (player.getMoney() >= totalCost && invMules >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
 				for (int i=0; i==valInt; i++){
-					player.getMules().add(mule);
+					player.getMules().add(mule);	
 				}					
 				invMules = invMules-valInt;
 			}
@@ -397,7 +399,7 @@ public class Store {
 			}
 
 			int totalCost=0;
-			if (m==1){
+			if (m==1){ 
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
 				//mule.setType(energy);
 			}
