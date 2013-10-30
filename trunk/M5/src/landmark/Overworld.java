@@ -219,15 +219,26 @@ public class Overworld extends JPanel {
 										tiles[i][j].hasMule()){
 									//throw new IllegalPlantException(e);
 								 */
-								if(!players[playerTurn].hasTile(tiles[i][j])) {
+								if(!players[playerTurn].hasMule()) {
+									JOptionPane.showMessageDialog(null,
+											"You do not have a Mule to place");
+								}
+								
+								else if(!players[playerTurn].hasTile(tiles[i][j])) {
 									JOptionPane.showMessageDialog(null,
 											"You cannot place the Mule on the property you do not own" +
 											"\nSorry, you lost your Mule");
+									//what the player should do once the mule is lost?
+									//needs to update variables related to mule
+									//break;
 								}
 								else if(tiles[i][j].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"Mule is already on property. You cannot place another one. + "
 													+ "\nSorry, you lost your M.U.L.E.");
+									//what the player should do once the mule is lost?
+									//needs to update variables related to mule
+									//break;
 								}
 								else{
 									//TODO Test me

@@ -28,7 +28,7 @@ public class Store {
 	private JButton btnFood;
 	private JButton btnMules;
 	private static boolean storeCreated = false;
-	
+
 	private Mule mule;
 	private String energy;
 	private String ore;
@@ -43,7 +43,7 @@ public class Store {
 	private static int invEnergyMules = 0;
 	private static int invMules = 0;
 	private int difficulty;
-	
+
 	private final int MULE_FOOD = 25;
 	private final int MULE_ENERGY = 50;
 	private final int MULE_ORE = 75;
@@ -87,10 +87,24 @@ public class Store {
 		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
 				"Buy or sell Ore", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
 				null, options, null);
+
 		if (n == JOptionPane.YES_OPTION) { //buy ore
-			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
-					"Buying Ore", JOptionPane.OK_CANCEL_OPTION);
-			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 			
+					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
+							"Buying Ore", JOptionPane.OK_CANCEL_OPTION);
+					valInt = Integer.parseInt(valStr); 
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int totalCost = ORE_COST * valInt;
 			//check if player has enough money
 			if (player.getMoney() >= totalCost && invOre >= valInt){
@@ -101,7 +115,7 @@ public class Store {
 			} else {
 				if (player.getMoney() < totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
-						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
+							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (invOre < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
@@ -112,9 +126,22 @@ public class Store {
 		}
 
 		else if (n == JOptionPane.NO_OPTION){ //sell ore
-			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to sell.",
-					"Selling Ore", JOptionPane.OK_CANCEL_OPTION);
-			int valInt= Integer.parseInt(valStr);
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to sell.",
+							"Selling Ore", JOptionPane.OK_CANCEL_OPTION);
+					valInt= Integer.parseInt(valStr);
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int moneyGiven = ORE_COST * valInt;
 			//Add the money to players total
 			if (player.getOre() >= valInt){
@@ -130,16 +157,28 @@ public class Store {
 		map.setPlayerPanel(town.getPlayers().length);
 	}
 
-
 	public void energyButt() {
 		Object[] options = {"Buy", "Sell", "Cancel"};
 		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
 				"Buy or sell Energy", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
 				null, options, null);
 		if (n == JOptionPane.YES_OPTION) { //buy energy
-			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to buy.",
-					"Buying Energy", JOptionPane.OK_CANCEL_OPTION);
-			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to buy.",
+							"Buying Energy", JOptionPane.OK_CANCEL_OPTION);
+					valInt = Integer.parseInt(valStr); 
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int totalCost = ENERGY_COST * valInt;
 			//check if player has enough money
 			if (player.getMoney() >= totalCost && invEnergy >= valInt){
@@ -151,7 +190,7 @@ public class Store {
 			else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
-						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
+							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (invEnergy < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
@@ -162,9 +201,22 @@ public class Store {
 		}
 
 		else if (n == JOptionPane.NO_OPTION){ //sell energy
-			String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to sell.",
-					"Selling ENERGY", JOptionPane.OK_CANCEL_OPTION);
-			int valInt= Integer.parseInt(valStr);
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of ENERGY you would like to sell.",
+							"Selling ENERGY", JOptionPane.OK_CANCEL_OPTION);
+					valInt= Integer.parseInt(valStr);
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int moneyGiven = ENERGY_COST * valInt;
 			//Add the money to players total
 			if (player.getEnergy() >= valInt){
@@ -179,17 +231,29 @@ public class Store {
 		}
 		map.setPlayerPanel(town.getPlayers().length);	
 	}
-	
+
 	public void foodButt() {
 		System.out.println("Food");
 		Object[] options = {"Buy", "Sell", "Cancel"};
 		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
 				"Buy or sell Food", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
 				null, options, null);
-		if (n == JOptionPane.YES_OPTION) { //buy ore
-			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to buy.",
-					"Buying Food", JOptionPane.OK_CANCEL_OPTION);
-			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+		if (n == JOptionPane.YES_OPTION) { //buy food
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to buy.",
+							"Buying Food", JOptionPane.OK_CANCEL_OPTION);
+					valInt = Integer.parseInt(valStr);
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int totalCost = FOOD_COST * valInt;
 			//check if player has enough money
 			if (player.getMoney() >= totalCost && invFood >= valInt){
@@ -200,7 +264,7 @@ public class Store {
 			} else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
-						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
+							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (invFood < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
@@ -209,11 +273,24 @@ public class Store {
 				}
 			}
 		}
-	
+
 		else if (n == JOptionPane.NO_OPTION){ //sell food
-			String valStr = JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to sell.",
-					"Selling Food", JOptionPane.OK_CANCEL_OPTION);
-			int valInt= Integer.parseInt(valStr);
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr = JOptionPane.showInputDialog(null, "Please enter the amount of FOOD you would like to sell.",
+							"Selling Food", JOptionPane.OK_CANCEL_OPTION);
+					valInt= Integer.parseInt(valStr);
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int moneyGiven = FOOD_COST * valInt;
 			//Add the money to players total
 			if (player.getFood() >= valInt){
@@ -228,8 +305,8 @@ public class Store {
 		}
 		map.setPlayerPanel(town.getPlayers().length);
 	}
-	
-	
+
+
 	public void muleButt() {
 		System.out.println("Mules");
 		Object[] options = {"Buy", "Sell", "Cancel"};
@@ -240,33 +317,44 @@ public class Store {
 			Object[] types = {"Energy", "Ore", "Food"};
 			int m = JOptionPane.showOptionDialog(null, "What kind of MULE would you like to purchase?",
 					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-					null, types, null);					
-			String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
-					"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
-			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-			
-			
+					null, types, null);	
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to buy.",
+							"Buying Mules", JOptionPane.OK_CANCEL_OPTION);
+					valInt = Integer.parseInt(valStr); 
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int totalCost=0;
 			if (m==1){
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
 				mule = new PPlant();
 				player.setCurrentMule(mule);
 			}
-			
+
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
 				mule = new Mine();
 				player.setCurrentMule(mule);
 
 			}
-			
+
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
 				mule = new Farm();
 				player.setCurrentMule(mule);
 
 			}
-			
+
 			if (player.getMoney() >= totalCost && invMules >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
 				for (int i=0; i==valInt; i++){
@@ -277,7 +365,7 @@ public class Store {
 			else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
-						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
+							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
 				if (invMules < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
@@ -291,28 +379,39 @@ public class Store {
 			Object[] types = {"Energy", "Ore", "Food"};
 			int m = JOptionPane.showOptionDialog(null, "What kind of MULE would you like to sell?",
 					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-					null, types, null);					
-			String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
-					"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
-			int valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
-			
-			
+					null, types, null);	
+
+			int valInt = 0;
+			boolean done = false;  
+
+			while(!done) {			
+				try { 
+					String valStr=  JOptionPane.showInputDialog(null, "Please enter the amount of MULES you would like to sell.",
+							"Selling MULES", JOptionPane.OK_CANCEL_OPTION);
+					valInt = Integer.parseInt(valStr); // THIS NEEDS TRY CATCH IF NOT INT
+					done = true;
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+				}
+			}
+
 			int totalCost=0;
 			if (m==1){
 				totalCost = (MULE_ENERGY + MULE_COST) * valInt;
 				//mule.setType(energy);
 			}
-			
+
 			else if (m==2){
 				totalCost = (MULE_ORE + MULE_COST) * valInt;
 				//mule.setType(ore);
 			}
-			
+
 			else{
 				totalCost = (MULE_FOOD + MULE_COST) * valInt;
 				//mule.setType(food);
 			}
-			
+
 			if (player.getMoney() >= valInt){
 				player.setMoney(player.getMoney() + totalCost);
 				for (int i=0; i==valInt; i++){
@@ -323,24 +422,24 @@ public class Store {
 			else {
 				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough MULES for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
-				}
 			}
 		}
-	
+	}
+
 	public int getFoodInv() {
 		return invFood;
 	}
-	
+
 	public int getEnergyInv() {
 		return invEnergy;
 	}
-	
+
 	public int getOreInv() {
 		return invOre;
 	}
-	
+
 	public int getMuleInv() {
 		return invMules;
 	}
-	
+
 }
