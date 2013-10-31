@@ -89,6 +89,20 @@ public class Player {
 		return color;
 	}
 
+	public String getColorAsString(){
+		switch(this.color){
+		case 0:
+			return "Gold";
+		case 1: 
+			return "Navy";
+		case 2:
+			return "White";
+		case 3:
+			return "Black";
+		}
+		return null;
+	}
+	
 
 	/**
 	 * Method that adds tiles to new owners and sets the new owner.

@@ -25,7 +25,7 @@ public class PPlant extends Mule {
 		BufferedImage anImage = new BufferedImage(99,77, BufferedImage.TYPE_INT_ARGB);
 		try { anImage = ImageIO.read(img ); } catch (IOException e) { }
 		Graphics g = anImage.createGraphics();
-		image = "Mules/powerplant.png";
+		image = "Mules/powerMule";
 	}
 	
 	@Override
