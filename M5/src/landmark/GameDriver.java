@@ -24,7 +24,7 @@ public class GameDriver{
 	//private ProductionPhase prodPhase;
 	private int numOfPlayers = 0;
 	private Player[] players;
-	private int isStandard = 0;
+	private int isStandard = 1; //default map is standard map = 1 and random map = 2
 	private int difficulty = 0;
 	private static JFrame frame;
 	private int productionRound = 1;
@@ -39,9 +39,9 @@ public class GameDriver{
 		mainPanel = new JPanel(cardlayout);
 		openingScreen = new OpeningScreen();
 		selPage = new Selpage();
-		overworld = new Overworld();
+		overworld = new Overworld(isStandard);
 		mainPanel.add(openingScreen.getMainComponent(), OPEN);
-		mainPanel.add(overworld, MAP);
+		//mainPanel.add(overworld, MAP);
 
 		/**
 		 * Action listener for the NEXT button of the openingScreen.
@@ -58,7 +58,11 @@ public class GameDriver{
 					selPage.setSelpage(numOfPlayers);
 					selPage.setDifficulty(difficulty);
 					if(isStandard == 2) {
-						overworld.setMapType(isStandard);
+						//overworld.setVisible(false);
+						System.out.println("isStandard = " + isStandard);
+						overworld = new Overworld(isStandard);
+						mainPanel.add(overworld, MAP);
+						//overworld.setMapType(isStandard);
 					}
 					mainPanel.add(selPage.getMainComponent(), SEL);	
 					cardlayout.show(mainPanel, SEL);
