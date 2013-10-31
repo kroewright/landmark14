@@ -41,7 +41,8 @@ public class GameDriver{
 		selPage = new Selpage();
 		overworld = new Overworld(isStandard);
 		mainPanel.add(openingScreen.getMainComponent(), OPEN);
-		//mainPanel.add(overworld, MAP);
+		//mainPanel.add(overworld.getMainComponent(), MAP);
+		mainPanel.add(overworld, MAP);
 
 		/**
 		 * Action listener for the NEXT button of the openingScreen.
@@ -58,10 +59,9 @@ public class GameDriver{
 					selPage.setSelpage(numOfPlayers);
 					selPage.setDifficulty(difficulty);
 					if(isStandard == 2) {
-						//overworld.setVisible(false);
 						System.out.println("isStandard = " + isStandard);
 						overworld = new Overworld(isStandard);
-						mainPanel.add(overworld, MAP);
+						//mainPanel.add(overworld, MAP);
 						//overworld.setMapType(isStandard);
 					}
 					mainPanel.add(selPage.getMainComponent(), SEL);	
@@ -83,6 +83,7 @@ public class GameDriver{
 					overworld.setPlayers(players);
 					overworld.setFrame(frame);
 					overworld.setDriver(driver);
+					mainPanel.add(overworld, MAP);
 					cardlayout.show(mainPanel, MAP);
 					overworld.selectionPhaseTurn();
 				}
