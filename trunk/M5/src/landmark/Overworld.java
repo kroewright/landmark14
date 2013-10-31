@@ -77,7 +77,7 @@ public class Overworld extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Overworld() {
+	public Overworld(int mapType) {
 		super(new BorderLayout());
 		grid = new JPanel(new GridLayout(5, 9));
 		add(grid, BorderLayout.CENTER);
@@ -101,6 +101,7 @@ public class Overworld extends JPanel {
 		playerPanel.add(spaceLabel4);
 		add(playerPanel, BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(1480, 820));
+		this.mapType = mapType;
 		setMapType(mapType);
 	}
 
