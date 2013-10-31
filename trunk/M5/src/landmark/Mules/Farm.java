@@ -28,7 +28,7 @@ public class Farm extends Mule {
 		//image = g;
 		
 		
-		image = "Mules/farm.jpg";
+		image = "Mules/farmMule";
 		
 	}
 	

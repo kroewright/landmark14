@@ -251,10 +251,10 @@ public class Overworld extends JPanel {
 								else{
 									//TODO Test me
 									players[playerTurn].putMule(tiles[i][j]);
-									System.out.println("reached");
+									System.out.println(players[playerTurn].getCurrentMule().getImage() + players[playerTurn].getColorAsString()+".jpg");
 
 									buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().
-											getResource(players[playerTurn].getCurrentMule().getImage())));
+											getResource(players[playerTurn].getCurrentMule().getImage() + players[playerTurn].getColorAsString()+".jpg")));
 								}
 							}
 						}
