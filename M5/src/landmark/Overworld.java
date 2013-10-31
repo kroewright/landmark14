@@ -215,46 +215,39 @@ public class Overworld extends JPanel {
 						for(int j = 0; j < 9; ++j) {
 							if(e.getSource() == buttons[i][j] && !(i==2 && j==4) ){
 
-								
-								//Needs a boolean so exceptions may show up only when trying to place a mule
-								//Now they show up every time you press the tile
-							
 								if(!players[playerTurn].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"You do not have a Mule to place");
 								}
-								
+
 								else if(!players[playerTurn].hasTile(tiles[i][j])) {
 									JOptionPane.showMessageDialog(null,
 											"You cannot place the Mule on the property you do not own" +
 											"\nSorry, you lost your Mule");
-									
-									//needs to update variables related to mule
+
+									//Player lost his mule
 									players[playerTurn].setCurrentMule(null);
 									players[playerTurn].setHasCurrentMule(false);
 									ArrayList<Mule> mules = players[playerTurn].getMules();
 									System.out.println(mules.get(0).getType());
 									int size = mules.size();
 									mules.remove(size - 1);
-									
-									//what the player should do once the mule is lost?
-									//break;
 								}
+
 								else if(tiles[i][j].hasMule()) {
 									JOptionPane.showMessageDialog(null,
 											"Mule is already on property. You cannot place another one. + "
 													+ "\nSorry, you lost your M.U.L.E.");
-									//needs to update variables related to mule
+
+									//Player lost mule
 									players[playerTurn].setCurrentMule(null);
 									players[playerTurn].setHasCurrentMule(false); 
 									ArrayList<Mule> mules = players[playerTurn].getMules();
 									System.out.println(mules.get(0).getType());
 									int size = mules.size();
 									mules.remove(size - 1);
-									
-									//what the player should do once the mule is lost?
-									//break;
 								}
+
 								else{
 									//TODO Test me
 									players[playerTurn].putMule(tiles[i][j]);
@@ -390,7 +383,7 @@ public class Overworld extends JPanel {
 	public int getSelectionRounds() {
 		return selectionRounds;
 	}
-	
+
 	public void setDriver(GameDriver driver) {
 		this.driver = driver;
 	}
@@ -437,7 +430,7 @@ public class Overworld extends JPanel {
 		this.store = store;
 		storeSet = true;
 	}
-	
+
 	public void setPlayerTurn(int turn) {
 		this.playerTurn = turn;
 	}
