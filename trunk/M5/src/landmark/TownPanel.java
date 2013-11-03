@@ -230,14 +230,20 @@ public class TownPanel extends JPanel {
 				else {
 					turn += 1;
 				}
+				
+				if(productionRound == 12) {
+					JOptionPane.showMessageDialog(null, "Game over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+				else {
+					JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
+							, "Production Phase Round " + (productionRound + 1), JOptionPane.INFORMATION_MESSAGE);
 
-				JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
-						, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
-
-				map.setPlayerPanel(players.length);
-				ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
-				map.setProduction(productionTurn);
-				driver.changeToMapPanel(map);
+					map.setPlayerPanel(players.length);
+					ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
+					map.setProduction(productionTurn);
+					driver.changeToMapPanel(map);
+				}
 			}
 		});
 	}

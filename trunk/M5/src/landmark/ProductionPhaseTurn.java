@@ -49,8 +49,6 @@ public class ProductionPhaseTurn {
 			}
 		}
 		
-		System.out.println(lowestScorePlayer.getName());
-		
 		if(lowestScorePlayer != null && players[turn] != lowestScorePlayer) {
 			RandomEvents event = new RandomEvents(players[turn], productionRound);
 			int chance = event.calculateChance();
@@ -60,18 +58,18 @@ public class ProductionPhaseTurn {
 				map.setPlayerPanel(players.length);
 			}
 		}
-		
+			
 		town = new TownPanel(players, productionRound, turn, map, driver);
 		timer = new Clock(players, productionRound, turn, town, map, driver);
 		town.setPub(timer);
-		
+			
 		if(turn == (players.length - 1)) {
-    		turn = 0;
-    		//players = map.orderPlayersByScore(players);
-    	}
-    	else {
-    		turn += 1;
-    	}
+	    	turn = 0;
+	    	//players = map.orderPlayersByScore(players);
+	    }
+	    else {
+	    	turn += 1;
+	    }
 	}
 	
 	/**
