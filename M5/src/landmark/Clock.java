@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 public class Clock {
 	
 	private static int interval;
+	private static int productionRound;
 	private static Timer timer;
 	private static Player[] players;  //static
 	private static TownPanel town;
@@ -32,6 +33,7 @@ public class Clock {
 	public Clock(Player[] players, int productionRound, int turn, final TownPanel town, final Overworld map, 
 			GameDriver driver) {
 		this.players = players;
+		this.productionRound = productionRound;
 		this.turn = turn;
 		this.town = town;
 		this.map = map;
@@ -118,13 +120,18 @@ public class Clock {
 	    		turn += 1;
 	    	}
 	    	
-	    	
-	    	JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
-	    			, "Production Phase", JOptionPane.INFORMATION_MESSAGE);
-	    	
-	    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
-	    	map.setProduction(productionTurn);
-	    	driver.changeToMapPanel(map);
+	    	if(productionRound == 12) {
+	    		JOptionPane.showMessageDialog(null, "Game over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+				System.exit(0);
+	    	}
+	    	else {
+	    		JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
+		    			, "Production Phase Round " + (productionRound + 1), JOptionPane.INFORMATION_MESSAGE);
+		    	
+		    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
+		    	map.setProduction(productionTurn);
+		    	driver.changeToMapPanel(map);
+	    	}
 	    }
 	    return --interval;
 	}
