@@ -7,6 +7,13 @@ public class RandomEvents {
 	private Player player;
 	private int multiplier;
 
+	/**
+	 * Constructor for RandomEvents. It takes a player and round number
+	 * in order to see if the player will get a random event before his or her turn.
+	 * 
+	 * @param player
+	 * @param gameRound
+	 */
 	public RandomEvents(Player player, int gameRound) {
 		this.player = player;
 		
@@ -24,12 +31,24 @@ public class RandomEvents {
 		}
 	}
 	
+	/**
+	 * Calculates the chance that a random event will happen
+	 * to the certain player.
+	 * 
+	 * @return int
+	 */
 	public int calculateChance() {
 		Random randomGenerator = new Random();
 		int chance = randomGenerator.nextInt(101);
 		return chance;
 	}
 	
+	/**
+	 * Gets one of the seven events that can happen based on a random generated
+	 * number. This string will be put into a dialog box.
+	 * 
+	 * @return String
+	 */
 	public String getRandomEvent() {
 		Random randomGenerator = new Random();
 		int eventType = randomGenerator.nextInt(7) + 1;
