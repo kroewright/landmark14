@@ -2,6 +2,7 @@ package landmark;
 
 import java.awt.CardLayout;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ProductionPhaseTurn {
@@ -13,6 +14,7 @@ public class ProductionPhaseTurn {
 	private Clock timer;
 	private Player[] players;
 	private GameDriver driver;
+	private static Player lowestScorePlayer;
 	
 	/**
 	 * Constructor for a turn in the production phase. This
@@ -31,7 +33,32 @@ public class ProductionPhaseTurn {
 		
 		if(turn == 0) {
 			productionRound += 1;
-			//System.out.println(productionRound);
+			lowestScorePlayer = players[0];
+			int counter = 0;
+			for(Player p: players) {
+				if(p.getMoney() < lowestScorePlayer.getMoney()) {
+					p = lowestScorePlayer;
+				}
+				else if(p.getMoney() == lowestScorePlayer.getMoney()) {
+					counter += 1;
+				}
+				
+				if(counter == players.length) {
+					lowestScorePlayer = null;
+				}
+			}
+		}
+		
+		System.out.println(lowestScorePlayer.getName());
+		
+		if(lowestScorePlayer != null && players[turn] != lowestScorePlayer) {
+			RandomEvents event = new RandomEvents(players[turn], productionRound);
+			int chance = event.calculateChance();
+			if(chance <= 27) {
+				String message = event.getRandomEvent();
+				JOptionPane.showMessageDialog(null, message, "Random Event", JOptionPane.INFORMATION_MESSAGE);
+				map.setPlayerPanel(players.length);
+			}
 		}
 		
 		town = new TownPanel(players, productionRound, turn, map, driver);
