@@ -305,7 +305,7 @@ public class Overworld extends JPanel {
 						else {
 							players = orderPlayersByScore(players);							
 							playerName = players[playerTurn].getName();
-							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
+							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase Round 1"
 									, JOptionPane.INFORMATION_MESSAGE);
 
 							productionTurn = new ProductionPhaseTurn(players, this, driver);
@@ -332,7 +332,7 @@ public class Overworld extends JPanel {
 						players = orderPlayersByScore(players);
 
 						playerName = players[playerTurn].getName();
-						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase"
+						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase Round 1"
 								, JOptionPane.INFORMATION_MESSAGE);
 
 						productionTurn = new ProductionPhaseTurn(players, this, driver);

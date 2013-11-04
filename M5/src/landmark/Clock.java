@@ -17,6 +17,7 @@ public class Clock {
 	private static int turn;
 	private static Overworld map;
 	private static GameDriver driver;
+	private static Player player;
 	
 	/**
 	 * Constructor for the Clock class. The starting time is first
@@ -38,6 +39,7 @@ public class Clock {
 		this.town = town;
 		this.map = map;
 		this.driver = driver;
+		player = players[turn];
 		int delay = 1000;
 	    int period = 1000;
 	    timer = new Timer();
@@ -124,9 +126,17 @@ public class Clock {
 	    		JOptionPane.showMessageDialog(null, "Game over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 				System.exit(0);
 	    	}
-	    	else {
+	    	else if(turn == 0 && player == players[players.length - 1]) {
 	    		JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
 		    			, "Production Phase Round " + (productionRound + 1), JOptionPane.INFORMATION_MESSAGE);
+		    	
+		    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
+		    	map.setProduction(productionTurn);
+		    	driver.changeToMapPanel(map);
+	    	}
+	    	else {
+	    		JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
+		    			, "Production Phase Round " + productionRound, JOptionPane.INFORMATION_MESSAGE);
 		    	
 		    	ProductionPhaseTurn productionTurn = new ProductionPhaseTurn(players, map, driver);
 		    	map.setProduction(productionTurn);
