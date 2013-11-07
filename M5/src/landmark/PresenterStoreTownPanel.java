@@ -2,9 +2,10 @@ package landmark;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
-public class PresenterStoreTownPanel {
-	private Store store;
+public class PresenterStoreTownPanel implements Serializable {
+	public static Store store;
 	private TownPanel town;
 	
 	public PresenterStoreTownPanel(TownPanel town){
