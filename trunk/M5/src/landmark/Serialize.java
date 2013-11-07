@@ -25,7 +25,7 @@ import java.io.ObjectInputStream;
 
 public class Serialize {
 
-	public static Store theStore = Overworld.store;
+	public static GameDriver driver = Overworld.getDriver();
 	public Player[] players = Overworld.players;
 	
 	public static void serialTest(){
@@ -33,10 +33,10 @@ public class Serialize {
 		
 	
 
-		theStore.save("store1.dat");
+		driver.save("saveFile.dat");
 		
-		theStore.getFromFile("store1.dat");
-		System.out.println(theStore.getOreInv());
+		driver.getFromFile("saveFile.dat");
+		System.out.println(driver.toString());
 		System.out.println("It worked!");
 	}
 	
