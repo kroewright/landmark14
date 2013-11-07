@@ -1,11 +1,12 @@
 package landmark;
 
 import java.awt.CardLayout;
+import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ProductionPhaseTurn {
+public class ProductionPhaseTurn implements Serializable{
 	
 	private static int productionRound = 0;
 	private static int turn = 0; //player1 = 0, player2 = 1, player3 = 2, player3 = 2, player4 = 3

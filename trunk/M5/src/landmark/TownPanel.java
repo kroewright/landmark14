@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -66,7 +67,7 @@ import java.awt.Font;
  *
  */
 
-public class TownPanel extends JPanel {
+public class TownPanel extends JPanel implements Serializable{
 
 	private Player[] players;
 	private Player player;
