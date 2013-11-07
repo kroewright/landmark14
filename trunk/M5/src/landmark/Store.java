@@ -173,7 +173,6 @@ public class Store implements Serializable {
 	}
 
 	public void energyButt() {
-		Serialize.serialTest();
 		
 		
 		Object[] options = {"Buy", "Sell", "Cancel"};
