@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,7 +45,7 @@ import landmark.Tiles.Town;
  */
 
 @SuppressWarnings("serial")
-public class Overworld extends JPanel {
+public class Overworld extends JPanel implements Serializable{
 
 	private Tile[][] tiles = new Tile[5][9];
 	private static Tile[][] randTiles = new Tile[5][9];
@@ -54,7 +55,7 @@ public class Overworld extends JPanel {
 	private GameDriver driver;
 	private JLabel time;
 	private JButton[][] buttons = new JButton[5][9];
-	private Player[] players;
+	static Player[] players;
 	private int selectionRounds = 0;
 	private JFrame frame;
 	private int selectionSkips = 0;
