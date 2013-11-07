@@ -68,7 +68,7 @@ public class Overworld extends JPanel implements Serializable{
 	private JList player3;
 	private JList player4;
 	private JList storeInfo;
-	private Store store;
+	static Store store;
 	private String player1Name;
 	private String player2Name;
 	private String player3Name;

@@ -23,30 +23,17 @@ import java.io.ObjectInputStream;
 
 public class Serialize {
 
-	public static Store theStore = PresenterStoreTownPanel.store;
+	public static Store theStore = Overworld.store;
 	public Player[] players = Overworld.players;
 	
 	public static void serialTest(){
 
 		
-		
-		try {
-			FileOutputStream out = new FileOutputStream("store.dat");
-			try {
-				out.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 
+		theStore.save("store1.dat");
 		
-		theStore.save("store.dat");
-		
-		theStore.getFromFile("store.dat");
+		theStore.getFromFile("store1.dat");
 		System.out.println(theStore.getOreInv());
 		System.out.println("It worked!");
 	}
