@@ -25,13 +25,20 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import landmark.Tiles.Mountains;
 import landmark.Tiles.Plains;
@@ -52,7 +59,7 @@ public class Overworld extends JPanel implements Serializable{
 	private JPanel panel;
 	private JPanel grid;
 	private JPanel playerPanel;
-	private GameDriver driver;
+	private static GameDriver driver;
 	private JLabel time;
 	private JButton[][] buttons = new JButton[5][9];
 	static Player[] players;
@@ -309,7 +316,7 @@ public class Overworld extends JPanel implements Serializable{
 							JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase Round 1"
 									, JOptionPane.INFORMATION_MESSAGE);
 
-							productionTurn = new ProductionPhaseTurn(players, this, driver);
+							productionTurn = new ProductionPhaseTurn(players, this, getDriver());
 							//productionTurn.setDriver(driver);
 						}
 					}
@@ -336,7 +343,7 @@ public class Overworld extends JPanel implements Serializable{
 						JOptionPane.showMessageDialog(frame, (playerName + " begin production phase!"), "Production Phase Round 1"
 								, JOptionPane.INFORMATION_MESSAGE);
 
-						productionTurn = new ProductionPhaseTurn(players, this, driver);
+						productionTurn = new ProductionPhaseTurn(players, this, getDriver());
 						//productionTurn.setDriver(driver);
 					}
 				}
@@ -788,4 +795,12 @@ public class Overworld extends JPanel implements Serializable{
 		}
 		updateUI();
 	}	
+	
+    
+
+		public static GameDriver getDriver() {
+			return driver;
+		}
+	
+	
 }
