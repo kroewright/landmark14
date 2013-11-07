@@ -2,6 +2,8 @@ package landmark;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
+
 import javax.swing.*;
 
 /**
@@ -9,7 +11,7 @@ import javax.swing.*;
  * @author Landmark - Team 14
  *
  */
-public class GameDriver{ 
+public class GameDriver implements Serializable{ 
 
 	private static final String OPEN = "openScrn";
 	private static final String SEL = "SelPg";

@@ -1,6 +1,7 @@
 package landmark.Tiles;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import landmark.Player;
 import landmark.Tile;
@@ -10,7 +11,7 @@ import landmark.Tile;
  *
  */
 
-public class Town extends Tile{
+public class Town extends Tile implements Serializable{
 	private String file;
 	private int tileType;
 	

@@ -1,5 +1,6 @@
 package landmark;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -7,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Clock {
+public class Clock implements Serializable{
 	
 	private static int interval;
 	private static int productionRound;

@@ -3,6 +3,7 @@ package landmark.Tiles;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
@@ -14,7 +15,7 @@ import landmark.Tile;
  * @author landmark - Team 14
  *
  */
-public class Mountains extends Tile{
+public class Mountains extends Tile implements Serializable{
 	private String file;
 	
 	private boolean isOwned;

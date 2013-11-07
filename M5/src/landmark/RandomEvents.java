@@ -1,8 +1,9 @@
 package landmark;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class RandomEvents {
+public class RandomEvents implements Serializable{
 	
 	private Player player;
 	private int multiplier;

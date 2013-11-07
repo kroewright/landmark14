@@ -5,12 +5,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
 import landmark.Mule;
 
-public class Mine extends Mule {
+public class Mine extends Mule implements Serializable{
 
 
 	private String type;

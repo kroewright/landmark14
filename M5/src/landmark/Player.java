@@ -1,5 +1,6 @@
 package landmark;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author k_wright0510
  *
  */
-public class Player {
+public class Player implements Serializable{
 	private String name;
 	private int money;
 	private int score;

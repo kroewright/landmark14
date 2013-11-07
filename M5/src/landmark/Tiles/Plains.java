@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
@@ -16,7 +17,7 @@ import landmark.Tile;
  *
  */
 
-public class Plains extends Tile {
+public class Plains extends Tile implements Serializable{
 	private String file;
 	
 	private boolean isOwned;
