@@ -12,10 +12,12 @@ import java.io.ObjectInputStream;
  * listener in the town, which, although temporarily breaks the button, will be used to SAVE and then LOAD
  * the information held in the current STORE that has been initialized.
  * 
- * The following problem exists: That the file cannot be found when the SAVE function is activated, 
- * a null pointer exception is found. I've done my best to adapt our code to Bob's example, by implementing
- * serializable in the store class and adding the save and load method there, but it appears that there is some sort of mis-communication.
  * 
+ *
+ *
+ *An update:
+ *So this code works for saving/loading the store, now trying to implement it for the overworld.
+
  * 
  * 
  */

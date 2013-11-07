@@ -159,6 +159,23 @@ public class TownPanel extends JPanel implements Serializable{
 				driver.changeToMapPanel(map);
 			}
 		});
+
+		
+		
+		/**
+		 * Save button listener for saving data
+		 */
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Serialize.serialTest();
+
+				
+			}
+		});
+		btnSave.setBounds(23, 94, 115, 74);
+		panel.add(btnSave);
 		
 		
 		
