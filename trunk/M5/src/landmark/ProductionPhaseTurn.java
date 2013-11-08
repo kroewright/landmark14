@@ -2,6 +2,7 @@ package landmark;
 
 import java.awt.CardLayout;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -59,6 +60,10 @@ public class ProductionPhaseTurn implements Serializable{
 				map.setPlayerPanel(players.length);
 			}
 		}
+		
+		if(productionRound != 1) {
+			produceAndGather();
+		}
 			
 		town = new TownPanel(players, productionRound, turn, map, driver);
 		timer = new Clock(players, productionRound, turn, town, map, driver);
@@ -107,5 +112,59 @@ public class ProductionPhaseTurn implements Serializable{
 	 */
 	public Clock getClock() {
 		return timer;
+	}
+	
+	/**
+	 * Handles getting the right resources from the tile and checks
+	 * if the player has enough energy to run his or her mules.
+	 */
+	private void produceAndGather() {
+		ArrayList<Tile> ownedTiles = players[turn].getTilesOwned();
+		ArrayList<Mule> ownedMules = players[turn].getMules();
+		int muleSize = ownedMules.size();
+		if(players[turn].getEnergy() >= muleSize) {
+			int producedFood = players[turn].getFoodYield();
+			int totalFood = players[turn].getFood() + producedFood;
+			players[turn].setFood(totalFood);
+			int producedEnergy = players[turn].getEnergyYield();
+			int totalEnergy = players[turn].getEnergy() + producedEnergy;
+			players[turn].setEnergy((totalEnergy - muleSize));
+			int producedOre = players[turn].getOreYield();
+			int totalOre = players[turn].getOre() + producedOre;
+			players[turn].setOre(totalOre);
+			JOptionPane.showMessageDialog(null, players[turn].getName() + ", you produced and harvested:\n" + "Food: " 
+					+ producedFood + "\nEnergy: " + producedEnergy + "\nSmithore: " + producedOre + "\nYou used " + muleSize + 
+					" energy to run your mules.", "Harvested Resources", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if(players[turn].getEnergy() > 0){
+			int currentEnergy = players[turn].getEnergy();
+			players[turn].resetYields();
+			for(Tile tile: ownedTiles) {
+				if(currentEnergy != 0) {
+					players[turn].increaseFoodYield(tile.getFYield());
+					players[turn].increaseEnergyYield(tile.getEYield());
+					players[turn].increaseOreYield(tile.getOYield());
+					currentEnergy -= 1;
+				}
+			}
+			
+			int producedFood = players[turn].getFoodYield();
+			int totalFood = players[turn].getFood() + producedFood;
+			players[turn].setFood(totalFood);
+			int producedEnergy = players[turn].getEnergyYield();
+			players[turn].setEnergy(producedEnergy);
+			int producedOre = players[turn].getOreYield();
+			int totalOre = players[turn].getOre() + producedOre;
+			players[turn].setOre(totalOre);
+			JOptionPane.showMessageDialog(null, players[turn].getName() + ", you don't have enough energy to run all of your mules!" +
+					"\nYou used the rest of your energy to run some of your mules. You produced and harvested:\n" + "Food: " + producedFood + "\nEnergy: " + producedEnergy + 
+					"\nSmithore: " + producedOre, "Harvested Resources", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, players[turn].getName() + ", you do not have any energy to run your mules! " +
+					"\nNothing was produced or harvested. I'd build some power plants if I were you...", 
+					"Harvested Resources", JOptionPane.INFORMATION_MESSAGE);
+		}
+		map.setPlayerPanel(players.length);
 	}
 }

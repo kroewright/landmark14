@@ -231,35 +231,30 @@ public class Overworld extends JPanel implements Serializable{
 
 								else if(!players[playerTurn].hasTile(tiles[i][j])) {
 									JOptionPane.showMessageDialog(null,
-											"You cannot place the Mule on the property you do not own" +
+											"You cannot place the Mule on the property you do not own." +
 											"\nSorry, you lost your Mule");
 
 									//Player lost his mule
 									players[playerTurn].setCurrentMule(null);
 									players[playerTurn].setHasCurrentMule(false);
-									ArrayList<Mule> mules = players[playerTurn].getMules();
-									System.out.println(mules.get(0).getType());
-									int size = mules.size();
-									mules.remove(size - 1);
 								}
 
 								else if(tiles[i][j].hasMule()) {
 									JOptionPane.showMessageDialog(null,
-											"Mule is already on property. You cannot place another one. + "
+											"Mule is already on property. You cannot place another one."
 													+ "\nSorry, you lost your M.U.L.E.");
 
 									//Player lost mule
 									players[playerTurn].setCurrentMule(null);
-									players[playerTurn].setHasCurrentMule(false); 
-									ArrayList<Mule> mules = players[playerTurn].getMules();
-									System.out.println(mules.get(0).getType());
-									int size = mules.size();
-									mules.remove(size - 1);
+									players[playerTurn].setHasCurrentMule(false);
 								}
 
 								else{
 									//TODO Test me
 									players[playerTurn].putMule(tiles[i][j]);
+									ArrayList<Mule> mules = players[playerTurn].getMules();
+									int size = mules.size();
+									System.out.println(size);
 									System.out.println(players[playerTurn].getCurrentMule().getImage() + players[playerTurn].getColorAsString()+".jpg");
 
 									buttons[i][j].setIcon(new ImageIcon(getClass().getClassLoader().

@@ -221,9 +221,17 @@ public class Player implements Serializable{
 	public void increaseOreYield( int amount ){
 		this.oreYield += amount;
 	}
+	
+	public void resetYields() {
+		this.oreYield = 0;
+		this.foodYield = 0;
+		this.energyYield = 0;
+	}
+	
 	public void increaseEnergyYield( int amount ){
 		this.energyYield += amount;
 	}
+	
 	public void increaseFoodYield( int amount ){
 		this.foodYield += amount;
 	}
@@ -241,13 +249,13 @@ public class Player implements Serializable{
 		plantedMules.add(m);
 		
 		switch (m.getType() ){
-		case "ore":
+		case "mine":
 			increaseOreYield(t.getOYield());
 			break;
-		case "energy":
+		case "PPlant":
 			increaseEnergyYield(t.getEYield());
 			break;
-		case "food":
+		case "farm":
 			increaseFoodYield(t.getFYield());
 			break;
 		}
