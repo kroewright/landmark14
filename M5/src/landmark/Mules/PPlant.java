@@ -19,7 +19,7 @@ public class PPlant extends Mule implements Serializable{
 	
 	
 	public PPlant(){
-		this.type="PPlant";
+		this.type = "PPlant";
 		//this.image = "PPlant.jpg";
 		File img = new File("Tiles/powerplant.png");
 		System.out.println(img);

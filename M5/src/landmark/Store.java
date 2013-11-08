@@ -362,13 +362,7 @@ public class Store implements Serializable {
 			}
 
 			if (player.getMoney() >= totalCost){
-				player.setMoney(player.getMoney() - totalCost);
-				player.getMules().add(mule);
-				/*
-				for (int i=0; i==valInt; i++){
-					player.getMules().add(mule);	
-				}
-				 */					
+				player.setMoney(player.getMoney() - totalCost);				
 				invMules = invMules - 1;
 			}
 			else {
