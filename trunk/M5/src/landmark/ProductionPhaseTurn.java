@@ -61,6 +61,8 @@ public class ProductionPhaseTurn implements Serializable{
 			}
 		}
 		
+		takeFoodForClock();
+		
 		if(productionRound != 1) {
 			produceAndGather();
 		}
@@ -112,6 +114,39 @@ public class ProductionPhaseTurn implements Serializable{
 	 */
 	public Clock getClock() {
 		return timer;
+	}
+	
+	/**
+	 * This private method takes the right amount of food from a player before their turn starts.
+	 * Amount of food taken varies per round. Read M2 to know the rules.
+	 */
+	private void takeFoodForClock() {
+		int food = players[turn].getFood();
+		
+		if(productionRound <= 4) {
+	    	if(food >= 3) {
+	    		players[turn].setFood((food - 3));
+	    	}
+	    	else {
+	    		players[turn].setFood(0);
+	    	}
+	    }
+	    else if(productionRound <= 8) {
+	    	if(food >= 4) {
+	    		players[turn].setFood((food - 4));
+	    	}
+	    	else {
+	    		players[turn].setFood(0);
+	    	}
+	    }
+	    else if(productionRound <= 12) {
+	    	if(food >= 5) {
+	    		players[turn].setFood((food - 5));
+	    	}
+	    	else if(food > 0) {
+	    		players[turn].setFood(0);
+	    	}
+	    }
 	}
 	
 	/**
