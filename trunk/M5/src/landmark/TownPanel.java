@@ -243,7 +243,6 @@ public class TownPanel extends JPanel implements Serializable{
 				//Ends the player's turn and activate the another player
 				if(turn == (players.length - 1)) {
 					turn = 0;
-					players = map.orderPlayersByScore(players);
 				}
 				else {
 					turn += 1;
@@ -254,6 +253,7 @@ public class TownPanel extends JPanel implements Serializable{
 					System.exit(0);
 				}
 				else if(turn == 0 && player == players[players.length - 1]) {
+					players = map.orderPlayersByScore(players);
 					JOptionPane.showMessageDialog(panel, players[turn].getName() + " begin production phase!"
 							, "Production Phase Round " + (productionRound + 1), JOptionPane.INFORMATION_MESSAGE);
 
