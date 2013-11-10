@@ -48,6 +48,7 @@ public class Player implements Serializable{
 		this.name = name;
 		this.color = color;
 		this.difficulty = difficulty;
+		this.race = race;
 		plantedMules = new ArrayList<Mule>();
 		ownedTiles = new ArrayList<Tile>();
 
@@ -188,6 +189,7 @@ public class Player implements Serializable{
 
 	public void setMoney(int i){
 		this.money = i;
+		this.score = i;
 	}
 
 	public void setTimer(Clock timer){

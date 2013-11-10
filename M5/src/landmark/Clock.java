@@ -117,7 +117,6 @@ public class Clock implements Serializable{
 	    	
 	    	if(turn == (players.length - 1)) {
 	    		turn = 0;
-	    		players = map.orderPlayersByScore(players);
 	    	}
 	    	else {
 	    		turn += 1;
@@ -128,6 +127,7 @@ public class Clock implements Serializable{
 				System.exit(0);
 	    	}
 	    	else if(turn == 0 && player == players[players.length - 1]) {
+	    		players = map.orderPlayersByScore(players);
 	    		JOptionPane.showMessageDialog(town, "Time's up! " + players[turn].getName() + " begin production phase!"
 		    			, "Production Phase Round " + (productionRound + 1), JOptionPane.INFORMATION_MESSAGE);
 		    	
