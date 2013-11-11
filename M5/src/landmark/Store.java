@@ -29,8 +29,10 @@ import java.util.logging.Logger;
  * 
  * @author landmark - team 14
  * 
+ * Store class that keeps track of the inventory of items and controls 
+ * how players buy and sell items.
+ * 
  */
-
 public class Store implements Serializable {
 
 	public Player player;
@@ -68,7 +70,13 @@ public class Store implements Serializable {
 
 	//private Tiles[] landForSale;
 
-
+	/**
+	 * Constructor that takes in the current player and town to control the buying 
+	 * and selling process for each turn.
+	 * 
+	 * @param player
+	 * @param town
+	 */
 	public Store(Player player, TownPanel town) {
 		food= "food";
 		ore= "ore";
@@ -94,7 +102,12 @@ public class Store implements Serializable {
 		map.setStore(this);
 
 	}
-
+	
+	/**
+	 * Method that controls the functionality of the Ore button in the store.
+	 * Determines if a player is buying or selling and if they have enough of an 
+	 * item or enough money.
+	 */
 	public void oreButt() {
 		Object[] options = {"Buy", "Sell", "Cancel"};
 		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
@@ -172,6 +185,11 @@ public class Store implements Serializable {
 		map.setPlayerPanel(town.getPlayers().length);
 	}
 
+	/**
+	 * Method that controls the functionality of the Energy button in the store.
+	 * Determines if a player is buying or selling and if they have enough of an 
+	 * item or enough money.
+	 */
 	public void energyButt() {
 		
 		
@@ -251,6 +269,11 @@ public class Store implements Serializable {
 		map.setPlayerPanel(town.getPlayers().length);	
 	}
 
+	/**
+	 * Method that controls the functionality of the Food button in the store.
+	 * Determines if a player is buying or selling and if they have enough of an 
+	 * item or enough money.
+	 */
 	public void foodButt() {
 		System.out.println("Food");
 		Object[] options = {"Buy", "Sell", "Cancel"};
@@ -327,7 +350,14 @@ public class Store implements Serializable {
 		map.setPlayerPanel(town.getPlayers().length);
 	}
 
-
+	/**
+	 * Method that controls the functionality of the Mule button in the store.
+	 * Determines what type of mule a player wants to purchase and if they have
+	 * enough money to do so.
+	 * 
+	 * Only one mule can be purchased at a time and another cannot be purchased until a 
+	 * player has planted their last mule.
+	 */
 	public void muleButt() {
 		int dialogButton = JOptionPane.YES_NO_OPTION;
 		int n = JOptionPane.showConfirmDialog(town, "Would you like to buy a mule?",
@@ -381,18 +411,38 @@ public class Store implements Serializable {
 		map.setPlayerPanel(town.getPlayers().length);
 	}
 
+	/**
+	 * Method that returns the stores food inventory.
+	 * 
+	 * @return invFood
+	 */
 	public int getFoodInv() {
 		return invFood;
 	}
 
+	/**
+	 * Method that returns the stores energy inventory.
+	 * 
+	 * @return invEnergy
+	 */
 	public int getEnergyInv() {
 		return invEnergy;
 	}
-
+	
+	/**
+	 * Method that returns the stores ore inventory.
+	 * 
+	 * @return invOre
+	 */
 	public int getOreInv() {
 		return invOre;
 	}
-
+	
+	/**
+	 * Method that returns the stores mule inventory.
+	 * 
+	 * @return invMules
+	 */
 	public int getMuleInv() {
 		return invMules;
 	}
