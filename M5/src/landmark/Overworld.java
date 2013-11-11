@@ -473,6 +473,10 @@ public class Overworld extends JPanel implements Serializable{
 	 * @return Tile - tile created
 	 */
 	public static Tile tileFactory(int i, int j){
+		if(i<0 || j < 0 || j > 9 || i > 5){
+			throw new IndexOutOfBoundsException("Index " + i + ", " + j + " is out of bounds!" );
+		}
+		
 		int numOfColumns = 9;
 		int location = (i*numOfColumns)+j;
 
