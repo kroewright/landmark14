@@ -9,7 +9,10 @@ import javax.swing.JOptionPane;
 
 /**
  * 
- * @author k_wright0510
+ * @author landmark - team 14
+ * 
+ * Player class that keeps track of the players in a current game.
+ * Handles their score, items owned, race, color, and game difficulty.
  *
  */
 public class Player implements Serializable{
@@ -36,7 +39,7 @@ public class Player implements Serializable{
 	private Clock timer;
 
 	/**
-	 * Contains the player's name, color, difficulty of the current game,
+	 * Consturctor that contains the player's name, color, difficulty of the current game,
 	 * and their race.
 	 * 
 	 * @param name
@@ -84,13 +87,20 @@ public class Player implements Serializable{
 		this.oreYield = 0;
 	}
 
-	/*
-	 * Getter for player color.
+	/**
+	 * Method that returns the players color.
+	 * 
+	 * @return color, gold navy white or black
 	 */
 	public int getColor(){
 		return color;
 	}
-
+	
+	/**
+	 * Method that converts the player color integer into a string.
+	 * 
+	 * @return color 
+	 */
 	public String getColorAsString(){
 		switch(this.color){
 		case 0:
@@ -108,6 +118,7 @@ public class Player implements Serializable{
 
 	/**
 	 * Method that adds tiles to new owners and sets the new owner.
+	 * 
 	 * @param tile
 	 */
 	public void addTileOwned(Tile tile){
@@ -116,7 +127,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * Getter for owner tiles.
+	 * Getter for owned tiles per player.
+	 * 
 	 * @return tiles
 	 */
 	public ArrayList<Tile> getTilesOwned() {
@@ -125,6 +137,7 @@ public class Player implements Serializable{
 
 	/**
 	 * Deducts money when land is purchased.
+	 * 
 	 * @param tile
 	 */
 	public void buyLandSelectionPhase(Tile tile) {
@@ -138,114 +151,247 @@ public class Player implements Serializable{
 
 
 
-	/*
-	 * Getters and setters for each player parameter.
-	 * Also getters and setters for scores and money.
+	/**
+	 * Method that returns the player's name
 	 * 
+	 * @return name
 	 */
 	public String getName(){
 		return name;
 	}
 
+	/**
+	 * Method that returns how much food a player has
+	 * 
+	 * @return food
+	 */
 	public int getFood() {
 		return food;
 	}
 
+	/**
+	 * Method that sets the new food total following production phase
+	 * 
+	 * @param newtotal
+	 */
 	public void setFood(int newtotal){
 		food = newtotal;
 	}
-
+	
+	/**
+	 * Method that returns how much energy a player has
+	 * 
+	 * @return energy
+	 */
 	public int getEnergy() {
 		return energy;
 	}
-
+	
+	/**
+	 * Method that sets the new energy total following production phase
+	 * 
+	 * @param newtotal
+	 */
 	public void setEnergy(int newtotal){
 		energy = newtotal;
 	}
 
+	/**
+	 * Method that returns how much ore a player has
+	 * 
+	 * @return ore
+	 */
 	public int getOre() {
 		return ore;
 	}
 
+	/**
+	 * Method that sets the new ore total following production phase
+	 * 
+	 * @param newtotal
+	 */
 	public void setOre(int newtotal){
 		ore =  newtotal;
 	}
+	
+	/**
+	 * Method that returns how much money a player has
+	 * 
+	 * @return score
+	 */
 	public int getScore(){
 		return score;
 	}
 
+	/**
+	 * Method that sets the new money total following production phase
+	 * 
+	 * @param i
+	 */
 	private void setScore(int i){
 		this.score = i;
 	}
 
+	/**
+	 * Method that returns how much money a player has
+	 * 
+	 * @return money
+	 */
 	public int getMoney(){
 		return money;
 	}
-
-	public int getDifficulty(){
-		return difficulty;
-	}
-
-
+	
+	/**
+	 * Method that sets the new money total following production phase
+	 *	
+	 * @param i
+	 */
 	public void setMoney(int i){
 		this.money = i;
 		this.score = i;
 	}
 
-	public void setTimer(Clock timer){
-		this.timer = timer;
+	/**
+	 * Method that return the difficulty of the current game being played
+	 * 
+	 * @return difficulty
+	 */
+	public int getDifficulty(){
+		return difficulty;
 	}
-
+	
+	/**
+	 * Method that returns the timer for a player.
+	 * 
+	 * @return timer
+	 */
 	public Clock getTimer(){
 		return timer;
 	}
+
+	/**
+	 * Method that sets the timer for a player in the production phase
+	 * 
+	 * @param timer
+	 */
+	public void setTimer(Clock timer){
+		this.timer = timer;
+	}
+	
+	/**
+	 * Method that checks to see if a players owns a mule
+	 * 
+	 * @return hasMule
+	 */
 	public boolean hasMule(){
 		return hasMule;
 	}
+	
+	/**
+	 * Method that changes the hasMule method based on whether or
+	 * not a player owns a mule.
+	 * 
+	 * @param b
+	 */
 	public void setHasCurrentMule(boolean b){
 		this.hasMule = b;
 	}
-
+	
+	/**
+	 * Method that returns an array of the mules planted on properties.
+	 * 
+	 * @return plantedMules
+	 */
 	public ArrayList<Mule> getMules(){
 		return plantedMules;
 	}
-
+	
+	/**
+	 * Method that returns the amount of ore produced by the land and mules
+	 * 
+	 * @return oreYield
+	 */
 	public int getOreYield(){
 		return this.oreYield;
 	}
+	
+	/**
+	 * Method that returns the amount of energy produced by the land and mules
+	 * 
+	 * @return energyYield
+	 */
 	public int getEnergyYield(){
 		return this.energyYield;
 	}
+	
+	/**
+	 * Method that returns the amount of food produced by the land and mules
+	 * 
+	 * @return foodYield
+	 */
 	public int getFoodYield(){
 		return this.foodYield;
 	}
-
+	
+	/**
+	 * Increases the ore yield by 1
+	 * 
+	 * @param amount
+	 */
 	public void increaseOreYield( int amount ){
 		this.oreYield += amount;
 	}
 	
+	/**
+	 * Increases the energy yield by 1
+	 * 
+	 * @param amount
+	 */
+	public void increaseEnergyYield( int amount ){
+		this.energyYield += amount;
+	}
+	
+	/**
+	 * Increases the food yield by 1
+	 * 
+	 * @param amount
+	 */
+	public void increaseFoodYield( int amount ){
+		this.foodYield += amount;
+	}
+
+	/**
+	 * Method that resets all yields back to 0.
+	 * 
+	 */
 	public void resetYields() {
 		this.oreYield = 0;
 		this.foodYield = 0;
 		this.energyYield = 0;
 	}
 	
-	public void increaseEnergyYield( int amount ){
-		this.energyYield += amount;
-	}
-	
-	public void increaseFoodYield( int amount ){
-		this.foodYield += amount;
-	}
-
+	/**
+	 * Method that sets the current mule
+	 * 
+	 * @param m
+	 */
 	public void setCurrentMule(Mule m){
 		this.currentMule = m;
 	}
+	
+	/**
+	 * Method that returns the current mule owned
+	 * 
+	 * @return currentMule
+	 */
 	public Mule getCurrentMule(){
 		return currentMule;
 	}
 
-	
+	/**
+	 * Method that plants mule after it is purchased by a player.
+	 * @param t
+	 */
 	public void putMule(Tile t){
 		Mule m = getCurrentMule();
 		plantedMules.add(m);
@@ -267,61 +413,13 @@ public class Player implements Serializable{
 	}
 
 
-	/*
-	 * Skeleton code, leaving here until guaranteed new code works.
+
+	/**
+	 * Helper method that works with putMule to make sure the player owns
+	 * the tile they are trying to place their mule on 
 	 * 
-	 * Incomplete method, needs to have exception functionality altered (Irina)
-	 * and then addition of graphics changing when successful.
-	 
-	public boolean putMule(Tile t){
-		try{
-			
-
-			if(!hasTile(t))
-				throw new IllegalPlantException("You cannot place a M.U.L.E on the prperty you do not own");
-
-			if(!hasMule())
-				throw new IllegalPlantException("You do not have a M.U.L.E. to place");
-
-			if(t.hasMule())
-				throw new IllegalPlantException("You cannot place anoter M.U.L.E on this property." +
-						"Only one is allowed ");
-
-			Mule m = getCurrentMule();
-			plantedMules.add(m);
-
-			switch (m.getType() ){
-			case "ore":
-				increaseOreYield(t.getOYield());
-				break;
-			case "energy":
-				increaseEnergyYield(t.getEYield());
-				break;
-			case "food":
-				increaseFoodYield(t.getFYield());
-				break;
-			}
-
-			// Now need some functionality for showing the Mule Image
-			//overworld.getTileAt(t.getLocation().addLabel( new JLabel(m.getImage) ) );
-			//overworld.refresh();
-
-
-			t.setHasMule(true);
-			this.hasMule = false;
-
-			return true;
-		}
-		catch (IllegalPlantException e){ 
-			JOptionPane.showMessageDialog(null, e.getMessage());  
-			return false;
-		}
-	
-	}*/
-
-
-	/*
-	 * Helper method for putMule
+	 * @param t
+	 * @return
 	 */
 	public boolean hasTile(Tile t){
 		for(Tile t1: this.ownedTiles){
@@ -330,8 +428,15 @@ public class Player implements Serializable{
 		return false;
 	}
 
+	/**
+	 * Method that control the pub. The pub allows players to win money
+	 * during the production phase based on how much time is left.
+	 * 
+	 * @param timeLeft
+	 * @param round
+	 * @return
+	 */
 	public int goToPub(int timeLeft, int round) {
-
 		timer.stopTimer();
 		final int bonus1 = 50;
 		final int bonus2 = 100; 
