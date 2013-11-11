@@ -21,6 +21,8 @@ import javax.swing.border.EmptyBorder;
 /**
  * 
  * @author Landmark - Team 14
+ * 
+ * Selection Page class that controls the opening page of the game.
  *
  */
 @SuppressWarnings("serial")
@@ -95,10 +97,9 @@ public class Selpage extends JPanel {
 		}
 		panel.setLayout(null);
 
-		/**
-		 * If 0<x<=4 players have been selected,
-		 * create JLabel for player input textbox
-		 */
+		
+		 //If 0<x<=4 players have been selected,
+		 //create JLabel for player input textbox
 		if(numOfPlayers > 0) {
 			JLabel nameLabel = new JLabel("Name:");
 			nameLabel.setBounds(514, 180, 86, 20);
@@ -125,10 +126,12 @@ public class Selpage extends JPanel {
 			colorBox1.setBounds(514, 240, 105, 20);
 			panel.add(colorBox1);
 		}
-		/**
-		 * If 0<x<=4 players have been selected,
-		 * create JLabel for player input textbox
-		 */
+		
+		
+
+		 //If 0<x<=4 players have been selected,
+		 //create JLabel for player input textbox
+		
 		if(numOfPlayers > 1) {
 			JLabel nameLabel = new JLabel("Name:");
 			nameLabel.setBounds(632, 180, 86, 20);
@@ -156,10 +159,10 @@ public class Selpage extends JPanel {
 			panel.add(raceBox2);
 		}
 
-		/**
-		 * If 0<x<=4 players have been selected,
-		 * create JLabel for player input textbox
-		 */
+		
+		//If 0<x<=4 players have been selected,
+		 //create JLabel for player input textbox
+		 
 		if(numOfPlayers > 2) {
 			JLabel nameLabel = new JLabel("Name:");
 			nameLabel.setBounds(750, 180, 86, 20);
@@ -187,10 +190,10 @@ public class Selpage extends JPanel {
 			panel.add(raceBox3);
 		}
 
-		/**
-		 * If 0<x<=4 players have been selected,
-		 * create JLabel for player input textbox
-		 */
+		
+		 //If 0<x<=4 players have been selected,
+		 //create JLabel for player input textbox
+		 
 		if(numOfPlayers > 3) {
 			JLabel nameLabel = new JLabel("Name:");
 			nameLabel.setBounds(860, 180, 86, 20);
