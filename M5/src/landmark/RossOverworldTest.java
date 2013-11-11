@@ -17,11 +17,18 @@ public class RossOverworldTest {
 	private Overworld map;
 	
 	@BeforeClass
+	/**
+	 * The first method that is ran before everything else.
+	 */
 	public static void testSetup() {
 		System.out.println("Before class.");
 	}
 	
 	@Before
+	/**
+	 * This method is ran before the test method. It initializes
+	 * the appropriate objects we need before testing.
+	 */
 	public void initialize() {
 		ross = new Player("Ross", 1, 1, 3); // Ross has a score of 1600
 		mason = new Player("Mason", 2, 1, 0); // Mason has a score of 600
@@ -33,11 +40,19 @@ public class RossOverworldTest {
 	}
 
 	@AfterClass
+	/**
+	 * Ran after the test method is completed.
+	 */
 	public static void testCleanup() {
 		System.out.println("After class.");
 	}
 	
 	@Test
+	/**
+	 * The test method has 4 cases that the method may experience. Examples
+	 * include ordering a different amount of players and ordering players
+	 * with the same amount score.
+	 */
 	public void testOrderPlayersByScore() {
 		
 		// Test Case 1: Ordering 4 players
