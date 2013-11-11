@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author landmark - team 14
+ * 
+ * Class that handles the production phase for each player during a game.
+ */
 public class ProductionPhaseTurn implements Serializable{
 	
 	private static int productionRound = 0;
@@ -118,6 +124,7 @@ public class ProductionPhaseTurn implements Serializable{
 	/**
 	 * This private method takes the right amount of food from a player before their turn starts.
 	 * Amount of food taken varies per round. Read M2 to know the rules.
+	 * 
 	 */
 	private void takeFoodForClock() {
 		int food = players[turn].getFood();
@@ -152,6 +159,7 @@ public class ProductionPhaseTurn implements Serializable{
 	/**
 	 * Handles getting the right resources from the tile and checks
 	 * if the player has enough energy to run his or her mules.
+	 * 
 	 */
 	private void produceAndGather() {
 		ArrayList<Tile> ownedTiles = players[turn].getTilesOwned();
