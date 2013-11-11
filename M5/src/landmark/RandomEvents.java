@@ -3,6 +3,13 @@ package landmark;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * 
+ * @author landmark - team 14
+ * 
+ * Class that contains the random events that pop up during a current game.
+ *
+ */
 public class RandomEvents implements Serializable{
 	
 	private Player player;
