@@ -61,8 +61,6 @@ public class ProductionPhaseTurn implements Serializable{
 			}
 		}
 		
-		takeFoodForClock();
-		
 		if(productionRound != 1) {
 			produceAndGather();
 		}
@@ -70,6 +68,7 @@ public class ProductionPhaseTurn implements Serializable{
 		town = new TownPanel(players, productionRound, turn, map, driver);
 		timer = new Clock(players, productionRound, turn, town, map, driver);
 		town.setPub(timer);
+		takeFoodForClock();
 			
 		if(turn == (players.length - 1)) {
 	    	turn = 0;
@@ -147,6 +146,7 @@ public class ProductionPhaseTurn implements Serializable{
 	    		players[turn].setFood(0);
 	    	}
 	    }
+		map.setPlayerPanel(players.length);
 	}
 	
 	/**
@@ -169,7 +169,7 @@ public class ProductionPhaseTurn implements Serializable{
 			players[turn].setOre(totalOre);
 			JOptionPane.showMessageDialog(null, players[turn].getName() + ", you produced and harvested:\n" + "Food: " 
 					+ producedFood + "\nEnergy: " + producedEnergy + "\nSmithore: " + producedOre + "\nYou used " + muleSize + 
-					" energy to run your mules.", "Harvested Resources", JOptionPane.INFORMATION_MESSAGE);
+					" energy to run your mule/mules.", "Harvested Resources", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else if(players[turn].getEnergy() > 0){
 			int currentEnergy = players[turn].getEnergy();
