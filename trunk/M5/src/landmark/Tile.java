@@ -5,10 +5,12 @@ import java.awt.image.BufferedImage;
 /**
  * 
  * @author landmark - Team 14
+ * 
+ * Abstract class that represents the tiles on the map.
  *
  */
 
-//Abstract class that represents the tiles on the map. 
+ 
 public abstract class Tile {
 	
 	private String file;
@@ -23,11 +25,11 @@ public abstract class Tile {
 	private int oreYield;
 	
 	
-	/**
-	 * Include for later phases of construction, along with getMuleOnTile() method
-	 * private boolean hasMule;
-	 * private Mule muleOnTile;
-	 */
+	
+	 //Include for later phases of construction, along with getMuleOnTile() method
+	 //private boolean hasMule;
+	 //private Mule muleOnTile;
+	 
 	
 	public abstract Player getOwner();
 	public abstract int getLocation();
