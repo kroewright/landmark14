@@ -64,6 +64,8 @@ import java.awt.Font;
 /**
  * 
  * @author Landmark - Team 14
+ * 
+ * Town Panel class that controls the production phase of the game.
  *
  */
 
@@ -84,7 +86,15 @@ public class TownPanel extends JPanel implements Serializable{
 	private JButton btnMules;
 	private JButton btnEnergy;
 
-	//Sets the player and the layout for Production Phase
+	/**
+	 * Sets the player and the layout for Production Phase
+	 *
+	 * @param players
+	 * @param productionRound
+	 * @param turn
+	 * @param map
+	 * @param driver
+	 */
 	public TownPanel(final Player[] players, final int productionRound, 
 			final int turn, final Overworld map, final GameDriver driver){
 		super(new BorderLayout());
@@ -201,22 +211,52 @@ public class TownPanel extends JPanel implements Serializable{
 		PresenterStoreTownPanel.addListeners(this, store);
 	}
 	
+	/**
+	 * Method that add the ore action listener to the town
+	 * panel.
+	 * 
+	 * @param E
+	 */
 	public void setOreActionListener(ActionListener E){
 		btnOre.addActionListener(E);
 	}
 	
+	/**
+	 * Method that add the food action listener to the town
+	 * panel.
+	 * 
+	 * @param E
+	 */
 	public void setFoodActionListener(ActionListener E){
 		btnFood.addActionListener(E);
 	}
 	
+	/**
+	 * Method that add the energy action listener to the town
+	 * panel.
+	 * 
+	 * @param E
+	 */
 	public void setEnergyActionListener(ActionListener E){
 		btnEnergy.addActionListener(E);
 	}
 	
+	/**
+	 * Method that add the mule action listener to the town
+	 * panel.
+	 * 
+	 * @param E
+	 */
 	public void setMulesActionListener(ActionListener E){
 		btnMules.addActionListener(E);
 	}
 	
+	/**
+	 * Method that add the pub action listener to the town
+	 * panel.
+	 * 
+	 * @param E
+	 */
 	public void addPubBtnActionListener(ActionListener listener) {
 		btnPub.addActionListener(listener);
 	}
@@ -275,22 +315,46 @@ public class TownPanel extends JPanel implements Serializable{
 		});
 	}
 
+	/**
+	 * Method that returns the current player
+	 * 
+	 * @return player
+	 */
 	public Player getPlayer(){
 		return this.player;
 	}
 	
+	/**
+	 * Method that returns all players in the current game
+	 * 
+	 * @return players
+	 */
 	public Player[] getPlayers() {
 		return players;
 	}
 	
+	/**
+	 * Method that returns the overworld map
+	 * 
+	 * @return map
+	 */
 	public Overworld getMap() {
 		return map;
 	}
-	
+	/**
+	 * Method that returns the town panel
+	 * 
+	 * @return town panel
+	 */
 	public TownPanel getTP(){
 		return this;
 	}
 	
+	/**
+	 * Method that returns the game panel.
+	 * 
+	 * @return panel
+	 */
 	public JPanel getPanel(){
 		return panel;
 	}
