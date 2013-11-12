@@ -275,9 +275,9 @@ public class TownPanel extends JPanel implements Serializable{
 			public void actionPerformed(ActionEvent e) {
 
 				int timeLeft = timer.getCurrentTime();
-
+				int seed = 0;
 				JOptionPane.showMessageDialog(panel, "You just got a $" +
-						player.goToPub(timeLeft, productionRound) +
+						player.goToPub(timeLeft, productionRound, seed) +
 						" money bonus! \nMoney: $" + player.getMoney());
 
 				//Ends the player's turn and activate the another player

@@ -95,7 +95,7 @@ public class Player implements Serializable{
 	public int getColor(){
 		return color;
 	}
-	
+
 	/**
 	 * Method that converts the player color integer into a string.
 	 * 
@@ -114,7 +114,7 @@ public class Player implements Serializable{
 		}
 		return null;
 	}
-	
+
 
 	/**
 	 * Method that adds tiles to new owners and sets the new owner.
@@ -177,7 +177,7 @@ public class Player implements Serializable{
 	public void setFood(int newtotal){
 		food = newtotal;
 	}
-	
+
 	/**
 	 * Method that returns how much energy a player has
 	 * 
@@ -186,7 +186,7 @@ public class Player implements Serializable{
 	public int getEnergy() {
 		return energy;
 	}
-	
+
 	/**
 	 * Method that sets the new energy total following production phase
 	 * 
@@ -213,7 +213,7 @@ public class Player implements Serializable{
 	public void setOre(int newtotal){
 		ore =  newtotal;
 	}
-	
+
 	/**
 	 * Method that returns how much money a player has
 	 * 
@@ -240,7 +240,7 @@ public class Player implements Serializable{
 	public int getMoney(){
 		return money;
 	}
-	
+
 	/**
 	 * Method that sets the new money total following production phase
 	 *	
@@ -259,7 +259,7 @@ public class Player implements Serializable{
 	public int getDifficulty(){
 		return difficulty;
 	}
-	
+
 	/**
 	 * Method that returns the timer for a player.
 	 * 
@@ -277,7 +277,7 @@ public class Player implements Serializable{
 	public void setTimer(Clock timer){
 		this.timer = timer;
 	}
-	
+
 	/**
 	 * Method that checks to see if a players owns a mule
 	 * 
@@ -286,7 +286,7 @@ public class Player implements Serializable{
 	public boolean hasMule(){
 		return hasMule;
 	}
-	
+
 	/**
 	 * Method that changes the hasMule method based on whether or
 	 * not a player owns a mule.
@@ -296,7 +296,7 @@ public class Player implements Serializable{
 	public void setHasCurrentMule(boolean b){
 		this.hasMule = b;
 	}
-	
+
 	/**
 	 * Method that returns an array of the mules planted on properties.
 	 * 
@@ -305,7 +305,7 @@ public class Player implements Serializable{
 	public ArrayList<Mule> getMules(){
 		return plantedMules;
 	}
-	
+
 	/**
 	 * Method that returns the amount of ore produced by the land and mules
 	 * 
@@ -314,7 +314,7 @@ public class Player implements Serializable{
 	public int getOreYield(){
 		return this.oreYield;
 	}
-	
+
 	/**
 	 * Method that returns the amount of energy produced by the land and mules
 	 * 
@@ -323,7 +323,7 @@ public class Player implements Serializable{
 	public int getEnergyYield(){
 		return this.energyYield;
 	}
-	
+
 	/**
 	 * Method that returns the amount of food produced by the land and mules
 	 * 
@@ -332,7 +332,7 @@ public class Player implements Serializable{
 	public int getFoodYield(){
 		return this.foodYield;
 	}
-	
+
 	/**
 	 * Increases the ore yield by 1
 	 * 
@@ -341,7 +341,7 @@ public class Player implements Serializable{
 	public void increaseOreYield( int amount ){
 		this.oreYield += amount;
 	}
-	
+
 	/**
 	 * Increases the energy yield by 1
 	 * 
@@ -350,7 +350,7 @@ public class Player implements Serializable{
 	public void increaseEnergyYield( int amount ){
 		this.energyYield += amount;
 	}
-	
+
 	/**
 	 * Increases the food yield by 1
 	 * 
@@ -369,7 +369,7 @@ public class Player implements Serializable{
 		this.foodYield = 0;
 		this.energyYield = 0;
 	}
-	
+
 	/**
 	 * Method that sets the current mule
 	 * 
@@ -378,7 +378,7 @@ public class Player implements Serializable{
 	public void setCurrentMule(Mule m){
 		this.currentMule = m;
 	}
-	
+
 	/**
 	 * Method that returns the current mule owned
 	 * 
@@ -395,7 +395,7 @@ public class Player implements Serializable{
 	public void putMule(Tile t){
 		Mule m = getCurrentMule();
 		plantedMules.add(m);
-		
+
 		switch (m.getType() ){
 		case "mine":
 			increaseOreYield(t.getOYield());
@@ -407,7 +407,7 @@ public class Player implements Serializable{
 			increaseFoodYield(t.getFYield());
 			break;
 		}
-		
+
 		t.setHasMule(true);
 		this.setHasCurrentMule(false);
 	}
@@ -436,19 +436,26 @@ public class Player implements Serializable{
 	 * @param round
 	 * @return
 	 */
-	public int goToPub(int timeLeft, int round) {
+	public int goToPub(int timeLeft, int round, int seed) {
 		timer.stopTimer();
 		final int bonus1 = 50;
 		final int bonus2 = 100; 
 		final int bonus3 = 150;
 		final int bonus4 = 200;
 		final int maxBonus = 250;
+		Random randomGenerator;
 
 		int roundBonus = 0;
 		int timeBonus = 0;
 		int moneyBonus = 0;
-
-		Random randomGenerator = new Random();
+		if(0 == seed) 
+			randomGenerator = new Random();
+		else 
+			randomGenerator = new Random(seed);
+		//Out of bounds
+		if (round > 12 || round < 1 
+				|| timeLeft < 1 || timeLeft > 50)
+			return 0;
 
 		//Round 12
 		if(round > 11) {
@@ -489,7 +496,8 @@ public class Player implements Serializable{
 			timeBonus = bonus1;
 		}	
 
-		int random = randomGenerator.nextInt(timeBonus+1);  
+		int random = Math.abs((randomGenerator.nextInt() % (timeBonus+1)));
+		System.out.println("random from method = " + random);
 		moneyBonus = roundBonus + random;        
 
 		if(moneyBonus > maxBonus)
@@ -500,8 +508,4 @@ public class Player implements Serializable{
 
 		return moneyBonus;
 	}
-
-
-
-
 }
