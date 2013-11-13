@@ -2,6 +2,7 @@ package landmark;
 
 
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -34,29 +35,28 @@ import java.util.logging.Logger;
  * 
  */
 public class Store implements Serializable {
-
 	public Player player;
 	public TownPanel town;
 	private Overworld map;
-	private JButton btnOre;
-	private JButton btnEnergy;
-	private JButton btnFood;
-	private JButton btnMules;
+	//private JButton btnOre;
+	//private JButton btnEnergy;
+	//private JButton btnFood;
+	//private JButton btnMules;
 	private static boolean storeCreated = false;
 
 	private Mule mule;
-	private String energy;
-	private String ore;
-	private String food;
+	//private String energy;
+	//private String ore;
+	//private String food;
 
 
-	private static int invFood = 0;
-	private static int invEnergy = 0;
-	private static int invOre = 0;
-	private static int invOreMules = 0;
-	private static int invFoodMules = 0;
-	private static int invEnergyMules = 0;
-	private static int invMules = 0;
+	private static int foodInventory = 0;
+	private static int energyInventory = 0;
+	private static int oreInventory = 0;
+	//private static int oreInventoryMules = 0;
+	//private static int foodInventoryMules = 0;
+	//private static int energyInventoryMules = 0;
+	private static int muleInventory = 0;
 	private int difficulty;
 
 	private final int MULE_FOOD = 25;
@@ -68,8 +68,8 @@ public class Store implements Serializable {
 	private final int ORE_COST = 50;
 	private final int MULE_COST = 100;
 
-	//private Tiles[] landForSale;
-
+	
+	
 	/**
 	 * Constructor that takes in the current player and town to control the buying 
 	 * and selling process for each turn.
@@ -78,24 +78,24 @@ public class Store implements Serializable {
 	 * @param town
 	 */
 	public Store(Player player, TownPanel town) {
-		food= "food";
-		ore= "ore";
-		energy= "energy";
-		this.town = town.getTP();
-		this.player = town.getPlayer();
+		//food = "food";
+		//ore = "ore";
+		//energy = "energy";
+		this.town = town;
+		this.player = player;
 		difficulty = player.getDifficulty();
 		if (difficulty == 1 && storeCreated == false){
-			invFood = 16;
-			invEnergy = 16;
-			invOre = 0;
-			invMules = 25;
+			foodInventory = 16;
+			energyInventory = 16;
+			oreInventory = 0;
+			muleInventory = 25;
 			storeCreated = true;
 		}
 		else if(storeCreated == false) {
-			invFood = 8;
-			invEnergy = 8;
-			invOre = 0;
-			invMules = 14;		
+			foodInventory = 8;
+			energyInventory = 8;
+			oreInventory = 0;
+			muleInventory = 14;		
 			storeCreated = true;
 		}
 		map = town.getMap();
@@ -108,51 +108,51 @@ public class Store implements Serializable {
 	 * Determines if a player is buying or selling and if they have enough of an 
 	 * item or enough money.
 	 */
-	public void oreButt() {
+	public void oreTransaction() {
 		Object[] options = {"Buy", "Sell", "Cancel"};
-		int n = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
+		int buyOrSell = JOptionPane.showOptionDialog(null, "Would you like to buy or sell?",
 				"Buy or sell Ore", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
 				null, options, null);
 
-		if (n == JOptionPane.YES_OPTION) { //buy ore
+		if (buyOrSell == JOptionPane.YES_OPTION) { //buy ore
 
-			int valInt = 0;
+			int playerSelection = 0;
 			boolean done = false;  
 
 			while(!done) {			
 				try { 			
-					String valStr= JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
+					String selectionString = JOptionPane.showInputDialog(null, "Please enter the amount of ORE you would like to buy.",
 							"Buying Ore", JOptionPane.OK_CANCEL_OPTION);
-					if (valStr == null) break;       // Exit loop on Cancel/close box.
-					valInt = Integer.parseInt(valStr); 
+					if (selectionString == null) break;       // Exit loop on Cancel/close box.
+					playerSelection = Integer.parseInt(selectionString); 
 					done = true;
 				}
 				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "You should enter a number. Try again.");
+					JOptionPane.showMessageDialog(null, "Please enter a number. Try again.");
 				}
 			}
 
-			int totalCost = ORE_COST * valInt;
+			int totalCost = ORE_COST * playerSelection;
 			//check if player has enough money
-			if (player.getMoney() >= totalCost && invOre >= valInt){
+			if (player.getMoney() >= totalCost && oreInventory >= playerSelection){
 				player.setMoney(player.getMoney() - totalCost);
-				int totalOre = player.getOre() + valInt;
+				int totalOre = player.getOre() + playerSelection;
 				player.setOre(totalOre);
-				invOre = invOre-valInt;
+				oreInventory = oreInventory-playerSelection;
 			} else {
 				if (player.getMoney() < totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
 							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else if (invOre < valInt){
+				else if (oreInventory < playerSelection){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Smithore: " + invOre +"\nEnergy: " + invEnergy + "\nFood: " + invFood + "\nMules: " + invMules,
+							"Smithore: " + oreInventory +"\nEnergy: " + energyInventory + "\nFood: " + foodInventory + "\nMules: " + muleInventory,
 							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
 
-		else if (n == JOptionPane.NO_OPTION){ //sell ore
+		else if (buyOrSell == JOptionPane.NO_OPTION){ //sell ore
 
 			int valInt = 0;
 			boolean done = false;  
@@ -175,7 +175,7 @@ public class Store implements Serializable {
 			if (player.getOre() >= valInt){
 				player.setMoney(player.getMoney() + moneyGiven);
 				player.setOre(player.getOre() - valInt);
-				invOre = invOre + valInt;
+				oreInventory = oreInventory + valInt;
 			}
 			else {
 				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough smithore for this transaction."
@@ -217,20 +217,20 @@ public class Store implements Serializable {
 
 			int totalCost = ENERGY_COST * valInt;
 			//check if player has enough money
-			if (player.getMoney() >= totalCost && invEnergy >= valInt){
+			if (player.getMoney() >= totalCost && energyInventory >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
 				int totalEnergy = player.getEnergy() + valInt;
 				player.setEnergy(totalEnergy);
-				invEnergy = invEnergy-valInt;
+				energyInventory = energyInventory-valInt;
 			}
 			else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
 							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else if (invEnergy < valInt){
+				else if (energyInventory < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Smithore: " + invOre +"\nEnergy: " + invEnergy + "\nFood: " + invFood + "\nMules: " + invMules,
+							"Smithore: " + oreInventory +"\nEnergy: " + energyInventory + "\nFood: " + foodInventory + "\nMules: " + muleInventory,
 							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -259,7 +259,7 @@ public class Store implements Serializable {
 			if (player.getEnergy() >= valInt){
 				player.setMoney(player.getMoney() + moneyGiven);
 				player.setEnergy(player.getEnergy() - valInt);
-				invEnergy = invEnergy + valInt;
+				energyInventory = energyInventory + valInt;
 			}
 			else {
 				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough energy for this transaction."
@@ -299,19 +299,19 @@ public class Store implements Serializable {
 
 			int totalCost = FOOD_COST * valInt;
 			//check if player has enough money
-			if (player.getMoney() >= totalCost && invFood >= valInt){
+			if (player.getMoney() >= totalCost && foodInventory >= valInt){
 				player.setMoney(player.getMoney() - totalCost);
 				int totalFood = player.getFood() + valInt;
 				player.setFood(totalFood);
-				invFood = invFood-valInt;
+				foodInventory = foodInventory-valInt;
 			} else {
 				if (player.getMoney() <totalCost){
 					JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough money for this transaction."
 							, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else if (invFood < valInt){
+				else if (foodInventory < valInt){
 					JOptionPane.showMessageDialog(null, "Sorry, the store doesn't have that much in it's inventory. It only has:\n" +
-							"Smithore: " + invOre +"\nEnergy: " + invEnergy + "\nFood: " + invFood + "\nMules: " + invMules,
+							"Smithore: " + oreInventory +"\nEnergy: " + energyInventory + "\nFood: " + foodInventory + "\nMules: " + muleInventory,
 							"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -340,7 +340,7 @@ public class Store implements Serializable {
 			if (player.getFood() >= valInt){
 				player.setMoney(player.getMoney() + moneyGiven);
 				player.setFood(player.getFood() - valInt);
-				invFood = invFood + valInt;
+				foodInventory = foodInventory + valInt;
 			}
 			else {
 				JOptionPane.showMessageDialog(null, player.getName() + ", you do not have enough food for this transaction."
@@ -363,7 +363,7 @@ public class Store implements Serializable {
 		int n = JOptionPane.showConfirmDialog(town, "Would you like to buy a mule?",
 				"Buy a Mule", dialogButton);
 
-		if (n == JOptionPane.YES_OPTION && invMules != 0 && player.hasMule() == false) { //buy mules
+		if (n == JOptionPane.YES_OPTION && muleInventory != 0 && player.hasMule() == false) { //buy mules
 			Object[] types = {"Energy", "Ore", "Food"};
 			int m = JOptionPane.showOptionDialog(town, "What kind of MULE would you like to purchase?",
 					"Type of Mule", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
@@ -393,14 +393,14 @@ public class Store implements Serializable {
 
 			if (player.getMoney() >= totalCost){
 				player.setMoney(player.getMoney() - totalCost);				
-				invMules = invMules - 1;
+				muleInventory = muleInventory - 1;
 			}
 			else {
 				JOptionPane.showMessageDialog(town, player.getName() + ", you do not have enough money for this transaction."
 						, "Insufficient Funds", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
-		else if(n == JOptionPane.YES_OPTION && invMules == 0) {
+		else if(n == JOptionPane.YES_OPTION && muleInventory == 0) {
 			JOptionPane.showMessageDialog(town, "Sorry, the store doesn't have anymore mules!",
 					"Store Inventory Error", JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -414,37 +414,37 @@ public class Store implements Serializable {
 	/**
 	 * Method that returns the stores food inventory.
 	 * 
-	 * @return invFood
+	 * @return foodInventory
 	 */
 	public int getFoodInv() {
-		return invFood;
+		return foodInventory;
 	}
 
 	/**
 	 * Method that returns the stores energy inventory.
 	 * 
-	 * @return invEnergy
+	 * @return energyInventory
 	 */
 	public int getEnergyInv() {
-		return invEnergy;
+		return energyInventory;
 	}
 	
 	/**
 	 * Method that returns the stores ore inventory.
 	 * 
-	 * @return invOre
+	 * @return oreInventory
 	 */
 	public int getOreInv() {
-		return invOre;
+		return oreInventory;
 	}
 	
 	/**
 	 * Method that returns the stores mule inventory.
 	 * 
-	 * @return invMules
+	 * @return muleInventory
 	 */
 	public int getMuleInv() {
-		return invMules;
+		return muleInventory;
 	}
 
 	

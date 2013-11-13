@@ -34,7 +34,7 @@ public class PresenterStoreTownPanel implements Serializable {
 	
 		town.setOreActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				store.oreButt();
+				store.oreTransaction();
 			}
 		});
 		
