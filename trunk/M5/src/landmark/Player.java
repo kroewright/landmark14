@@ -504,7 +504,7 @@ public class Player implements Serializable{
 
 		money += moneyBonus;
 		setScore(money);
-
+		//System.out.println("moneyBonus from method = " + moneyBonus);
 		return moneyBonus;
 	}
 }

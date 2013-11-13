@@ -407,11 +407,11 @@ public class IrinaPlayer_goToPubTest {
 	}
 
 	//To test that all lines of code are executed and to test that the bonus 
-	//cannot be more than $250. 
-	//Settings: round = 12, timeLeft = 50, roundBonus = 200, timeBonus = 200,   
+	//cannot be more than $250 but can be less than $250.   
 
 	/**
-	 * testMoreThan250 method checks that all lines of code are executed, the bonus cannot be > $250,
+	 * testMoreThan250 method checks the conditions that bonus cannot be > $250
+	 * Settings: round = 12, timeLeft = 50, roundBonus = 200, timeBonus = 200.
 	 */
 	@Test
 	public void testMoreThan250() {
@@ -420,14 +420,32 @@ public class IrinaPlayer_goToPubTest {
 	}
 	
 	/**
+	 * testLessThan250 method checks the conditions that bonus can be < $250
+	 * Settings: round = 2, timeLeft = 5, roundBonus = 50, timeBonus = 50. 
+	 * The bonus must be < $250 and the test should fail if the method 
+	 * returns bonus >= $250.
+	 */
+	@Test
+	public void testLessThan250() {
+		int testGambl = calculateBonus(2, 5, 50, 50); //round=2, timeLeft=5, roundBonus=50, timeBonus=50
+		int gambl = player1.goToPub(5, 2, seed); //timeLeft=5, round=2
+		if(250 <= gambl)
+			gambl = 251;
+		assertEquals("Expected they are equal.", gambl, testGambl);
+	}
+	
+	
+	
+	/**
 	 * calculateBonus method is the helper method that calculates the expected bonus
 	 * from the goToPub method,
 	 */
-	public int calculateBonus(int timeLeft, int round, int roundBonus1, int timeBonus) {
+	public int calculateBonus(int timeLeft, int round, int roundBonus, int timeBonus) {
 		Random randomGenerator1 = new Random(seed);
 		int somerand = Math.abs((randomGenerator1.nextInt() % (timeBonus+1)));
 		//System.out.println("random from test = " + somerand);
-		int moneyBonus = roundBonus1 + somerand;  
+		int moneyBonus = roundBonus + somerand; 
+		//System.out.println("moneyBonus from test = " + moneyBonus);
 		int maxBonus = 250;
 
 		if(moneyBonus > maxBonus)
