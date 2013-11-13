@@ -467,7 +467,7 @@ public class Player implements Serializable{
 			roundBonus = bonus3;
 		}
 
-		//Rounds 4-17
+		//Rounds 4-7
 		else if(round > 3) {
 			roundBonus = bonus2;
 		}
@@ -497,7 +497,6 @@ public class Player implements Serializable{
 		}	
 
 		int random = Math.abs((randomGenerator.nextInt() % (timeBonus+1)));
-		System.out.println("random from method = " + random);
 		moneyBonus = roundBonus + random;        
 
 		if(moneyBonus > maxBonus)
