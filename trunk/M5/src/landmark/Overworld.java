@@ -543,10 +543,31 @@ public class Overworld extends JPanel implements Serializable{
 			for(int j = 0; j<9; j++){
 				int[] tup = randomCoors[i*9+j];
 				randTiles[i][j] = tileFactory(tup[0],tup[1]);
-				System.out.print(i);
-				System.out.print(j);
 			}
 		}
+		
+		int[] townCoors = findTown();
+		Tile temp = randTiles[2][4];
+		randTiles[2][4] = randTiles[townCoors[0]][townCoors[1]];
+		randTiles[townCoors[0]][townCoors[1]] = temp;
+		
+		
+	}
+	/**
+	 * Helper method for finding town
+	 * @return tuple of x,y coordinates
+	 */
+	public static int[] findTown(){
+		int[] tup = new int[2];
+		for(int i = 0; i<5;i++){
+			for(int j = 0; j<9; j++){
+				if (randTiles[i][j].getClass().equals(Town.class) ){
+					tup[0] = i;
+					tup[1] = j;
+				}
+			}
+		}
+		return tup;
 	}
 
 	/**

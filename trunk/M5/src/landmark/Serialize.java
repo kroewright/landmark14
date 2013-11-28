@@ -37,6 +37,7 @@ public class Serialize {
 		
 		driver.getFromFile("saveFile.dat");
 		System.out.println(driver.toString());
+		System.out.println(driver.getOverworld().players[0].getName());
 		System.out.println("It worked!");
 	}
 	
