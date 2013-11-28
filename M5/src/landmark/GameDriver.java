@@ -49,10 +49,10 @@ public class GameDriver implements Serializable{
 		mainPanel = new JPanel(cardlayout);
 		openingScreen = new OpeningScreen();
 		selPage = new Selpage();
-		overworld = new Overworld(isStandard);
+		setOverworld(new Overworld(isStandard));
 		mainPanel.add(openingScreen.getMainComponent(), OPEN);
 		//mainPanel.add(overworld.getMainComponent(), MAP);
-		mainPanel.add(overworld, MAP);
+		mainPanel.add(getOverworld(), MAP);
 
 		/**
 		 * Action listener for the NEXT button of the openingScreen.
@@ -70,7 +70,7 @@ public class GameDriver implements Serializable{
 					selPage.setDifficulty(difficulty);
 					if(isStandard == 2) {
 						System.out.println("isStandard = " + isStandard);
-						overworld = new Overworld(isStandard);
+						setOverworld(new Overworld(isStandard));
 						//mainPanel.add(overworld, MAP);
 						//overworld.setMapType(isStandard);
 					}
@@ -90,12 +90,12 @@ public class GameDriver implements Serializable{
 
 				players = selPage.createPlayers(numOfPlayers);
 				if(null != players) {             
-					overworld.setPlayers(players);
-					overworld.setFrame(frame);
-					overworld.setDriver(driver);
-					mainPanel.add(overworld, MAP);
+					getOverworld().setPlayers(players);
+					getOverworld().setFrame(frame);
+					getOverworld().setDriver(driver);
+					mainPanel.add(getOverworld(), MAP);
 					cardlayout.show(mainPanel, MAP);
-					overworld.selectionPhaseTurn();
+					getOverworld().selectionPhaseTurn();
 				}
 			}
 		});
@@ -103,10 +103,10 @@ public class GameDriver implements Serializable{
 		/**
 		 * Action listener for when a player only clicks on the town after the selection phase is finished.
 		 */
-		overworld.addTownButtonActionListener(new ActionListener() {
+		getOverworld().addTownButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { //BC OF LAW OF DEM. THIS COULD BE MOVED INTO OVERWORLD
-				if(overworld.getSelectionSkips() == numOfPlayers && productionRound <= 12) {
-					ProductionPhaseTurn turn = overworld.getProductionTurn();
+				if(getOverworld().getSelectionSkips() == numOfPlayers && productionRound <= 12) {
+					ProductionPhaseTurn turn = getOverworld().getProductionTurn();
 					TownPanel town = turn.getTownPanel();
 					mainPanel.add(town.getMainComponent(),TOWN);
 					cardlayout.show(mainPanel, TOWN);
@@ -223,6 +223,17 @@ public class GameDriver implements Serializable{
 	        }
 	        return c;
 	     }
+	    /**
+	     * getter and setter for the overworld, to be used by other classes
+	     * @return
+	     */
+		public Overworld getOverworld() {
+			return overworld;
+		}
+
+		public void setOverworld(Overworld overworld) {
+			this.overworld = overworld;
+		}
 	
 }
 
