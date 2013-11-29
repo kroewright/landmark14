@@ -71,8 +71,18 @@ public class GameDriver implements Serializable{
 					if(isStandard == 2) {
 						System.out.println("isStandard = " + isStandard);
 						setOverworld(new Overworld(isStandard));
-						//mainPanel.add(overworld, MAP);
-						//overworld.setMapType(isStandard);
+						getOverworld().addTownButtonActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) { 
+								if(getOverworld().getSelectionSkips() == numOfPlayers && productionRound <= 12) {
+									ProductionPhaseTurn turn = getOverworld().getProductionTurn();
+									TownPanel town = turn.getTownPanel();
+									mainPanel.add(town.getMainComponent(),TOWN);
+									cardlayout.show(mainPanel, TOWN);
+									//Store store= new Store(overworld.getPlayer(), town);
+									//PresenterStoreTownPanel.addListeners(town, store);
+								}
+							}
+						});
 					}
 					mainPanel.add(selPage.getMainComponent(), SEL);	
 					cardlayout.show(mainPanel, SEL);
