@@ -2,6 +2,7 @@ package landmark;
 
 
 import java.awt.*;
+import landmark.Tiles.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +37,7 @@ import java.util.logging.Logger;
  */
 public class Store implements Serializable {
 	public Player player;
-	public TownPanel town;
+	public static TownPanel town;
 	private Overworld map;
 	//private JButton btnOre;
 	//private JButton btnEnergy;
@@ -102,6 +103,30 @@ public class Store implements Serializable {
 		map.setStore(this);
 
 	}
+	/**
+	 * Decides whether to buy or sell, then abstracts other two functions for trading
+	 * lands between players.
+	 */
+	public void landTransaction(){
+		String[] options = {"Buy" , "Sell", "Cancel"};
+		int buyOrSell = JOptionPane.showOptionDialog(null, "Buy or sell?", "Land Transactions",
+				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+		
+		if(buyOrSell == JOptionPane.YES_OPTION){
+			Player playerExchange = pickExchangePlayer();
+			Player playerBuy = Overworld.players[Overworld.getPlayerTurn()];
+			handleTransaction(playerBuy,playerExchange);
+			//TODO Finish transaction handler
+
+		}
+		else if(buyOrSell == JOptionPane.NO_OPTION){
+			Player playerExchange = pickExchangePlayer();
+			Player playerSell = Overworld.players[Overworld.getPlayerTurn()];
+			handleTransaction(playerExchange,playerSell);
+	
+		}
+	}
+	
 	
 	/**
 	 * Method that controls the functionality of the Ore button in the store.
@@ -448,8 +473,72 @@ public class Store implements Serializable {
 	}
 
 	
-	
+	/**
+	 * Performs the actual changing of territories
+	 * @param buyer
+	 * @param seller
+	 */
+	public static void handleTransaction(Player buyer, Player seller){
+		Object[] types = {"Plains", "Mountains", "River"};
+		boolean done = false;
+		String type;
+		Tile tileToExchange = null;
 
+		while(!done){
+			int m = JOptionPane.showOptionDialog(town, "What kind of land would you like to purchase?",
+				"Type of Land", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
+				null, types, null);	
+			if(m == JOptionPane.YES_OPTION) type = "Plains";
+			else if(m == JOptionPane.NO_OPTION) type = "Mountains";
+			else type = "River";
+			
+			for(Tile t: seller.getTilesOwned()){
+				if(type.equals("River") && t instanceof River ||
+				   type.equals("Plains") && t instanceof Plains ||
+				   type.equals("Mountains") && t instanceof Mountains){
+					done = true;
+					tileToExchange = t;
+					break;
+				}
+				else {
+					done = false;
+				}
+			}
+		}
+		
+		//TODO Handle the actual Transaction
+		
+		
+		
+	}
+	/**
+	 * Finds the other player (the one who's turn it isn't)
+	 * to perform the trade with
+	 * @return
+	 */
+	public static Player pickExchangePlayer(){
+		int playerSelected = 0;
+		boolean done = false;
+		Player playerExchange = null;
+		while(!done){
+			try{
+				String selectionString = JOptionPane.showInputDialog(null,
+						"Enter the name of the player you would like to exchange land with? (1 for player 1 etc)"
+				,"Exchanging land", JOptionPane.OK_CANCEL_OPTION);
+				if(selectionString == null) break;
+				playerSelected = Integer.parseInt(selectionString);
+				done = true;
+				
+				if(playerSelected > Overworld.players.length) done = false;
+				else 	playerExchange = Overworld.players[playerSelected-1];
+		
+			}
+			catch(NumberFormatException e){
+				JOptionPane.showMessageDialog(null, "Incorrect choice, please try again.");
+			}
+		}
+		return playerExchange;
+	}
 	
 	
 }

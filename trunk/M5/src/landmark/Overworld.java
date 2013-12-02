@@ -66,7 +66,7 @@ public class Overworld extends JPanel implements Serializable{
 	private int selectionRounds = 0;
 	private JFrame frame;
 	private int selectionSkips = 0;
-	private int playerTurn = 0;
+	private static int playerTurn = 0;
 	private int numberOfPlayers;
 	private int mapType = 1; //default map is standard map = 1 and random map = 2
 	private ProductionPhaseTurn productionTurn;
@@ -816,7 +816,9 @@ public class Overworld extends JPanel implements Serializable{
 		updateUI();
 	}	
 	
-    
+    	public static int getPlayerTurn(){
+    		return playerTurn;
+    	}
 
 		public static GameDriver getDriver() {
 			return driver;
