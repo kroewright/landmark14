@@ -32,6 +32,13 @@ public class PresenterStoreTownPanel implements Serializable {
 	 */
 	public static void addListeners(TownPanel town, final Store store){
 	
+		
+		town.setLandActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				store.landTransaction();
+			}
+		});
+		
 		town.setOreActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				store.oreTransaction();

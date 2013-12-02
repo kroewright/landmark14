@@ -85,6 +85,7 @@ public class TownPanel extends JPanel implements Serializable{
 	private JButton btnFood;
 	private JButton btnMules;
 	private JButton btnEnergy;
+	private JButton btnLand;
 
 	/**
 	 * Sets the player and the layout for Production Phase
@@ -146,7 +147,7 @@ public class TownPanel extends JPanel implements Serializable{
 		panel.add(btnPub);
 		
 		//Button for Land Office
-		JButton btnLand = new JButton("Land");
+		btnLand = new JButton("Land");
 		btnLand.setBounds(481, 361, 89, 118);
 		panel.add(btnLand);
 
@@ -259,6 +260,14 @@ public class TownPanel extends JPanel implements Serializable{
 	 */
 	public void addPubBtnActionListener(ActionListener listener) {
 		btnPub.addActionListener(listener);
+	}
+	
+	/**
+	 * 
+	 * @param listener
+	 */
+	public void setLandActionListener(ActionListener listener) {
+		btnLand.addActionListener(listener);
 	}
 
 	
