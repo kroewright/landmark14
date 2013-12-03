@@ -48,5 +48,6 @@ public abstract class Tile {
 	
 	private boolean hasMule;
 	public abstract boolean hasMule();
-	public abstract void setHasMule(boolean b);
+	public abstract void setHasMule(boolean b, String type);
+	public abstract String getMuleType();
 }

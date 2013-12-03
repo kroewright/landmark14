@@ -92,4 +92,14 @@ public class Town extends Tile implements Serializable{
 	public void setHasMule(boolean b){
 		hasMule = b;
 	}
+
+	@Override
+	public void setHasMule(boolean b, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public String getMuleType() {
+		return null;
+	}
 }

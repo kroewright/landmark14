@@ -30,7 +30,7 @@ public class GameDriver implements Serializable{
 	private OpeningScreen openingScreen; 
 	private Selpage selPage; 
 	private Store store;
-	private Overworld overworld;
+	static Overworld overworld;
 	//private ProductionPhase prodPhase;
 	private int numOfPlayers = 0;
 	private Player[] players;

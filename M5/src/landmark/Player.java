@@ -125,6 +125,11 @@ public class Player implements Serializable{
 		ownedTiles.add(tile);
 		tile.setOwner(this);
 	}
+	
+	public void removeTileOwned(Tile tile){
+		ownedTiles.remove(tile);
+	}
+	
 
 	/**
 	 * Getter for owned tiles per player.
@@ -361,6 +366,23 @@ public class Player implements Serializable{
 	}
 
 	/**
+	 * @param type
+	 * @param amount
+	 */
+	public void decreaseResourceYield(String type, Tile tile){
+		if(type == "mine") this.oreYield -= tile.getOYield();
+		if(type == "PPlant") this.energyYield -= tile.getEYield();
+		if(type == "farm") this.foodYield -= tile.getFYield();
+	}
+	
+	public void increaseResourceYield(String type, Tile tile){
+		if(type == "mine") this.oreYield += tile.getOYield();
+		if(type == "PPlant") this.energyYield += tile.getEYield();
+		if(type == "farm") this.foodYield += tile.getFYield();
+	}
+	
+	
+	/**
 	 * Method that resets all yields back to 0.
 	 * 
 	 */
@@ -408,7 +430,7 @@ public class Player implements Serializable{
 			break;
 		}
 
-		t.setHasMule(true);
+		t.setHasMule(true,m.getType());
 		this.setHasCurrentMule(false);
 	}
 
@@ -507,4 +529,6 @@ public class Player implements Serializable{
 		//System.out.println("moneyBonus from method = " + moneyBonus);
 		return moneyBonus;
 	}
+
+	
 }
