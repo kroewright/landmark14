@@ -26,6 +26,8 @@ public class Mountains extends Tile implements Serializable{
 	private int energyYield;
 	private int oreYield;
 	
+	private String muleType;
+	
 	//Type of tile
 	private int tileType;
 	
@@ -45,6 +47,7 @@ public class Mountains extends Tile implements Serializable{
 		this.location = location;
 		this.cost = 0;
 		this.type = type;
+		this.tileType = 0;
 		
 		//this.hasMule = false;
 		this.foodYield = 1;
@@ -175,8 +178,14 @@ public class Mountains extends Tile implements Serializable{
 		return hasMule;
 	}
 	
-	public void setHasMule(boolean b){
+	public void setHasMule(boolean b, String type){
+		muleType = type;
 		hasMule = b;
+	}
+
+	@Override
+	public String getMuleType() {
+		return muleType;
 	}
 
 }

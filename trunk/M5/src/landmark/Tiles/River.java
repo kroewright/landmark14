@@ -30,7 +30,8 @@ public class River extends Tile implements Serializable{
 	private int oreYield;
 
 	private int tileType;
-	
+	private String muleType;
+
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
 	 * private boolean hasMule;
@@ -48,6 +49,7 @@ public class River extends Tile implements Serializable{
 		this.foodYield = 4;
 		this.energyYield = 2;
 		this.oreYield = 0;
+		this.tileType = 2;
 		
 		setImage();
 	}
@@ -153,7 +155,11 @@ public class River extends Tile implements Serializable{
 	public boolean hasMule(){
 		return hasMule;
 	}
-	public void setHasMule(boolean b){
+	public void setHasMule(boolean b, String type){
+		muleType = type;
 		hasMule = b;
+	}
+	public String getMuleType() {
+		return muleType;
 	}
 }

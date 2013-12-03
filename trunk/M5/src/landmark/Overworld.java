@@ -54,14 +54,14 @@ import landmark.Tiles.Town;
 @SuppressWarnings("serial")
 public class Overworld extends JPanel implements Serializable{
 
-	private Tile[][] tiles = new Tile[5][9];
+	private static Tile[][] tiles = new Tile[5][9];
 	private static Tile[][] randTiles = new Tile[5][9];
 	private JPanel panel;
 	private JPanel grid;
 	private JPanel playerPanel;
 	private static GameDriver driver;
 	private JLabel time;
-	private JButton[][] buttons = new JButton[5][9];
+	static JButton[][] buttons = new JButton[5][9];
 	static Player[] players;
 	private int selectionRounds = 0;
 	private JFrame frame;
@@ -822,6 +822,18 @@ public class Overworld extends JPanel implements Serializable{
 
 		public static GameDriver getDriver() {
 			return driver;
+		}
+
+		
+		public static void switchTileOwner(Tile t){
+			int loc = t.getLocation();
+			System.out.println(loc);
+			int i = loc/9;
+			int j = (loc%9);
+			buttons[i][j].setIcon(new ImageIcon(GameDriver.overworld.getClass().getClassLoader().
+					getResource("Tiles/" + t.getImage())));
+			System.out.println("Coordinates: "+i+" "+j);
+			System.out.println(t.getImage());
 		}
 	
 	

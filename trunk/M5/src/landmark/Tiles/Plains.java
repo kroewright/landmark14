@@ -31,6 +31,9 @@ public class Plains extends Tile implements Serializable{
 
 	private int tileType;
 	
+	private String muleType;
+
+	
 	/**
 	 * Include for later phases of construction, along with getMuleOnTile() method
 	 * private boolean hasMule;
@@ -46,7 +49,7 @@ public class Plains extends Tile implements Serializable{
 		this.foodYield = 2;
 		this.energyYield = 3;
 		this.oreYield = 1;
-		
+		this.tileType = 1;
 		setImage();
 	}
 
@@ -82,6 +85,10 @@ public class Plains extends Tile implements Serializable{
 	protected void setOwner(Player p){
 		if(!isOwned) {
 			isOwned = true;
+			this.owner = p;
+			this.setImage();
+		}
+		else{
 			this.owner = p;
 			this.setImage();
 		}
@@ -154,8 +161,11 @@ public class Plains extends Tile implements Serializable{
 	public boolean hasMule(){
 		return hasMule;
 	}
-	public void setHasMule(boolean b){
+	public void setHasMule(boolean b, String type){
+		muleType = type;
 		hasMule = b;
 	}
-	
+	public String getMuleType() {
+		return muleType;
+	}
 }

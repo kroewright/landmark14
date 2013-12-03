@@ -507,7 +507,21 @@ public class Store implements Serializable {
 		}
 		
 		//TODO Handle the actual Transaction
+		seller.removeTileOwned(tileToExchange);
+		buyer.addTileOwned(tileToExchange);
+		tileToExchange.setOwner(buyer);
 		
+		if(tileToExchange.hasMule()){
+			String muleType = tileToExchange.getMuleType();
+			seller.decreaseResourceYield(muleType, tileToExchange);
+			buyer.increaseResourceYield(muleType, tileToExchange);
+			// changed yield values
+		}
+		else{
+			//TODO change colors
+			tileToExchange.setImage();
+			Overworld.switchTileOwner(tileToExchange);
+		}
 		
 		
 	}
@@ -523,7 +537,7 @@ public class Store implements Serializable {
 		while(!done){
 			try{
 				String selectionString = JOptionPane.showInputDialog(null,
-						"Enter the name of the player you would like to exchange land with? (1 for player 1 etc)"
+						"Enter a number for the player you would like to exchange land with? (1 for player 1 etc)"
 				,"Exchanging land", JOptionPane.OK_CANCEL_OPTION);
 				if(selectionString == null) break;
 				playerSelected = Integer.parseInt(selectionString);
